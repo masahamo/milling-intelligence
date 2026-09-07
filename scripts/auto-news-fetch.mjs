@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-// 毎朝の自動ニュース取得スクリプト
-// Google News RSS 等から日本の最新製粉・小麦ニュース、および海外の業界動向を取得して WeeklyNews.tsx を自動更新します
+// 毎朝の自動ニュース取得 & 91日周期 四半期IR巡回スクリプト
+// 1. Google News RSS 等から日本の最新製粉・小麦ニュース、海外動向を取得
+// 2. 日東富士製粉、ADM、Bunge、鳥越製粉などのIR情報を91日周期（13日おき）で巡回
+// 3. WeeklyNews.tsx を自動更新します
 
 console.log('Starting Daily Milling Intelligence auto-fetch at', new Date().toISOString());
 
@@ -14,26 +16,54 @@ if (!fs.existsSync(weeklyFile)) {
   process.exit(1);
 }
 
+// ニュースフィード
 const FEEDS = [
   {
     name: '製粉・小麦ニュース（国内）',
     url: 'https://news.google.com/rss/search?q=%E8%A3%BD%E7%B2%89+%E5%B0%8F%E9%BA%A6&hl=ja&gl=JP&ceid=JP:ja',
     defaultPillar: '原料・品質',
-    lang: 'ja'
   },
   {
     name: '製粉設備・工場新設（国内）',
     url: 'https://news.google.com/rss/search?q=%E8%A3%BD%E7%B2%89%E5%B7%A5%E5%A0%B4+%E5%B0%8F%E9%BA%A6+%E8%A8%AD%E5%82%99&hl=ja&gl=JP&ceid=JP:ja',
     defaultPillar: '設備投資',
-    lang: 'ja'
   },
   {
     name: 'Global Flour Milling News',
     url: 'https://news.google.com/rss/search?q=%22flour+milling%22+OR+%22flour+mill%22&hl=en-US&gl=US&ceid=US:en',
     defaultPillar: '設備投資',
-    lang: 'en'
   }
 ];
+
+// 四半期IRローテーション対象（91日周期・13日おきに巡回）
+const ROTATION_START = '2026-09-08';
+const ROTATION_DAYS = 91;
+const IR_WATCHERS = [
+  { id: 'nittofuji', rotationDay: 0, name: '日東富士製粉', url: 'https://www.nittofuji.co.jp/ir/' },
+  { id: 'adm', rotationDay: 13, name: 'ADM IR', url: 'https://investors.adm.com/' },
+  { id: 'bunge', rotationDay: 26, name: 'Bunge IR', url: 'https://investors.bunge.com/' },
+  { id: 'loulis', rotationDay: 39, name: 'Loulis Food IR', url: 'https://www.loulis.com/en/investor-relations/' },
+  { id: 'gmsa', rotationDay: 52, name: 'Groupe Minoteries', url: 'https://gmsa-rg.ch/' },
+  { id: 'sarantopoulos', rotationDay: 65, name: 'C. Sarantopoulos', url: 'https://athens.euronext.com/' },
+  { id: 'torigoe', rotationDay: 78, name: '鳥越製粉 IR', url: 'https://www.the-torigoe.co.jp/ir/' },
+];
+
+function checkScheduledIR() {
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0, 10);
+  const dayNumber = Math.floor(now.getTime() / 86400000);
+  const startNumber = Math.floor(Date.parse(ROTATION_START + 'T00:00:00Z') / 86400000);
+  const elapsed = (dayNumber - startNumber) % ROTATION_DAYS;
+  const currentSlot = elapsed >= 0 ? elapsed : elapsed + ROTATION_DAYS;
+
+  const target = IR_WATCHERS.find(w => w.rotationDay === currentSlot);
+  if (target) {
+    console.log(`[IR Rotation] 本日（${todayStr}）の四半期IR巡回対象: ${target.name} (${target.url})`);
+  } else {
+    console.log(`[IR Rotation] 本日（${todayStr}）は定例IR巡回の待機日です（次回予定あり）。`);
+  }
+  return target;
+}
 
 function classifyPillar(title) {
   if (/設備|工場|新設|増設|増産|ライン|ロボット|省エネ|プラント|投資|machine|mill|plant|expansion|capacity/i.test(title)) {
@@ -80,12 +110,10 @@ async function fetchGoogleNews(feed) {
         const pubDate = dateMatch ? new Date(dateMatch[1]) : new Date();
         const sourceName = sourceMatch ? cleanTitle(sourceMatch[1]) : 'ニュース報道';
 
-        // 過去3日以内の新しいニュースのみを厳選
         const now = new Date();
         const diffDays = (now.getTime() - pubDate.getTime()) / (1000 * 3600 * 24);
         if (diffDays > 3.5) continue;
 
-        // タイトル末尾のメディア名を除去
         const title = fullTitle.replace(/\s*-\s*[^-]+$/, '').trim();
 
         items.push({
@@ -105,6 +133,10 @@ async function fetchGoogleNews(feed) {
 }
 
 async function main() {
+  // 1. IRローテーションの診断
+  checkScheduledIR();
+
+  // 2. ニュース収集
   const allArticles = [];
   for (const f of FEEDS) {
     const items = await fetchGoogleNews(f);
@@ -117,7 +149,6 @@ async function main() {
   let addedCount = 0;
 
   for (const item of allArticles) {
-    // タイトルの主要部分で重複判定
     const cleanCheck = item.title.slice(0, 15);
     if (weeklyContent.includes(cleanCheck) || weeklyContent.includes(item.link)) {
       continue;
@@ -136,7 +167,7 @@ async function main() {
       console.log(`+ Added: [${item.title}]`);
     }
 
-    if (addedCount >= 3) break; // 1日あたりの追加は厳選して最大3件
+    if (addedCount >= 3) break;
   }
 
   if (addedCount > 0) {

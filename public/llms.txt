@@ -22,4 +22,4 @@ Japanese-first public intelligence database for the flour milling industry.
 - https://milling-intelligence.vercel.app/daily — 製粉業界の日次更新・公開情報
 - https://milling-intelligence.vercel.app/industry — 製粉業界ガイド
 - https://milling-intelligence.vercel.app/products — 製粉・食品の商品開発情報
-- https://milling-intelligence.vercel.app/contact — 設備・機器の資料請求・導入相談窓口
+- https://milling-intelligence.vercel.app/contact — リクエスト・お問い合わせ窓口
