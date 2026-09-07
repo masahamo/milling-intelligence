@@ -1,0 +1,47 @@
+[
+  {
+    "route": "home",
+    "label": "Overview",
+    "path": "/"
+  },
+  {
+    "route": "companies",
+    "label": "Companies",
+    "path": "/companies"
+  },
+  {
+    "route": "compare",
+    "label": "Compare",
+    "path": "/compare"
+  },
+  {
+    "route": "career",
+    "label": "Career",
+    "path": "/career"
+  },
+  {
+    "route": "mills",
+    "label": "Mills",
+    "path": "/mills"
+  },
+  {
+    "route": "machines",
+    "label": "Milling Machines",
+    "path": "/machines"
+  },
+  {
+    "route": "tech",
+    "label": "Technology",
+    "path": "/tech"
+  },
+  {
+    "route": "archive",
+    "label": "Archive",
+    "path": "/archive"
+  },
+  {
+    "route": "method",
+    "label": "Methodology",
+    "path": "/method"
+  }
+]

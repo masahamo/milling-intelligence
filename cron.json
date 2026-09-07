@@ -1,0 +1,1 @@
+[{"name":"milling-daily-refresh","cron":"0 6 * * *","handler":"dailyRefresh","timezone":"Asia/Tokyo","description":"Daily public-source milling intelligence refresh"},{"name":"milling-hiring-refresh","cron":"58 23 * * *","handler":"hiringRefresh","timezone":"Asia/Tokyo"}]

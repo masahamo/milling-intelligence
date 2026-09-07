@@ -1,0 +1,4271 @@
+[
+  {
+    "path": "/",
+    "route": "home",
+    "title": "製粉業界の企業・工場・設備・求人データ | Milling Intelligence",
+    "description": "製粉業界の企業、製粉工場、製粉能力、設備、求人、公開ニュースを横断して調べられる日本語の業界インテリジェンスデータベースです。",
+    "h1": "製粉業界を、3分で理解する。",
+    "body": "製粉会社、工場、製粉能力、設備投資、求人、公開ニュースを同じデータベースで確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/compare",
+        "Compare"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/machines",
+        "Milling Machines"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "nav": "Overview",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/companies",
+    "route": "companies",
+    "title": "世界の製粉会社一覧・企業比較 | Milling Intelligence",
+    "description": "日本・北米・欧州など世界の製粉会社を、企業情報、製粉工場、製粉能力、採用、投資情報から比較できる製粉業界データベースです。",
+    "h1": "世界の製粉・穀物関連会社",
+    "body": "国・地域、上場区分、企業名から製粉会社を検索し、工場、製粉能力、採用、関連ニュースを横断できます。",
+    "links": [
+      [
+        "/companies/japan",
+        "日本の製粉会社"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/career",
+        "採用・転職情報"
+      ],
+      [
+        "/mills",
+        "製粉工場一覧"
+      ]
+    ],
+    "nav": "Companies",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/companies/japan",
+    "route": "companies/japan",
+    "title": "日本の製粉会社一覧・小麦粉メーカー比較 | Milling Intelligence",
+    "description": "日本の主要製粉会社を一覧で掲載。企業情報、製粉工場、製粉能力、採用・転職情報などを公開資料に基づいて比較できます。",
+    "h1": "日本の製粉会社一覧",
+    "body": "日本の主要製粉会社について、企業情報、製粉工場、製粉能力、採用・転職情報を公開資料から比較できます。",
+    "links": [
+      [
+        "/companies",
+        "世界の製粉会社"
+      ],
+      [
+        "/compare",
+        "Japanランキング"
+      ],
+      [
+        "/mills",
+        "日本の製粉工場"
+      ],
+      [
+        "/career",
+        "製粉会社の求人"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/companies/us",
+    "route": "companies/us",
+    "title": "北米の製粉会社一覧 | Milling Intelligence",
+    "description": "米国を中心とする北米の製粉・穀物関連会社を、企業情報、製粉能力、工場、採用、投資情報などから比較できます。",
+    "h1": "北米の製粉会社一覧",
+    "body": "米国を中心とする北米の製粉・穀物関連会社を公開情報から比較できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/career",
+        "Career"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/companies/europe",
+    "route": "companies/europe",
+    "title": "ヨーロッパの製粉会社一覧 | Milling Intelligence",
+    "description": "ヨーロッパの製粉会社を、企業情報、製粉工場、製粉能力、採用情報、上場・非上場の公開情報から比較できます。",
+    "h1": "ヨーロッパの製粉会社一覧",
+    "body": "ヨーロッパの製粉会社、工場、製粉能力、採用情報を公開情報から比較できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/career",
+        "Career"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/companies/australia",
+    "route": "companies/australia",
+    "title": "オーストラリアの製粉会社一覧 | Milling Intelligence",
+    "description": "オーストラリアの製粉・穀物関連会社を、企業情報、工場、設備、採用、公開ニュースなどから調べられます。",
+    "h1": "オーストラリアの製粉会社一覧",
+    "body": "オーストラリアの製粉・穀物関連会社を工場、設備、採用情報から確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/companies/canada",
+    "route": "companies/canada",
+    "title": "カナダの製粉会社一覧 | Milling Intelligence",
+    "description": "カナダの製粉会社を、企業情報、製粉工場、製粉能力、設備投資、採用などの公開情報から比較できます。",
+    "h1": "カナダの製粉会社一覧",
+    "body": "カナダの製粉会社、工場、製粉能力、設備投資、採用を確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/companies/china",
+    "route": "companies/china",
+    "title": "中国の製粉業界・企業情報 | Milling Intelligence",
+    "description": "中国の製粉業界を、小麦需給、品質、政策、製粉設備、企業・市場関連の公開情報から確認できる地域ページです。",
+    "h1": "中国の製粉業界・企業情報",
+    "body": "中国の小麦需給、品質、政策、製粉設備、企業関連の公開情報を確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/compare",
+    "route": "compare",
+    "title": "製粉会社・小麦粉メーカーランキング｜大手・製粉能力比較 | Milling Intelligence",
+    "description": "日本・北米・欧州などの製粉会社・小麦粉メーカーを製粉能力t/dayでランキング比較。公開資料を基に、大手メーカーの工場規模や売上高も確認できます。",
+    "h1": "製粉会社・小麦粉メーカーランキング",
+    "body": "公開資料に基づく製粉能力をGlobal、Japan、North America、Europeの地域別に比較できます。",
+    "links": [
+      [
+        "/companies",
+        "企業一覧"
+      ],
+      [
+        "/mills",
+        "工場・能力データ"
+      ],
+      [
+        "/career",
+        "採用情報"
+      ]
+    ],
+    "nav": "Compare",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/career",
+    "route": "career",
+    "title": "製粉会社・小麦粉メーカーの採用・転職情報 | Milling Intelligence",
+    "description": "日本・海外の製粉会社や小麦粉メーカーの採用・転職情報を掲載。製造、生産技術、設備、品質、研究開発などの公開求人と公式採用ページを確認できます。",
+    "h1": "製粉会社・小麦粉メーカーの採用・転職情報",
+    "body": "製造、生産技術、設備、品質、研究開発などの公開求人と求人履歴を会社・地域・職種から検索できます。",
+    "links": [
+      [
+        "/companies",
+        "企業一覧"
+      ],
+      [
+        "/companies/japan",
+        "日本の製粉会社"
+      ],
+      [
+        "/mills",
+        "工場一覧"
+      ],
+      [
+        "/machines",
+        "機械メーカー"
+      ]
+    ],
+    "nav": "Career",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/mills",
+    "route": "mills",
+    "title": "製粉工場一覧｜日本・世界の小麦粉工場・製粉能力 | Milling Intelligence",
+    "description": "日本・北米・欧州などの製粉工場を一覧で掲載。小麦粉工場の所在地、工場数、製粉能力t/day、Google Maps、公開情報源を確認できます。",
+    "h1": "世界・日本の製粉工場一覧",
+    "body": "製粉工場を会社名、地域、工場所在地、公開されている製粉能力から検索し、Google Mapsと公開情報源を確認できます。",
+    "links": [
+      [
+        "/companies",
+        "製粉会社一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/career",
+        "採用情報"
+      ],
+      [
+        "/machines",
+        "製粉機械メーカー"
+      ]
+    ],
+    "nav": "Mills",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/machines",
+    "route": "machines",
+    "title": "製粉機械メーカー一覧｜製粉機・製粉設備メーカー比較 | Milling Intelligence",
+    "description": "Bühler、Omas、Ocrim、Satake、Alapalaなどの製粉機械メーカーを一覧で掲載。製粉機・製粉設備の特徴、得意領域、関連技術、公式情報を比較できます。",
+    "h1": "製粉機械メーカー一覧",
+    "body": "主要な製粉機械メーカーの特徴、得意領域、公式情報、関連ニュースを比較できます。",
+    "links": [
+      [
+        "/tech",
+        "製粉技術・設備"
+      ],
+      [
+        "/mills",
+        "製粉工場"
+      ],
+      [
+        "/companies",
+        "製粉会社"
+      ]
+    ],
+    "nav": "Milling Machines",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/tech",
+    "route": "tech",
+    "title": "製粉技術・製粉設備｜小麦の製粉工程・機械を比較 | Milling Intelligence",
+    "description": "小麦の製粉技術・製粉設備を一覧で掲載。精選、粉砕、篩分けなどの工程、設備メーカー、処理能力、省エネ情報、公式仕様を確認できます。",
+    "h1": "製粉技術・製粉設備データベース",
+    "body": "精選、粉砕、篩分けなどの製粉工程と設備を、メーカー、処理能力、省エネ情報、公式仕様から検索できます。",
+    "links": [
+      [
+        "/machines",
+        "製粉機械メーカー"
+      ],
+      [
+        "/mills",
+        "製粉工場"
+      ],
+      [
+        "/companies",
+        "製粉会社"
+      ]
+    ],
+    "nav": "Technology",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/archive",
+    "route": "archive",
+    "title": "製粉業界ニュース・記事アーカイブ | Milling Intelligence",
+    "description": "製粉会社、設備投資、小麦・品質、企業業績、商品開発など、公開情報を基に整理した製粉業界の記事・ニュースを検索できます。",
+    "h1": "製粉業界ニュース・記事アーカイブ",
+    "body": "製粉業界の公開ニュースと記事を地域、カテゴリー、キーワードから検索できます。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "nav": "Archive",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/method",
+    "route": "method",
+    "title": "情報源と評価方法 | Milling Intelligence",
+    "description": "Milling Intelligenceで使用する公開情報源、製粉能力の扱い、企業評価、更新・訂正方針などデータの読み方を説明します。",
+    "h1": "情報源と評価方法",
+    "body": "公開情報源、製粉能力、企業評価、更新・訂正方針の扱いを説明します。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "nav": "Methodology",
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/disclaimer",
+    "route": "disclaimer",
+    "title": "投資情報の免責事項 | Milling Intelligence",
+    "description": "Milling Intelligenceに掲載する投資環境の編集分析、公開情報の利用範囲、投資判断に関する免責事項を掲載しています。",
+    "h1": "投資情報の免責事項",
+    "body": "公開情報と編集分析の利用範囲、投資判断に関する免責事項です。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/method",
+        "情報源と評価方法"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/daily",
+    "route": "daily",
+    "title": "製粉業界の日次更新・公開情報 | Milling Intelligence",
+    "description": "製粉会社や業界関連の登録済み公開情報源を定期確認し、更新・変更を日次で確認できるMilling Intelligenceの更新記録です。",
+    "h1": "製粉業界の日次更新",
+    "body": "登録済み公開情報源の更新・変更を日次で確認できます。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/archive",
+        "Archive"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/industry",
+    "route": "industry",
+    "title": "製粉業界ガイド | Milling Intelligence",
+    "description": "製粉業界を企業、工場、製粉能力、設備投資、小麦品質などの観点から理解するための公開情報ベースの業界ガイドです。",
+    "h1": "製粉業界ガイド",
+    "body": "製粉業界を企業、工場、製粉能力、設備投資、小麦品質から理解するためのガイドです。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/products",
+    "route": "products",
+    "title": "製粉・食品の商品開発情報 | Milling Intelligence",
+    "description": "小麦粉、二次加工、食品の商品開発に関する公開情報を、製粉業界・設備・品質との関係から確認できる情報ページです。",
+    "h1": "製粉・食品の商品開発情報",
+    "body": "小麦粉、二次加工、食品の商品開発に関する公開情報を確認できます。",
+    "links": [
+      [
+        "/archive",
+        "Archive"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "prerender": true,
+    "canonical": true
+  },
+  {
+    "path": "/company/2002",
+    "title": "日清製粉グループ本社｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "日清製粉グループ本社の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "日清製粉グループ本社｜製粉事業・工場・製粉能力・採用情報",
+    "body": "日清製粉グループ本社の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/nisshin-jp",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/2002",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/2002",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/2001",
+    "title": "ニップン｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "ニップンの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "ニップン｜製粉事業・工場・製粉能力・採用情報",
+    "body": "ニップンの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/nippn",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/2001",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/2001",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/2003",
+    "title": "日東富士製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "日東富士製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "日東富士製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "日東富士製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/nittofuji",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/2003",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/2003",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/2004",
+    "title": "昭和産業｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "昭和産業の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "昭和産業｜製粉事業・工場・製粉能力・採用情報",
+    "body": "昭和産業の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/showa",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/2004",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/2004",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/ADM",
+    "title": "Archer-Daniels-Midland｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Archer-Daniels-Midlandの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Archer-Daniels-Midland｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Archer-Daniels-Midlandの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/ADM",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/ADM",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/BG",
+    "title": "Bunge Global｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Bunge Globalの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Bunge Global｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Bunge Globalの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/BG",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/BG",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/MGPI",
+    "title": "MGP Ingredients｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "MGP Ingredientsの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "MGP Ingredients｜製粉事業・工場・製粉能力・採用情報",
+    "body": "MGP Ingredientsの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ]
+    ],
+    "route": "company/MGPI",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/ANDE",
+    "title": "The Andersons｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "The Andersonsの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "The Andersons｜製粉事業・工場・製粉能力・採用情報",
+    "body": "The Andersonsの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ]
+    ],
+    "route": "company/ANDE",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/CAG",
+    "title": "Conagra Brands｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Conagra Brandsの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Conagra Brands｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Conagra Brandsの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/CAG",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/CAG",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/GNC",
+    "title": "GrainCorp｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "GrainCorpの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "GrainCorp｜製粉事業・工場・製粉能力・採用情報",
+    "body": "GrainCorpの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/GNC",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/GNC",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/GIS",
+    "title": "General Mills｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "General Millsの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "General Mills｜製粉事業・工場・製粉能力・採用情報",
+    "body": "General Millsの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/GIS",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/GIS",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/MDLZ",
+    "title": "Mondelēz International｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Mondelēz Internationalの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Mondelēz International｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Mondelēz Internationalの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/MDLZ",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/MDLZ",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/KYLO",
+    "title": "Loulis Food Ingredients｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Loulis Food Ingredientsの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Loulis Food Ingredients｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Loulis Food Ingredientsの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/KYLO",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/KYLO",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/GMI",
+    "title": "Groupe Minoteries SA｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Groupe Minoteries SAの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Groupe Minoteries SA｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Groupe Minoteries SAの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/GMI",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/GMI",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/KYSA",
+    "title": "C. Sarantopoulos Flour Mills S.A.｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "C. Sarantopoulos Flour Mills S.A.の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "C. Sarantopoulos Flour Mills S.A.｜製粉事業・工場・製粉能力・採用情報",
+    "body": "C. Sarantopoulos Flour Mills S.A.の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/KYSA",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/KYSA",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/2009",
+    "title": "鳥越製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "鳥越製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "鳥越製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "鳥越製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/torigoe",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/2009",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/2009",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/ardent",
+    "title": "Ardent Mills｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Ardent Millsの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Ardent Mills｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Ardent Millsの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/ardent",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/ardent",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/ardent",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/ph",
+    "title": "ph｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "phの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "ph｜製粉事業・工場・製粉能力・採用情報",
+    "body": "phの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/ph",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/ph",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/ph",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/miller",
+    "title": "Miller Milling Company, LLC｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Miller Milling Company, LLCの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Miller Milling Company, LLC｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Miller Milling Company, LLCの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/miller",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/miller",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/miller",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/allied",
+    "title": "Allied Pinnacle Pty Ltd.｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Allied Pinnacle Pty Ltd.の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Allied Pinnacle Pty Ltd.｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Allied Pinnacle Pty Ltd.の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/allied",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/allied",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/allied",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/graincraft",
+    "title": "Grain Craft｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Grain Craftの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Grain Craft｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Grain Craftの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/graincraft",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/graincraft",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/graincraft",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/manildra",
+    "title": "Manildra Group｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Manildra Groupの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Manildra Group｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Manildra Groupの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/manildra",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/manildra",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/manildra",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/rogers",
+    "title": "Rogers Foods Ltd.｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Rogers Foods Ltd.の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Rogers Foods Ltd.｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Rogers Foods Ltd.の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/rogers",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/rogers",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/rogers",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/goodmills",
+    "title": "GoodMills Group｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "GoodMills Groupの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "GoodMills Group｜製粉事業・工場・製粉能力・採用情報",
+    "body": "GoodMills Groupの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/goodmills",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/goodmills",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/goodmills",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/dossche",
+    "title": "Dossche Mills｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Dossche Millsの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Dossche Mills｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Dossche Millsの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/dossche",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/dossche",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/dossche",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/moulins-soufflet",
+    "title": "Moulins Soufflet｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Moulins Souffletの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Moulins Soufflet｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Moulins Souffletの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/moulins-soufflet",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/moulins-soufflet",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/moulins-soufflet",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/whitworth",
+    "title": "Whitworth Bros. Ltd.｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "Whitworth Bros. Ltd.の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "Whitworth Bros. Ltd.｜製粉事業・工場・製粉能力・採用情報",
+    "body": "Whitworth Bros. Ltd.の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/whitworth",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/whitworth",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/whitworth",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/buhler",
+    "title": "buhler｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "buhlerの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "buhler｜製粉事業・工場・製粉能力・採用情報",
+    "body": "buhlerの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/buhler",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/buhler",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/omas",
+    "title": "omas｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "omasの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "omas｜製粉事業・工場・製粉能力・採用情報",
+    "body": "omasの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/omas",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/omas",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/ocrim",
+    "title": "ocrim｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "ocrimの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "ocrim｜製粉事業・工場・製粉能力・採用情報",
+    "body": "ocrimの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/ocrim",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/ocrim",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/satake",
+    "title": "satake｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "satakeの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "satake｜製粉事業・工場・製粉能力・採用情報",
+    "body": "satakeの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/satake",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/satake",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/alapala",
+    "title": "alapala｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "alapalaの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "alapala｜製粉事業・工場・製粉能力・採用情報",
+    "body": "alapalaの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/career/alapala",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/alapala",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/nikkoku",
+    "title": "日穀製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "日穀製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "日穀製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "日穀製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/nikkoku",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/nikkoku",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/nikkoku",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/asahi-jp",
+    "title": "旭製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "旭製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "旭製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "旭製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/asahi-jp",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/asahi-jp",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/asahi-jp",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/chiba-flour",
+    "title": "千葉製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "千葉製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "千葉製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "千葉製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/chiba-flour",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/chiba-flour",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/chiba-flour",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/kinki",
+    "title": "近畿製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "近畿製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "近畿製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "近畿製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/kinki",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/kinki",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/kinki",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/hoshino",
+    "title": "星野物産｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "星野物産の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "星野物産｜製粉事業・工場・製粉能力・採用情報",
+    "body": "星野物産の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/hoshino",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/hoshino",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/hoshino",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/yokoyama",
+    "title": "横山製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "横山製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "横山製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "横山製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/yokoyama",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/yokoyama",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/yokoyama",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/karakida",
+    "title": "柄木田製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "柄木田製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "柄木田製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "柄木田製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/karakida",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/karakida",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/karakida",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/marusho",
+    "title": "丸正製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "丸正製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "丸正製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "丸正製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/marusho",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/marusho",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/marusho",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/okinawa",
+    "title": "沖縄製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "沖縄製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "沖縄製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "沖縄製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/okinawa",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/okinawa",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/okinawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/kumamoto",
+    "title": "熊本製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "熊本製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "熊本製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "熊本製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/kumamoto",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/kumamoto",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/kumamoto",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/riken",
+    "title": "理研農産化工｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "理研農産化工の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "理研農産化工｜製粉事業・工場・製粉能力・採用情報",
+    "body": "理研農産化工の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/riken",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/riken",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/riken",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/ebetsu",
+    "title": "江別製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "江別製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "江別製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "江別製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/ebetsu",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/ebetsu",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/ebetsu",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/kasahara",
+    "title": "笠原産業｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "笠原産業の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "笠原産業｜製粉事業・工場・製粉能力・採用情報",
+    "body": "笠原産業の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/kasahara",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/kasahara",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/kasahara",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/maeda-foods",
+    "title": "前田食品｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "前田食品の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "前田食品｜製粉事業・工場・製粉能力・採用情報",
+    "body": "前田食品の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/maeda-foods",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/maeda-foods",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/maeda-foods",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/ogawa",
+    "title": "小川製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "小川製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "小川製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "小川製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/ogawa",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/ogawa",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/ogawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/kanazawa",
+    "title": "金沢製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "金沢製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "金沢製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "金沢製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/kanazawa",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/kanazawa",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/kanazawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/izawa",
+    "title": "井澤製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "井澤製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "井澤製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "井澤製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/izawa",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/izawa",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/izawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/iisaka",
+    "title": "飯坂製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "飯坂製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "飯坂製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "飯坂製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/iisaka",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/iisaka",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/iisaka",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/odazo",
+    "title": "小田象製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "小田象製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "小田象製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "小田象製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/odazo",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/odazo",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/odazo",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/kintobi",
+    "title": "金トビ志賀｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "金トビ志賀の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "金トビ志賀｜製粉事業・工場・製粉能力・採用情報",
+    "body": "金トビ志賀の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/kintobi",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/kintobi",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/kintobi",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/yoshihara",
+    "title": "吉原食糧｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "吉原食糧の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "吉原食糧｜製粉事業・工場・製粉能力・採用情報",
+    "body": "吉原食糧の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/yoshihara",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/yoshihara",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/yoshihara",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/taiyo",
+    "title": "大陽製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "大陽製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "大陽製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "大陽製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/taiyo",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ],
+      [
+        "/career/taiyo",
+        "採用を見る"
+      ]
+    ],
+    "route": "company/taiyo",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/nisshin-jp",
+    "title": "日清製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "日清製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "日清製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "日清製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/nisshin-jp",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ]
+    ],
+    "route": "company/nisshin-jp",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/nippn",
+    "title": "ニップン｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "ニップンの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "ニップン｜製粉事業・工場・製粉能力・採用情報",
+    "body": "ニップンの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/nippn",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ]
+    ],
+    "route": "company/nippn",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/nittofuji",
+    "title": "日東富士製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "日東富士製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "日東富士製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "日東富士製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/nittofuji",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ]
+    ],
+    "route": "company/nittofuji",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/showa",
+    "title": "昭和産業グループ｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "昭和産業グループの会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "昭和産業グループ｜製粉事業・工場・製粉能力・採用情報",
+    "body": "昭和産業グループの製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/showa",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ]
+    ],
+    "route": "company/showa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/company/torigoe",
+    "title": "鳥越製粉｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
+    "description": "鳥越製粉の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
+    "h1": "鳥越製粉｜製粉事業・工場・製粉能力・採用情報",
+    "body": "鳥越製粉の製粉事業、工場、製粉能力、採用情報を会社IDで統合しています。未確認情報は推定しません。",
+    "links": [
+      [
+        "/companies",
+        "会社一覧"
+      ],
+      [
+        "/mills/torigoe",
+        "工場を見る"
+      ],
+      [
+        "/compare",
+        "ランキングを見る"
+      ]
+    ],
+    "route": "company/torigoe",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/2002",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/2002",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/2001",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/2001",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/2004",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/2004",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/2003",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/2003",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/ADM",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/ADM",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/BG",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/BG",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/CAG",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/CAG",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/GNC",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/GNC",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/GIS",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/GIS",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/MDLZ",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/MDLZ",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/ardent",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/ardent",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/ph",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/ph",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/miller",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/miller",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/allied",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/allied",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/graincraft",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/graincraft",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/manildra",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/manildra",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/rogers",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/rogers",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/goodmills",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/goodmills",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/dossche",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/dossche",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/moulins-soufflet",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/moulins-soufflet",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/whitworth",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/whitworth",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/KYLO",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/KYLO",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/GMI",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/GMI",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/KYSA",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/KYSA",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/buhler",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/buhler",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/omas",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/omas",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/ocrim",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/ocrim",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/satake",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/satake",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/alapala",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/alapala",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/nikkoku",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/nikkoku",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/asahi-jp",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/asahi-jp",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/chiba-flour",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/chiba-flour",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/2009",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/2009",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/kinki",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/kinki",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/hoshino",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/hoshino",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/yokoyama",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/yokoyama",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/karakida",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/karakida",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/marusho",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/marusho",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/okinawa",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/okinawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/kumamoto",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/kumamoto",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/riken",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/riken",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/ebetsu",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/ebetsu",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/kasahara",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/kasahara",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/maeda-foods",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/maeda-foods",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/ogawa",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/ogawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/kanazawa",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/kanazawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/izawa",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/izawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/iisaka",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/iisaka",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/odazo",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/odazo",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/kintobi",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/kintobi",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/yoshihara",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/yoshihara",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/career/taiyo",
+    "title": "製粉会社の採用・転職情報 | Milling Intelligence",
+    "description": "製粉会社の公開採用情報、募集職種、勤務地、求人履歴を確認できます。",
+    "h1": "製粉会社の採用・転職情報",
+    "body": "公開採用情報、募集職種、勤務地、求人履歴を会社単位で確認できます。",
+    "links": [
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "career/taiyo",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/nisshin-jp",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/nisshin-jp",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/miller",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/miller",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/allied",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/allied",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/rogers",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/rogers",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/ph",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/ph",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/ardent",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/ardent",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/graincraft",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/graincraft",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/manildra",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/manildra",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/nippn",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/nippn",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/nittofuji",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/nittofuji",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/showa",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/showa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/goodmills",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/goodmills",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/dossche",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/dossche",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/moulins-soufflet",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/moulins-soufflet",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/whitworth",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/whitworth",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/nikkoku",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/nikkoku",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/asahi-jp",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/asahi-jp",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/chiba-flour",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/chiba-flour",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/torigoe",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/torigoe",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/kinki",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/kinki",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/hoshino",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/hoshino",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/yokoyama",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/yokoyama",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/karakida",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/karakida",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/marusho",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/marusho",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/okinawa",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/okinawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/kumamoto",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/kumamoto",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/riken",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/riken",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/ebetsu",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/ebetsu",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/kasahara",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/kasahara",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/maeda-foods",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/maeda-foods",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/ogawa",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/ogawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/kanazawa",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/kanazawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/izawa",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/izawa",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/iisaka",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/iisaka",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/odazo",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/odazo",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/kintobi",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/kintobi",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/yoshihara",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/yoshihara",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/mills/taiyo",
+    "title": "製粉工場・製粉能力 | Milling Intelligence",
+    "description": "製粉工場、所在地、工場数、確認済み製粉能力、Google Maps、公開情報源を確認できます。",
+    "h1": "製粉工場・製粉能力",
+    "body": "工場所在地、確認済み製粉能力、能力のbasis、Google Maps、公開情報源をまとめています。",
+    "links": [
+      [
+        "/mills",
+        "製粉工場一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "mills/taiyo",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/machines/buhler",
+    "title": "製粉機械メーカーの技術・設備 | Milling Intelligence",
+    "description": "製粉機械メーカーの企業概要、得意領域、製粉技術、公式情報を確認できます。",
+    "h1": "製粉機械メーカーの技術・設備",
+    "body": "メーカー概要、得意領域、製粉技術、公式情報をまとめています。",
+    "links": [
+      [
+        "/machines",
+        "製粉機械メーカー一覧"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "route": "machines/buhler",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/machines/omas",
+    "title": "製粉機械メーカーの技術・設備 | Milling Intelligence",
+    "description": "製粉機械メーカーの企業概要、得意領域、製粉技術、公式情報を確認できます。",
+    "h1": "製粉機械メーカーの技術・設備",
+    "body": "メーカー概要、得意領域、製粉技術、公式情報をまとめています。",
+    "links": [
+      [
+        "/machines",
+        "製粉機械メーカー一覧"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "route": "machines/omas",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/machines/ocrim",
+    "title": "製粉機械メーカーの技術・設備 | Milling Intelligence",
+    "description": "製粉機械メーカーの企業概要、得意領域、製粉技術、公式情報を確認できます。",
+    "h1": "製粉機械メーカーの技術・設備",
+    "body": "メーカー概要、得意領域、製粉技術、公式情報をまとめています。",
+    "links": [
+      [
+        "/machines",
+        "製粉機械メーカー一覧"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "route": "machines/ocrim",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/machines/satake",
+    "title": "製粉機械メーカーの技術・設備 | Milling Intelligence",
+    "description": "製粉機械メーカーの企業概要、得意領域、製粉技術、公式情報を確認できます。",
+    "h1": "製粉機械メーカーの技術・設備",
+    "body": "メーカー概要、得意領域、製粉技術、公式情報をまとめています。",
+    "links": [
+      [
+        "/machines",
+        "製粉機械メーカー一覧"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "route": "machines/satake",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/machines/alapala",
+    "title": "製粉機械メーカーの技術・設備 | Milling Intelligence",
+    "description": "製粉機械メーカーの企業概要、得意領域、製粉技術、公式情報を確認できます。",
+    "h1": "製粉機械メーカーの技術・設備",
+    "body": "メーカー概要、得意領域、製粉技術、公式情報をまとめています。",
+    "links": [
+      [
+        "/machines",
+        "製粉機械メーカー一覧"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "route": "machines/alapala",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/equipment/mtcg",
+    "title": "Bühler Combistoner MTCGの製粉設備情報 | Milling Intelligence",
+    "description": "Bühler Combistoner MTCGの工程、機能、能力、メーカー公開仕様と出典を確認できます。",
+    "h1": "Bühler Combistoner MTCG",
+    "body": "工程、機能、処理能力、メーカー公開仕様と出典をまとめています。",
+    "links": [
+      [
+        "/tech",
+        "製粉技術・設備"
+      ],
+      [
+        "/machines",
+        "メーカー一覧"
+      ]
+    ],
+    "route": "equipment/mtcg",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/equipment/agcom",
+    "title": "Omas AgCom導入事例の製粉設備情報 | Milling Intelligence",
+    "description": "Omas AgCom導入事例の工程、機能、能力、メーカー公開仕様と出典を確認できます。",
+    "h1": "Omas AgCom導入事例",
+    "body": "工程、機能、処理能力、メーカー公開仕様と出典をまとめています。",
+    "links": [
+      [
+        "/tech",
+        "製粉技術・設備"
+      ],
+      [
+        "/machines",
+        "メーカー一覧"
+      ]
+    ],
+    "route": "equipment/agcom",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/mtcg",
+    "title": "MTCGの省エネ評価は、空気循環の条件から | Milling Intelligence",
+    "description": "Bühler公式仕様は小麦10〜28 t/h。オプションの空気循環を加えた場合、従来型の石抜き機比で最大30%の省エネを掲げる。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "MTCGの省エネ評価は、空気循環の条件から",
+    "body": "Bühler公式仕様は小麦10〜28 t/h。オプションの空気循環を加えた場合、従来型の石抜き機比で最大30%の省エネを掲げる。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/mtcg",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/wheat-apr26",
+    "title": "4月期の輸入小麦価格：62,520円/t、前期比2.5%上昇 | Milling Intelligence",
+    "description": "農林水産省は2026年4月期の政府売渡価格を5銘柄加重平均・税込62,520円/tに改定。前期は61,010円/t。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "4月期の輸入小麦価格：62,520円/t、前期比2.5%上昇",
+    "body": "農林水産省は2026年4月期の政府売渡価格を5銘柄加重平均・税込62,520円/tに改定。前期は61,010円/t。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/wheat-apr26",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/welna-autumn26",
+    "title": "秋の27品から考える「調理工程を減らす価値」 | Milling Intelligence",
+    "description": "日清製粉ウェルナは2026年秋の家庭用常温・冷凍の新製品とリニューアル品、計27品を発表。電子レンジ調理の麺シリーズや、皿に盛って焼くラザニアを紹介している。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "秋の27品から考える「調理工程を減らす価値」",
+    "body": "日清製粉ウェルナは2026年秋の家庭用常温・冷凍の新製品とリニューアル品、計27品を発表。電子レンジ調理の麺シリーズや、皿に盛って焼くラザニアを紹介している。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/welna-autumn26",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/nippn-q1",
+    "title": "ニップン：第1四半期の公開資料を確認 | Milling Intelligence",
+    "description": "公式の決算短信一覧に、2026年度（2027年3月期）第1四半期の資料が掲載されている。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "ニップン：第1四半期の公開資料を確認",
+    "body": "公式の決算短信一覧に、2026年度（2027年3月期）第1四半期の資料が掲載されている。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/nippn-q1",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/showa-q1",
+    "title": "昭和産業：第1四半期の発表と説明会を記録 | Milling Intelligence",
+    "description": "公式IRには2026年8月7日の第1四半期決算発表と8月19日の説明会が掲載されている。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "昭和産業：第1四半期の発表と説明会を記録",
+    "body": "公式IRには2026年8月7日の第1四半期決算発表と8月19日の説明会が掲載されている。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/showa-q1",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/adm-q2",
+    "title": "ADM：Nutritionの四半期利益が前年同期比51%増 | Milling Intelligence",
+    "description": "2026年第2四半期のNutrition部門営業利益は1億7,200万米ドル、前年同期比51%増と発表。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "ADM：Nutritionの四半期利益が前年同期比51%増",
+    "body": "2026年第2四半期のNutrition部門営業利益は1億7,200万米ドル、前年同期比51%増と発表。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/adm-q2",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/bg-q2",
+    "title": "Bunge：GAAPと調整後EPSを分けて読む | Milling Intelligence",
+    "description": "2026年第2四半期の希薄化後EPSはGAAPで3.47米ドル（前年2.61）、調整後で2.00米ドル（前年1.31）。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "Bunge：GAAPと調整後EPSを分けて読む",
+    "body": "2026年第2四半期の希薄化後EPSはGAAPで3.47米ドル（前年2.61）、調整後で2.00米ドル（前年1.31）。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/bg-q2",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/au-tempering",
+    "title": "豪州小麦：調質条件を、歩留まりと用途品質で見る | Milling Intelligence",
+    "description": "GRDCの公開記事は、AEGICがAH・ASW小麦を対象に、シドニーのパイロットミルで製粉データを蓄積した取り組みを紹介している。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "豪州小麦：調質条件を、歩留まりと用途品質で見る",
+    "body": "GRDCの公開記事は、AEGICがAH・ASW小麦を対象に、シドニーのパイロットミルで製粉データを蓄積した取り組みを紹介している。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/au-tempering",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/au-milling-network",
+    "title": "豪州の製粉網：Allied Pinnacleの公式拠点を追う | Milling Intelligence",
+    "description": "Allied Pinnacleは公式サイトで、製粉・ミキシング・ベーカリー・物流を含む拠点ネットワークとInnovation Centreを紹介している。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "豪州の製粉網：Allied Pinnacleの公式拠点を追う",
+    "body": "Allied Pinnacleは公式サイトで、製粉・ミキシング・ベーカリー・物流を含む拠点ネットワークとInnovation Centreを紹介している。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/au-milling-network",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/ca-cwrs-2025",
+    "title": "カナダ2025年産CWRS：品質データを調達と製粉へ | Milling Intelligence",
+    "description": "Canadian Grain Commissionの2025年産CWRS報告は、平均タンパク含量13.8%と報告している。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "カナダ2025年産CWRS：品質データを調達と製粉へ",
+    "body": "Canadian Grain Commissionの2025年産CWRS報告は、平均タンパク含量13.8%と報告している。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/ca-cwrs-2025",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/ca-milling-network",
+    "title": "カナダの製粉網：P&HとArdent Millsを継続監視 | Milling Intelligence",
+    "description": "P&Hの公式トップは9 flour mills、公式Contactは製粉6所在地とSaskatoon Pulse Plantを掲載。2024年鑑は8 wheat flour mills。各資料の時点・集計単位を分離し、現行総mill数は照合中。Ardent Mills Canadaも公式拠点一覧を公開。 公…",
+    "h1": "カナダの製粉網：P&HとArdent Millsを継続監視",
+    "body": "P&Hの公式トップは9 flour mills、公式Contactは製粉6所在地とSaskatoon Pulse Plantを掲載。2024年鑑は8 wheat flour mills。各資料の時点・集計単位を分離し、現行総mill数は照合中。Ardent Mills Canadaも公式拠点一覧を公開。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/ca-milling-network",
+    "canonical": true,
+    "prerender": true
+  }
+]

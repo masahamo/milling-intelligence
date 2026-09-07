@@ -1,0 +1,2 @@
+{"extends":"../tsconfig.json","compilerOptions":{"noUnusedLocals":true,"noUnusedParameters":true},"include":["../src","../backend","sdk.d.ts"]}
+
