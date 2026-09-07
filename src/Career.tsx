@@ -1,1 +1,668 @@
-import {useState} from 'react'; import HiringHistory from './HiringHistory'; import {careerCompanies,careerJobs} from './careerData'; import {CareerAssessmentBadge,CareerAssessmentCard,CareerAssessmentOverview,getCareerAssessment} from './CareerAssessments'; import {getListedScore} from './CompanyScores'; import type {CareerCompany,CareerJob} from './careerData'; import {appHref} from './navigation'; import './career.css'; const stateLabel:Record<string,string>={body:'公式本文を確認',listing:'採用一覧のみ確認',indexed:'検索収録のみ・本文未確認',external:'外部求人本文を確認',closed:'募集終了'}; const kindLabel:Record<string,string>={job:'個別求人',program:'採用要項・プログラム',seasonal:'季節雇用'}; const regionOrder=['Japan','Europe','North America','Asia-Pacific','Other']; const regionLabel:Record<string,string>={Japan:'🇯🇵 Japan',Europe:'🇪🇺 Europe','North America':'🌎 North America','Asia-Pacific':'🌏 Asia-Pacific',Other:'🌐 Other'}; function employerRegion(c:CareerCompany){if(c.region.includes('Japan'))return 'Japan';if(c.region.includes('Europe'))return 'Europe';if(c.region.includes('U.S.')||c.region.includes('Canada'))return 'North America';if(c.region.includes('Australia'))return 'Asia-Pacific';return 'Other'} function employerCountry(c:CareerCompany){const text=(c.region+' '+c.relation).toLowerCase();if(c.region.includes('Japan'))return 'Japan';if(text.includes('switzerland'))return 'Switzerland';if(text.includes('greece'))return 'Greece';if(text.includes('italy'))return 'Italy';if(text.includes('france'))return 'France';if(text.includes('germany'))return 'Germany';if(text.includes('united kingdom')||text.includes(' uk'))return 'United Kingdom';if(text.includes('türkiye')||text.includes('turkey'))return 'Türkiye';if(c.region.includes('U.S.')&&c.region.includes('Canada'))return 'U.S. / Canada';if(c.region.includes('U.S.'))return 'U.S.';if(c.region.includes('Canada'))return 'Canada';if(c.region.includes('Australia'))return 'Australia';if(c.region.includes('Europe'))return 'Europe / Multiple';return 'Other / Global'} const activeJob=(j:CareerJob)=>j.kind==='job'&&['body','listing','external'].includes(j.state); const explicitFullTime=(j:CareerJob)=>/full[- ]?time|正社員|100%/i.test([j.title,j.requirements,j.note].join(' ')); function jobMatches(j:CareerJob,jobType:string,evidence:string,showClosed:boolean){const typeOk=jobType==='all'||jobType==='job'&&j.kind==='job'||jobType==='fulltime'&&explicitFullTime(j)||jobType==='program'&&j.kind==='program';return (showClosed||j.state!=='closed')&&typeOk&&(evidence==='all'||evidence==='housing'&&j.support==='housing'||evidence==='restricted'&&j.support==='restricted'||j.state===evidence)} function JobCard({job}:{job:CareerJob}){const stale=Date.now()-new Date(job.checked+'T00:00:00Z').getTime()>30*86400000;return <article className='career-job'><div className='career-tags'><span className={'career-status '+(job.state==='body'?'confirmed':job.state==='closed'?'closed':'pending')}>{stateLabel[job.state]}</span><span>{kindLabel[job.kind]}</span>{stale&&<span className='career-status pending'>30日超・再確認が必要</span>}</div><h4>{job.title}</h4><p>{job.location||'勤務地：未確認'}</p><p className='meta'>掲載日 {job.published||'未確認'} / 確認 {job.checked}</p><dl className='career-fields'>{[['給与',job.salary||'未確認・推定しない'],['経験・職務',job.requirements],['海外応募・就労資格',job.eligibility],['ビザ支援',job.visa],['転居費用',job.relocation],['住居',job.housing],['家族帯同支援','未確認']].map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl><p className='career-note'>{job.note}</p><div className='career-links'><a href={job.url} target='_blank' rel='noreferrer'>{job.state==='closed'?'募集終了の公式表示':'求人・採用要項の出典'} ↗</a>{job.sourceUrl&&<a href={job.sourceUrl} target='_blank' rel='noreferrer'>確認した採用一覧 ↗</a>}{job.location&&job.kind==='job'&&job.state!=='closed'&&<a href={'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(((careerCompanies.find(c=>c.id===job.company)?.name||job.company)+' '+job.location))} target='_blank' rel='noreferrer'>勤務地の都市を地図で検索 ↗</a>}</div></article>} function EmployerCard({company,detail=false,jobType='all',evidence='all',showClosed=false}:{company:CareerCompany;detail?:boolean;jobType?:string;evidence?:string;showClosed?:boolean}){const all=careerJobs.filter(j=>j.company===company.id);const jobs=detail?all.filter(j=>showClosed||j.state!=='closed'):all.filter(j=>jobMatches(j,jobType,evidence,showClosed));const active=all.filter(activeJob);const listed=!!getListedScore(company.id);return <article className='company-card career-company'><span className='ticker'>{employerCountry(company)} · {employerRegion(company)}</span><h3>{company.name}</h3><div className='career-card-status'><CareerAssessmentBadge id={company.id}/><span className={'career-open-count '+(active.length?'open':'unknown')}>{active.length?'現在求人確認 '+active.length+'件':'現在求人 未確認'}</span></div><p>{company.relation}</p><p className='career-note'>{company.note}</p><p className='meta'>主なキャリア領域</p><div className='career-role-tags'>{company.roles.map(role=><span key={role}>{role}</span>)}</div><p className='meta'>採用入口：{company.level==='indexed'?'検索収録確認・本文未確認':company.level==='external'?'外部求人確認・公式採用入口未確認':'公式案内確認'} / {company.checked}</p><div className='career-links'><a href={company.url} target='_blank' rel='noreferrer'>{company.level==='external'?'企業・求人根拠':'公式採用ページ'} ↗</a>{!detail&&<a href={appHref('career/'+company.id)}>採用詳細 →</a>}{listed&&<a href={appHref('company/'+company.id)}>企業情報 →</a>}{company.mill&&<a href={appHref('mills/'+company.mill)}>工場情報 →</a>}</div>{jobs.length?<details open={detail}><summary>{jobs.length}件の代表求人・要項と根拠を見る</summary>{jobs.map(j=><JobCard job={j} key={j.id}/>)}</details>:<div className='career-empty'><b>個別求人の確定情報は未収録</b><p>募集なしとは判断していません。正社員・新卒・中途の条件は採用入口と最新求人で確認してください。</p>{all.some(j=>j.state==='closed')&&!showClosed&&<p>確認した募集終了の履歴は非表示です。</p>}</div>}</article>} function CareerMethod(){return <details className='career-method'><summary>確認状態と支援条件の読み方</summary><p>本文確認は掲載内容を確認したことを示し、空席の継続を保証しません。採用プログラムは個別の募集中求人と区別します。検索収録のみ・本文取得失敗は未確認のまま残し、追加の推測はしません。</p><p>海外応募、就労資格、ビザ支援、転居費用、住居、家族帯同を分離。記載なしは支援なしを意味しません。多様性方針やE-Verify、過去の採用実績だけでビザ支援ありとは判定しません。</p><p>親会社と子会社の条件は別管理。会社の地域と求人勤務地も区別します。主なキャリア領域は既存の探索キーワードで、現在の募集職種の断定ではありません。将来の職種フィルターはこの既存データを利用できる構造にしています。</p><p>代表求人は編集時点の記録です。求人履歴は公開一覧を別途観測し、編集記録は30日経過後に再確認表示を付けます。</p></details>} export default function Career({selectedId}:{selectedId?:string}){const[q,setQ]=useState('');const[region,setRegion]=useState('all');const[country,setCountry]=useState('all');const[evidence,setEvidence]=useState('all');const[showClosed,setShowClosed]=useState(false);const[onlyOpen,setOnlyOpen]=useState(false);const[jobType,setJobType]=useState('all');const[attractiveness,setAttractiveness]=useState('all');const selected=careerCompanies.find(c=>c.id===selectedId);const historySupported=selected?.level!=='external';const countries=[...new Set(careerCompanies.map(employerCountry))].sort((a,b)=>a==='Japan'?-1:b==='Japan'?1:a.localeCompare(b));function reset(){setQ('');setRegion('all');setCountry('all');setEvidence('all');setShowClosed(false);setOnlyOpen(false);setJobType('all');setAttractiveness('all')}const rows=(selected?[selected]:selectedId?[]:careerCompanies).filter(c=>{const jobs=careerJobs.filter(j=>j.company===c.id);const assessment=getCareerAssessment(c.id);const text=[c.name,c.relation,c.note,...c.roles,...jobs.map(j=>j.title+' '+(j.location||''))].join(' ').toLowerCase();return (region==='all'||employerRegion(c)===region)&&(country==='all'||employerCountry(c)===country)&&(attractiveness==='all'||assessment?.overall===attractiveness)&&(!onlyOpen||jobs.some(activeJob))&&text.includes(q.trim().toLowerCase())&&(evidence==='all'||jobs.some(j=>jobMatches(j,jobType,evidence,showClosed)))&&(jobType==='all'||jobs.some(j=>jobMatches(j,jobType,evidence,showClosed)))});const grouped=regionOrder.map(name=>({name,companies:rows.filter(c=>employerRegion(c)===name)})).filter(g=>g.companies.length);return <section className='section career-page'><div className='page-heading'><div><span>CAREER INTELLIGENCE β</span>{selected?<h2>{selected.name+'の採用情報'}</h2>:<h1>製粉会社・小麦粉メーカーの採用・転職情報</h1>}<p>{selected?careerCompanies.length+'社の既存採用データから、新卒・中途を含む正社員の就職先候補を探せます。アルバイト・パート求人の収集を目的としたページではありません。':'日本と海外の製粉会社・小麦粉メーカーについて、新卒・中途の採用入口や公開求人を整理しています。製造、生産技術、設備・保全、品質、研究開発、営業など、既存データで確認できる職種や公式採用ページを会社ごとに確認できます。'}</p></div></div>{selected?<><div className='career-summary'><div><b>{careerCompanies.length}</b><span>採用入口を調査した会社</span></div><div><b>{careerJobs.filter(j=>j.state==='body').length}</b><span>本文確認した求人・要項</span></div><div><b>{careerJobs.filter(j=>j.state==='listing'||j.state==='indexed').length}</b><span>一覧・検索収録まで</span></div><div><b>{careerJobs.filter(j=>j.state==='closed').length}</b><span>募集終了を確認</span></div></div><p className='career-breadcrumb'><a href={appHref('career')}>← Find Employersに戻る</a> · <a href={appHref('companies')}>Companies</a></p><EmployerCard company={selected} detail showClosed={showClosed}/><CareerAssessmentCard id={selected.id} name={selected.name}/>{historySupported?<HiringHistory companyId={selected.id}/>:<div className='note-box'>公式の求人一覧をまだ特定できていないため、この会社の自動求人履歴は未開始です。外部求人の観測は代表求人として分けて表示します。</div>}<CareerMethod/></>:<><section className='career-employer-finder' aria-labelledby='find-employers'><div className='section-title career-employer-heading'><div><span>COMPANIES HIRING / FIND EMPLOYERS</span><h2 id='find-employers'>製粉会社・小麦粉メーカーを会社から探す</h2><p>既存のCareer企業データから、地域、国、採用状況、職種、求人タイプなどで働く会社を探せます。各社の公開採用ページや採用詳細、工場情報への導線も確認できます。</p></div></div><div className='career-quick-filters'><label className='career-search-wide'>Company name / keyword<input value={q} onChange={e=>setQ(e.target.value)} placeholder='日清 / 千葉製粉 / Engineering'/></label><label>Region<select value={region} onChange={e=>setRegion(e.target.value)}><option value='all'>すべて</option>{regionOrder.map(x=><option key={x}>{x}</option>)}</select></label><label>Country<select value={country} onChange={e=>setCountry(e.target.value)}><option value='all'>すべて</option>{countries.map(x=><option key={x}>{x}</option>)}</select></label><label>転職魅力度<select value={attractiveness} onChange={e=>setAttractiveness(e.target.value)}><option value='all'>すべて</option><option value='attractive'>🟢 魅力的</option><option value='conditional'>🟡 条件次第</option><option value='review'>🔴 要検討</option></select></label><label>求人タイプ<select value={jobType} onChange={e=>setJobType(e.target.value)}><option value='all'>すべて</option><option value='job'>一般求人</option><option value='fulltime'>正社員 / Full-time明記あり</option><option value='program'>新卒・プログラム</option></select></label><label className='career-checkbox'><input type='checkbox' checked={onlyOpen} onChange={e=>setOnlyOpen(e.target.checked)}/>現在の求人確認あり</label></div><details className='career-advanced-filters'><summary>詳細条件（根拠・募集終了）</summary><div className='filters'><label>根拠・条件<select value={evidence} onChange={e=>setEvidence(e.target.value)}><option value='all'>すべての採用入口</option><option value='body'>本文確認した求人・要項あり</option><option value='housing'>住居提供の明記あり（対象限定）</option><option value='restricted'>応募・就労資格の条件明記あり</option><option value='indexed'>検索収録のみの候補あり</option></select></label><label className='career-checkbox'><input type='checkbox' checked={showClosed} onChange={e=>setShowClosed(e.target.checked)}/>募集終了の履歴も表示</label></div></details><div className='career-results-line'><p role='status'>{rows.length}社を表示</p><button className='toolbar-reset' onClick={reset}>条件をリセット</button></div>{!rows.length&&<div className='note-box'><p>条件に一致する企業はありません。</p><button onClick={reset}>条件をリセット</button></div>}{grouped.map(group=><section className='career-region-group' key={group.name}><div className='career-region-heading'><h3>{regionLabel[group.name]}</h3><span>{group.companies.length}社</span></div><div className='career-company-grid'>{group.companies.map(c=><EmployerCard key={c.id} company={c} jobType={jobType} evidence={evidence} showClosed={showClosed}/>)}</div></section>)}</section><div className='career-summary'><div><b>{careerCompanies.length}</b><span>採用入口を調査した会社</span></div><div><b>{careerJobs.filter(j=>j.state==='body').length}</b><span>本文確認した求人・要項</span></div><div><b>{careerJobs.filter(j=>j.state==='listing'||j.state==='indexed').length}</b><span>一覧・検索収録まで</span></div><div><b>{careerJobs.filter(j=>j.state==='closed').length}</b><span>募集終了を確認</span></div></div><section className='career-guides-section'><div className='section-title'><div><span>CAREER GUIDES / ROLES / INFORMATION</span><h2>会社を選んだ後に読む</h2><p>転職魅力度、求人履歴、募集根拠の読み方など、既存のCareer Intelligenceを引き続き確認できます。</p></div></div><CareerAssessmentOverview companies={careerCompanies}/><HiringHistory/><CareerMethod/></section><section className='career-guides-section' aria-label='製粉業界の仕事と転職ガイド'><div className='story-grid'><article className='story'><h2>製粉会社ではどんな仕事がある？</h2><p>既存のCareerデータでは、製造や生産技術、設備・保全、品質、研究開発、営業など、会社や事業によって異なるキャリア領域を確認できます。実際の募集職種や新卒・中途の区分は会社ごと、求人ごとに異なるため、各カードの公式採用ページと公開募集要項をあわせて確認してください。</p></article><article className='story'><h2>製粉業界への転職で見るポイント</h2><p>転職先を比較するときは、勤務地、工場勤務の有無、募集職種、給与、福利厚生、海外勤務機会などの公開条件に加え、自分の設備・製造・品質・研究開発などの経験との相性を確認することが重要です。条件が未確認の項目は推測せず、最新の公式募集要項で確認してください。</p></article></div><article className='story'><h2>製粉会社・小麦粉メーカーの採用・転職FAQ</h2><details><summary>製粉会社にはどんな職種がありますか？</summary><p>製造、生産技術、設備・保全、品質、研究開発、営業などの職種・キャリア領域が確認できます。ただし募集内容は会社や時期によって異なるため、各社の公式採用ページを確認してください。</p></details><details><summary>未経験でも製粉会社へ転職できますか？</summary><p>応募条件は求人ごとに異なります。未経験応募の可否を一律には判断せず、経験年数、資格、職種要件など最新の公式募集要項を確認してください。</p></details><details><summary>小麦粉メーカーの求人はどこで確認できますか？</summary><p>Milling Intelligenceでは、公開されている公式採用情報や求人根拠へのリンクを会社ごとに整理しています。募集継続は保証しないため、応募前にリンク先の最新情報を確認してください。</p></details></article><section><h2>製粉業界をさらに調べる</h2><a className='pill' href={appHref('companies/japan')}>日本の製粉会社一覧 →</a><a className='pill' href={appHref('compare')}>製粉会社ランキング →</a><a className='pill' href={appHref('mills')}>製粉工場一覧 →</a></section></section></>}<p className='meta'>β版では公開情報に基づく調査結果を掲載しています。求人全件の網羅や募集継続は保証しません。</p></section>}
+import {useState} from 'react';
+import {
+  Search,
+  Filter,
+  MapPin,
+  Briefcase,
+  ChevronDown,
+  Check,
+  RotateCcw,
+  ExternalLink,
+  Building2,
+  HelpCircle,
+} from 'lucide-react';
+import HiringHistory from './HiringHistory';
+import {careerCompanies, careerJobs} from './careerData';
+import {
+  CareerAssessmentBadge,
+  CareerAssessmentCard,
+  CareerAssessmentOverview,
+  getCareerAssessment,
+} from './CareerAssessments';
+import {getListedScore} from './CompanyScores';
+import type {CareerCompany, CareerJob} from './careerData';
+import {appHref} from './navigation';
+import './career.css';
+
+const stateLabel: Record<string, string> = {
+  body: '公式本文を確認',
+  listing: '採用一覧のみ確認',
+  indexed: '検索収録のみ・本文未確認',
+  external: '外部求人本文を確認',
+  closed: '募集終了',
+};
+
+const kindLabel: Record<string, string> = {
+  job: '個別求人',
+  program: '採用要項・プログラム',
+  seasonal: '季節雇用',
+};
+
+const regionOrder = ['Japan', 'Europe', 'North America', 'Asia-Pacific', 'Other'];
+
+const regionLabel: Record<string, string> = {
+  Japan: '🇯🇵 日本',
+  Europe: '🇪🇺 欧州',
+  'North America': '🌎 北米',
+  'Asia-Pacific': '🌏 アジア・豪州',
+  Other: '🌐 その他',
+};
+
+function employerRegion(c: CareerCompany) {
+  if (c.region.includes('Japan')) return 'Japan';
+  if (c.region.includes('Europe')) return 'Europe';
+  if (c.region.includes('U.S.') || c.region.includes('Canada')) return 'North America';
+  if (c.region.includes('Australia')) return 'Asia-Pacific';
+  return 'Other';
+}
+
+function employerCountry(c: CareerCompany) {
+  const text = (c.region + ' ' + c.relation).toLowerCase();
+  if (c.region.includes('Japan')) return '日本';
+  if (text.includes('switzerland')) return 'スイス';
+  if (text.includes('greece')) return 'ギリシャ';
+  if (text.includes('italy')) return 'イタリア';
+  if (text.includes('france')) return 'フランス';
+  if (text.includes('germany')) return 'ドイツ';
+  if (text.includes('united kingdom') || text.includes(' uk')) return 'イギリス';
+  if (text.includes('türkiye') || text.includes('turkey')) return 'トルコ';
+  if (c.region.includes('U.S.') && c.region.includes('Canada')) return '米・加';
+  if (c.region.includes('U.S.')) return 'アメリカ';
+  if (c.region.includes('Canada')) return 'カナダ';
+  if (c.region.includes('Australia')) return '豪州';
+  if (c.region.includes('Europe')) return '欧州各地';
+  return 'グローバル';
+}
+
+const activeJob = (j: CareerJob) =>
+  j.kind === 'job' && ['body', 'listing', 'external'].includes(j.state);
+
+const explicitFullTime = (j: CareerJob) =>
+  /full[- ]?time|正社員|100%/i.test([j.title, j.requirements, j.note].join(' '));
+
+function jobMatches(j: CareerJob, jobType: string, evidence: string, showClosed: boolean) {
+  const typeOk =
+    jobType === 'all' ||
+    (jobType === 'job' && j.kind === 'job') ||
+    (jobType === 'fulltime' && explicitFullTime(j)) ||
+    (jobType === 'program' && j.kind === 'program');
+  return (
+    (showClosed || j.state !== 'closed') &&
+    typeOk &&
+    (evidence === 'all' ||
+      (evidence === 'housing' && j.support === 'housing') ||
+      (evidence === 'restricted' && j.support === 'restricted') ||
+      j.state === evidence)
+  );
+}
+
+function JobCard({job}: {job: CareerJob}) {
+  const stale =
+    Date.now() - new Date(job.checked + 'T00:00:00Z').getTime() > 30 * 86400000;
+  return (
+    <article className="career-job-item">
+      <div className="career-job-header">
+        <div className="career-tags">
+          <span
+            className={
+              'career-status ' +
+              (job.state === 'body'
+                ? 'confirmed'
+                : job.state === 'closed'
+                ? 'closed'
+                : 'pending')
+            }
+          >
+            {stateLabel[job.state]}
+          </span>
+          <span className="career-job-kind">{kindLabel[job.kind]}</span>
+          {stale && (
+            <span className="career-status pending">30日超・再確認推奨</span>
+          )}
+        </div>
+      </div>
+      <h4>{job.title}</h4>
+      <p className="job-location">
+        <MapPin size={13} />
+        {job.location || '勤務地：未確認'}
+      </p>
+      <p className="meta">
+        掲載日 {job.published || '未確認'} / 確認 {job.checked}
+      </p>
+      <dl className="career-fields">
+        {[
+          ['給与', job.salary || '未確認・推定しない'],
+          ['経験・職務', job.requirements],
+          ['海外応募・就労資格', job.eligibility],
+          ['ビザ支援', job.visa],
+          ['転居費用', job.relocation],
+          ['住居', job.housing],
+        ].map(([k, v]) => (
+          <div key={k}>
+            <dt>{k}</dt>
+            <dd>{v}</dd>
+          </div>
+        ))}
+      </dl>
+      {job.note && <p className="career-note-text">{job.note}</p>}
+      <div className="career-job-links">
+        <a href={job.url} target="_blank" rel="noreferrer">
+          {job.state === 'closed' ? '募集終了の公式表示' : '求人・募集要項の出典'} ↗
+        </a>
+        {job.sourceUrl && (
+          <a href={job.sourceUrl} target="_blank" rel="noreferrer">
+            確認した採用一覧 ↗
+          </a>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function EmployerCard({
+  company,
+  detail = false,
+  jobType = 'all',
+  evidence = 'all',
+  showClosed = false,
+}: {
+  company: CareerCompany;
+  detail?: boolean;
+  jobType?: string;
+  evidence?: string;
+  showClosed?: boolean;
+}) {
+  const all = careerJobs.filter(j => j.company === company.id);
+  const jobs = detail
+    ? all.filter(j => showClosed || j.state !== 'closed')
+    : all.filter(j => jobMatches(j, jobType, evidence, showClosed));
+  const active = all.filter(activeJob);
+  const listed = !!getListedScore(company.id);
+
+  return (
+    <article className="career-card">
+      <div className="career-card-top">
+        <span className="career-location-chip">
+          <MapPin size={12} />
+          {employerCountry(company)}
+        </span>
+        <div className="career-card-badges">
+          <CareerAssessmentBadge id={company.id} />
+          <span
+            className={
+              'career-open-badge ' + (active.length ? 'is-open' : 'is-unknown')
+            }
+          >
+            {active.length ? `${active.length}件の求人確認` : '求人未確認'}
+          </span>
+        </div>
+      </div>
+
+      <h3 className="career-company-name">
+        <a href={appHref('career/' + company.id)}>{company.name}</a>
+      </h3>
+
+      <p className="career-relation">{company.relation}</p>
+      {company.note && <p className="career-note-text">{company.note}</p>}
+
+      <div className="career-roles-wrap">
+        <div className="career-role-pills">
+          {company.roles.map(role => (
+            <span key={role}>{role}</span>
+          ))}
+        </div>
+      </div>
+
+      <div className="career-card-actions">
+        <a
+          href={company.url}
+          target="_blank"
+          rel="noreferrer"
+          className="btn-career-primary"
+        >
+          {company.level === 'external' ? '求人情報を見る' : '公式採用サイト'}
+          <ExternalLink size={13} />
+        </a>
+        {!detail && (
+          <a
+            href={appHref('career/' + company.id)}
+            className="btn-career-secondary"
+          >
+            詳細
+          </a>
+        )}
+        {listed && (
+          <a
+            href={appHref('company/' + company.id)}
+            className="btn-career-ghost"
+          >
+            企業
+          </a>
+        )}
+        {company.mill && (
+          <a
+            href={appHref('mills/' + company.mill)}
+            className="btn-career-ghost"
+          >
+            工場
+          </a>
+        )}
+      </div>
+
+      {jobs.length > 0 ? (
+        <details open={detail} className="career-jobs-accordion">
+          <summary>
+            <span>{jobs.length}件の代表求人・要項を見る</span>
+            <ChevronDown size={14} className="accordion-chevron" />
+          </summary>
+          <div className="career-jobs-list">
+            {jobs.map(j => (
+              <JobCard job={j} key={j.id} />
+            ))}
+          </div>
+        </details>
+      ) : (
+        <div className="career-jobs-empty">
+          <small>個別求人の確定情報は未収録（公式採用ページをご確認ください）</small>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function CareerMethod() {
+  return (
+    <details className="career-method-panel">
+      <summary>
+        <HelpCircle size={15} />
+        <span>掲載データの確認状態と採用条件の読み方</span>
+      </summary>
+      <div className="method-content">
+        <p>
+          本文確認は掲載内容を確認したことを示し、空席の継続を保証するものではありません。採用プログラムは個別の募集中求人と区別して扱っています。
+        </p>
+        <p>
+          海外応募、就労資格、ビザ支援、転居費用、住居提供などの条件は公式記載をそのまま抽出しています。「記載なし」は「支援なし」を直ちに意味するものではありません。
+        </p>
+        <p>
+          主なキャリア領域は探索用のタグであり、常にその職種の募集があることを保証するものではありません。最新の募集状況は各社の公式採用ページにて直接ご確認ください。
+        </p>
+      </div>
+    </details>
+  );
+}
+
+export default function Career({selectedId}: {selectedId?: string}) {
+  const [q, setQ] = useState('');
+  const [region, setRegion] = useState('all');
+  const [country, setCountry] = useState('all');
+  const [evidence, setEvidence] = useState('all');
+  const [showClosed, setShowClosed] = useState(false);
+  const [onlyOpen, setOnlyOpen] = useState(false);
+  const [jobType, setJobType] = useState('all');
+  const [attractiveness, setAttractiveness] = useState('all');
+
+  const selected = careerCompanies.find(c => c.id === selectedId);
+  const historySupported = selected?.level !== 'external';
+  const countries = [...new Set(careerCompanies.map(employerCountry))].sort(
+    (a, b) => (a === '日本' ? -1 : b === '日本' ? 1 : a.localeCompare(b))
+  );
+
+  function reset() {
+    setQ('');
+    setRegion('all');
+    setCountry('all');
+    setEvidence('all');
+    setShowClosed(false);
+    setOnlyOpen(false);
+    setJobType('all');
+    setAttractiveness('all');
+  }
+
+  const isFiltered =
+    q ||
+    region !== 'all' ||
+    country !== 'all' ||
+    evidence !== 'all' ||
+    showClosed ||
+    onlyOpen ||
+    jobType !== 'all' ||
+    attractiveness !== 'all';
+
+  const rows = (selected ? [selected] : selectedId ? [] : careerCompanies).filter(
+    c => {
+      const jobs = careerJobs.filter(j => j.company === c.id);
+      const assessment = getCareerAssessment(c.id);
+      const text = [
+        c.name,
+        c.relation,
+        c.note,
+        ...c.roles,
+        ...jobs.map(j => j.title + ' ' + (j.location || '')),
+      ]
+        .join(' ')
+        .toLowerCase();
+      return (
+        (region === 'all' || employerRegion(c) === region) &&
+        (country === 'all' || employerCountry(c) === country) &&
+        (attractiveness === 'all' || assessment?.overall === attractiveness) &&
+        (!onlyOpen || jobs.some(activeJob)) &&
+        text.includes(q.trim().toLowerCase()) &&
+        (evidence === 'all' ||
+          jobs.some(j => jobMatches(j, jobType, evidence, showClosed))) &&
+        (jobType === 'all' ||
+          jobs.some(j => jobMatches(j, jobType, evidence, showClosed)))
+      );
+    }
+  );
+
+  const grouped = regionOrder
+    .map(name => ({
+      name,
+      companies: rows.filter(c => employerRegion(c) === name),
+    }))
+    .filter(g => g.companies.length);
+
+  return (
+    <section className="section career-page">
+      {/* ヒーローセクション：重複見出しを1つに統合 */}
+      <div className="career-hero">
+        <div className="career-hero-badge">
+          <Briefcase size={14} />
+          <span>CAREER INTELLIGENCE</span>
+        </div>
+        {selected ? (
+          <h1>{selected.name} の採用・求人情報</h1>
+        ) : (
+          <h1>製粉会社・小麦粉メーカーの採用情報</h1>
+        )}
+        <p>
+          {selected
+            ? `${selected.name}の採用入口や求人状況、関連工場、転職魅力度評価をまとめています。`
+            : '国内外の主要製粉会社について、公式採用ページや職種、求人の有無を一覧で検索・比較できます。'}
+        </p>
+      </div>
+
+      {selected ? (
+        <>
+          <div className="career-metrics-row">
+            <div className="metric-item">
+              <b>{careerCompanies.length}</b>
+              <span>調査対象企業</span>
+            </div>
+            <div className="metric-item">
+              <b>{careerJobs.filter(j => j.state === 'body').length}</b>
+              <span>本文確認求人</span>
+            </div>
+            <div className="metric-item">
+              <b>
+                {careerJobs.filter(
+                  j => j.state === 'listing' || j.state === 'indexed'
+                ).length}
+              </b>
+              <span>採用一覧確認</span>
+            </div>
+            <div className="metric-item">
+              <b>{careerJobs.filter(j => j.state === 'closed').length}</b>
+              <span>募集終了確認</span>
+            </div>
+          </div>
+
+          <nav className="breadcrumb" aria-label="パンくずリスト" style={{marginTop: 18}}>
+            <a href={appHref('career')}>← 採用情報一覧に戻る</a>
+            <span>›</span>
+            <a href={appHref('companies')}>企業一覧</a>
+          </nav>
+
+          <EmployerCard company={selected} detail showClosed={showClosed} />
+          <CareerAssessmentCard id={selected.id} name={selected.name} />
+
+          {historySupported ? (
+            <HiringHistory companyId={selected.id} />
+          ) : (
+            <div className="note-box">
+              公式の求人一覧をまだ特定できていないため、この会社の自動求人履歴は未開始です。
+            </div>
+          )}
+
+          <CareerMethod />
+        </>
+      ) : (
+        <>
+          {/* 検索・フィルターエリア */}
+          <div className="career-filter-hub">
+            {/* 1. 検索バー */}
+            <div className="career-search-bar">
+              <Search size={18} className="search-icon" />
+              <input
+                type="text"
+                value={q}
+                onChange={e => setQ(e.target.value)}
+                placeholder="会社名、職種、キーワードで検索（例: 日清、生産技術、営業）"
+                aria-label="会社名やキーワードで検索"
+              />
+              {q && (
+                <button
+                  type="button"
+                  className="search-clear-btn"
+                  onClick={() => setQ('')}
+                  aria-label="入力をクリア"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            {/* 2. 地域ピルチップ（横スクロール対応・ワンタップ切り替え） */}
+            <div className="career-pills-scroll" role="tablist" aria-label="地域で絞り込み">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={region === 'all'}
+                className={'pill-chip ' + (region === 'all' ? 'active' : '')}
+                onClick={() => setRegion('all')}
+              >
+                すべて ({careerCompanies.length})
+              </button>
+              {regionOrder.map(r => {
+                const count = careerCompanies.filter(c => employerRegion(c) === r).length;
+                return (
+                  <button
+                    key={r}
+                    type="button"
+                    role="tab"
+                    aria-selected={region === r}
+                    className={'pill-chip ' + (region === r ? 'active' : '')}
+                    onClick={() => setRegion(r)}
+                  >
+                    {regionLabel[r]} ({count})
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 3. クイック絞り込みバー */}
+            <div className="career-quick-options">
+              {/* 求人ありトグルチップ */}
+              <button
+                type="button"
+                className={'option-toggle-btn ' + (onlyOpen ? 'active' : '')}
+                onClick={() => setOnlyOpen(!onlyOpen)}
+              >
+                <Check size={14} className={onlyOpen ? 'icon-show' : 'icon-hidden'} />
+                <span>現在求人ありのみ</span>
+              </button>
+
+              {/* 転職魅力度 */}
+              <div className="mini-select-field">
+                <span>魅力度:</span>
+                <select
+                  value={attractiveness}
+                  onChange={e => setAttractiveness(e.target.value)}
+                  aria-label="転職魅力度で絞り込み"
+                >
+                  <option value="all">すべて</option>
+                  <option value="attractive">🟢 魅力的</option>
+                  <option value="conditional">🟡 条件次第</option>
+                  <option value="review">🔴 要検討</option>
+                </select>
+              </div>
+
+              {/* 求人タイプ */}
+              <div className="mini-select-field">
+                <span>求人種別:</span>
+                <select
+                  value={jobType}
+                  onChange={e => setJobType(e.target.value)}
+                  aria-label="求人種別で絞り込み"
+                >
+                  <option value="all">すべて</option>
+                  <option value="job">一般求人</option>
+                  <option value="fulltime">正社員・フルタイム</option>
+                  <option value="program">新卒・プログラム</option>
+                </select>
+              </div>
+
+              {/* 国 */}
+              <div className="mini-select-field">
+                <span>国:</span>
+                <select
+                  value={country}
+                  onChange={e => setCountry(e.target.value)}
+                  aria-label="国で絞り込み"
+                >
+                  <option value="all">すべての国</option>
+                  {countries.map(x => (
+                    <option key={x} value={x}>
+                      {x}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* 4. 詳細条件アコーディオン（縦書き崩れ完全防止） */}
+            <details className="career-advanced-details">
+              <summary>
+                <Filter size={14} />
+                <span>詳細条件（採用根拠・募集終了履歴）</span>
+                <ChevronDown size={14} className="summary-chevron" />
+              </summary>
+              <div className="advanced-options-grid">
+                <div className="advanced-field">
+                  <label htmlFor="evidence-select">採用根拠の確認レベル</label>
+                  <select
+                    id="evidence-select"
+                    value={evidence}
+                    onChange={e => setEvidence(e.target.value)}
+                  >
+                    <option value="all">すべての採用入口</option>
+                    <option value="body">本文確認した求人・要項あり</option>
+                    <option value="housing">住居提供の明記あり（対象限定）</option>
+                    <option value="restricted">応募・就労資格の条件明記あり</option>
+                    <option value="indexed">検索収録のみの候補あり</option>
+                  </select>
+                </div>
+                <div className="advanced-checkbox-wrap">
+                  <label className="career-custom-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={showClosed}
+                      onChange={e => setShowClosed(e.target.checked)}
+                    />
+                    <span className="checkbox-text">募集終了の履歴も表示する</span>
+                  </label>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          {/* 結果バー（件数 ＆ リセット） */}
+          <div className="career-result-header">
+            <p className="result-count">
+              <b>{rows.length}</b> 社を表示中
+            </p>
+            {isFiltered && (
+              <button type="button" className="clear-filter-btn" onClick={reset}>
+                <RotateCcw size={13} />
+                <span>条件をクリア</span>
+              </button>
+            )}
+          </div>
+
+          {/* 該当なし表示 */}
+          {!rows.length && (
+            <div className="career-no-results">
+              <Building2 size={32} />
+              <p>条件に一致する製粉会社は見つかりませんでした。</p>
+              <button type="button" onClick={reset}>
+                検索条件をリセットする
+              </button>
+            </div>
+          )}
+
+          {/* 地域別企業カードグリッド */}
+          {grouped.map(group => (
+            <section className="career-group-section" key={group.name}>
+              <div className="career-group-header">
+                <h3>{regionLabel[group.name]}</h3>
+                <span className="group-count">{group.companies.length}社</span>
+              </div>
+              <div className="career-card-grid">
+                {group.companies.map(c => (
+                  <EmployerCard
+                    key={c.id}
+                    company={c}
+                    jobType={jobType}
+                    evidence={evidence}
+                    showClosed={showClosed}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+
+          {/* ガイドと補足情報 */}
+          <section className="career-bottom-guides">
+            <div className="section-title">
+              <div>
+                <span>CAREER GUIDES</span>
+                <h2>会社選びの参考情報</h2>
+                <p>転職魅力度評価の軸や求人履歴の記録方法について確認できます。</p>
+              </div>
+            </div>
+            <CareerAssessmentOverview companies={careerCompanies} />
+            <HiringHistory />
+            <CareerMethod />
+          </section>
+
+          <section className="career-faq-section" aria-label="製粉業界の転職ガイド">
+            <div className="story-grid">
+              <article className="story">
+                <h2>製粉会社ではどんな仕事がある？</h2>
+                <p>
+                  製造・製粉オペレーター、生産技術、プラント設備保全、品質管理・検査、研究開発（商品開発・小麦粉二次加工適性評価）、国内・海外営業など多岐にわたります。
+                </p>
+              </article>
+              <article className="story">
+                <h2>製粉業界への転職・就職の視点</h2>
+                <p>
+                  工場勤務や転勤の有無、主力製品（業務用小麦粉・プレミックス・パスタ等）、設備の自動化水準、各社の海外展開状況などを確認することが重要です。
+                </p>
+              </article>
+            </div>
+            <div className="company-actions" style={{marginTop: 24}}>
+              <a href={appHref('companies/japan')}>日本の製粉会社一覧 →</a>
+              <a href={appHref('compare')}>製粉会社ランキング →</a>
+              <a href={appHref('mills')}>製粉工場一覧 →</a>
+            </div>
+          </section>
+        </>
+      )}
+
+      <p className="career-disclaimer">
+        ※本サイトの情報は公開データに基づくキュレーションです。最新の求人募集状況は必ず各社の公式ページでご確認ください。
+      </p>
+    </section>
+  );
+}
