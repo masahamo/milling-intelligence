@@ -1,22 +1,468 @@
 [
-  {"path":"/","route":"home","title":"製粉業界の企業・工場・設備・求人データ","description":"製粉業界の企業、製粉工場、製粉能力、設備、求人、公開ニュースを横断して調べられる日本語の業界インテリジェンスデータベースです。","h1":"製粉業界を、3分で理解する。","body":"製粉会社、工場、製粉能力、設備投資、求人、公開ニュースを同じデータベースで確認できます。","links":[["/companies","Companies"],["/career","Career"],["/compare","Compare"],["/mills","Mills"],["/machines","Milling Machines"],["/tech","Technology"]],"nav":"Overview","prerender":true},
-  {"path":"/companies","route":"companies","title":"世界の製粉会社一覧・企業比較","description":"日本・北米・欧州など世界の製粉会社を、企業情報、製粉工場、製粉能力、採用、投資情報から比較できる製粉業界データベースです。","h1":"世界の製粉・穀物関連会社","body":"国・地域、上場区分、企業名から製粉会社を検索し、工場、製粉能力、採用、関連ニュースを横断できます。","links":[["/companies/japan","日本の製粉会社"],["/compare","製粉能力ランキング"],["/career","採用・転職情報"],["/mills","製粉工場一覧"]],"nav":"Companies","prerender":true},
-  {"path":"/companies/japan","route":"companies/japan","title":"日本の製粉会社一覧・小麦粉メーカー比較","description":"日本の主要製粉会社を一覧で掲載。企業情報、製粉工場、製粉能力、採用・転職情報などを公開資料に基づいて比較できます。","h1":"日本の製粉会社一覧","body":"日本の主要製粉会社について、企業情報、製粉工場、製粉能力、採用・転職情報を公開資料から比較できます。","links":[["/companies","世界の製粉会社"],["/compare","Japanランキング"],["/mills","日本の製粉工場"],["/career","製粉会社の求人"]],"prerender":true},
-  {"path":"/companies/us","route":"companies/us","title":"北米の製粉会社一覧","description":"米国を中心とする北米の製粉・穀物関連会社を、企業情報、製粉能力、工場、採用、投資情報などから比較できます。","h1":"北米の製粉会社一覧","body":"米国を中心とする北米の製粉・穀物関連会社を公開情報から比較できます。","links":[["/companies","Companies"],["/mills","Mills"],["/career","Career"]],"prerender":true},
-  {"path":"/companies/europe","route":"companies/europe","title":"ヨーロッパの製粉会社一覧","description":"ヨーロッパの製粉会社を、企業情報、製粉工場、製粉能力、採用情報、上場・非上場の公開情報から比較できます。","h1":"ヨーロッパの製粉会社一覧","body":"ヨーロッパの製粉会社、工場、製粉能力、採用情報を公開情報から比較できます。","links":[["/companies","Companies"],["/mills","Mills"],["/career","Career"]],"prerender":true},
-  {"path":"/companies/australia","route":"companies/australia","title":"オーストラリアの製粉会社一覧","description":"オーストラリアの製粉・穀物関連会社を、企業情報、工場、設備、採用、公開ニュースなどから調べられます。","h1":"オーストラリアの製粉会社一覧","body":"オーストラリアの製粉・穀物関連会社を工場、設備、採用情報から確認できます。","links":[["/companies","Companies"],["/mills","Mills"]],"prerender":true},
-  {"path":"/companies/canada","route":"companies/canada","title":"カナダの製粉会社一覧","description":"カナダの製粉会社を、企業情報、製粉工場、製粉能力、設備投資、採用などの公開情報から比較できます。","h1":"カナダの製粉会社一覧","body":"カナダの製粉会社、工場、製粉能力、設備投資、採用を確認できます。","links":[["/companies","Companies"],["/mills","Mills"]],"prerender":true},
-  {"path":"/companies/china","route":"companies/china","title":"中国の製粉業界・企業情報","description":"中国の製粉業界を、小麦需給、品質、政策、製粉設備、企業・市場関連の公開情報から確認できる地域ページです。","h1":"中国の製粉業界・企業情報","body":"中国の小麦需給、品質、政策、製粉設備、企業関連の公開情報を確認できます。","links":[["/companies","Companies"],["/tech","Technology"]],"prerender":true},
-  {"path":"/compare","route":"compare","title":"製粉会社・小麦粉メーカーランキング｜大手・製粉能力比較","description":"日本・北米・欧州などの製粉会社・小麦粉メーカーを製粉能力t/dayでランキング比較。公開資料を基に、大手メーカーの工場規模や売上高も確認できます。","h1":"製粉会社・小麦粉メーカーランキング","body":"公開資料に基づく製粉能力をGlobal、Japan、North America、Europeの地域別に比較できます。","links":[["/companies","企業一覧"],["/mills","工場・能力データ"],["/career","採用情報"]],"nav":"Compare","prerender":true},
-  {"path":"/career","route":"career","title":"製粉会社・小麦粉メーカーの採用・転職情報","description":"日本・海外の製粉会社や小麦粉メーカーの採用・転職情報を掲載。製造、生産技術、設備、品質、研究開発などの公開求人と公式採用ページを確認できます。","h1":"製粉会社・小麦粉メーカーの採用・転職情報","body":"製造、生産技術、設備、品質、研究開発などの公開求人と求人履歴を会社・地域・職種から検索できます。","links":[["/companies","企業一覧"],["/companies/japan","日本の製粉会社"],["/mills","工場一覧"],["/machines","機械メーカー"]],"nav":"Career","prerender":true},
-  {"path":"/mills","route":"mills","title":"製粉工場一覧｜日本・世界の小麦粉工場・製粉能力","description":"日本・北米・欧州などの製粉工場を一覧で掲載。小麦粉工場の所在地、工場数、製粉能力t/day、Google Maps、公開情報源を確認できます。","h1":"世界・日本の製粉工場一覧","body":"製粉工場を会社名、地域、工場所在地、公開されている製粉能力から検索し、Google Mapsと公開情報源を確認できます。","links":[["/companies","製粉会社一覧"],["/compare","製粉能力ランキング"],["/career","採用情報"],["/machines","製粉機械メーカー"]],"nav":"Mills","prerender":true},
-  {"path":"/machines","route":"machines","title":"製粉機械メーカー一覧｜製粉機・製粉設備メーカー比較","description":"Bühler、Omas、Ocrim、Satake、Alapalaなどの製粉機械メーカーを一覧で掲載。製粉機・製粉設備の特徴、得意領域、関連技術、公式情報を比較できます。","h1":"製粉機械メーカー一覧","body":"主要な製粉機械メーカーの特徴、得意領域、公式情報、関連ニュースを比較できます。","links":[["/tech","製粉技術・設備"],["/mills","製粉工場"],["/companies","製粉会社"]],"nav":"Milling Machines","prerender":true},
-  {"path":"/tech","route":"tech","title":"製粉技術・製粉設備｜小麦の製粉工程・機械を比較","description":"小麦の製粉技術・製粉設備を一覧で掲載。精選、粉砕、篩分けなどの工程、設備メーカー、処理能力、省エネ情報、公式仕様を確認できます。","h1":"製粉技術・製粉設備データベース","body":"精選、粉砕、篩分けなどの製粉工程と設備を、メーカー、処理能力、省エネ情報、公式仕様から検索できます。","links":[["/machines","製粉機械メーカー"],["/mills","製粉工場"],["/companies","製粉会社"]],"nav":"Technology","prerender":true},
-  {"path":"/archive","route":"archive","title":"製粉業界ニュース・記事アーカイブ","description":"製粉会社、設備投資、小麦・品質、企業業績、商品開発など、公開情報を基に整理した製粉業界の記事・ニュースを検索できます。","h1":"製粉業界ニュース・記事アーカイブ","body":"製粉業界の公開ニュースと記事を地域、カテゴリー、キーワードから検索できます。","links":[["/","Overview"],["/companies","Companies"]],"nav":"Archive","prerender":true},
-  {"path":"/method","route":"method","title":"情報源と評価方法","description":"Milling Intelligenceで使用する公開情報源、製粉能力の扱い、企業評価、更新・訂正方針などデータの読み方を説明します。","h1":"情報源と評価方法","body":"公開情報源、製粉能力、企業評価、更新・訂正方針の扱いを説明します。","links":[["/","Overview"],["/companies","Companies"]],"nav":"Methodology","prerender":true},
-  {"path":"/disclaimer","route":"disclaimer","title":"投資情報の免責事項","description":"Milling Intelligenceに掲載する投資環境の編集分析、公開情報の利用範囲、投資判断に関する免責事項を掲載しています。","h1":"投資情報の免責事項","body":"公開情報と編集分析の利用範囲、投資判断に関する免責事項です。","links":[["/","Overview"],["/method","情報源と評価方法"]],"prerender":true},
-  {"path":"/daily","route":"daily","title":"製粉業界の日次更新・公開情報","description":"製粉会社や業界関連の登録済み公開情報源を定期確認し、更新・変更を日次で確認できるMilling Intelligenceの更新記録です。","h1":"製粉業界の日次更新","body":"登録済み公開情報源の更新・変更を日次で確認できます。","links":[["/","Overview"],["/archive","Archive"]],"prerender":true},
-  {"path":"/industry","route":"industry","title":"製粉業界ガイド","description":"製粉業界を企業、工場、製粉能力、設備投資、小麦品質などの観点から理解するための公開情報ベースの業界ガイドです。","h1":"製粉業界ガイド","body":"製粉業界を企業、工場、製粉能力、設備投資、小麦品質から理解するためのガイドです。","links":[["/companies","Companies"],["/mills","Mills"],["/tech","Technology"]],"prerender":true},
-  {"path":"/products","route":"products","title":"製粉・食品の商品開発情報","description":"小麦粉、二次加工、食品の商品開発に関する公開情報を、製粉業界・設備・品質との関係から確認できる情報ページです。","h1":"製粉・食品の商品開発情報","body":"小麦粉、二次加工、食品の商品開発に関する公開情報を確認できます。","links":[["/archive","Archive"],["/tech","Technology"]],"prerender":true}
+  {
+    "path": "/",
+    "route": "home",
+    "title": "製粉業界の企業・工場・設備・求人データ",
+    "description": "製粉業界の企業、製粉工場、製粉能力、設備、求人、公開ニュースを横断して調べられる日本語の業界インテリジェンスデータベースです。",
+    "h1": "製粉業界を、3分で理解する。",
+    "body": "製粉会社、工場、製粉能力、設備投資、求人、公開ニュースを同じデータベースで確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/career",
+        "Career"
+      ],
+      [
+        "/compare",
+        "Compare"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/machines",
+        "Milling Machines"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "nav": "Overview",
+    "prerender": true
+  },
+  {
+    "path": "/companies",
+    "route": "companies",
+    "title": "世界の製粉会社一覧・企業比較",
+    "description": "日本・北米・欧州など世界の製粉会社を、企業情報、製粉工場、製粉能力、採用、投資情報から比較できる製粉業界データベースです。",
+    "h1": "世界の製粉・穀物関連会社",
+    "body": "国・地域、上場区分、企業名から製粉会社を検索し、工場、製粉能力、採用、関連ニュースを横断できます。",
+    "links": [
+      [
+        "/companies/japan",
+        "日本の製粉会社"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/career",
+        "採用・転職情報"
+      ],
+      [
+        "/mills",
+        "製粉工場一覧"
+      ]
+    ],
+    "nav": "Companies",
+    "prerender": true
+  },
+  {
+    "path": "/companies/japan",
+    "route": "companies/japan",
+    "title": "日本の製粉会社一覧・小麦粉メーカー比較",
+    "description": "日本の主要製粉会社を一覧で掲載。企業情報、製粉工場、製粉能力、採用・転職情報などを公開資料に基づいて比較できます。",
+    "h1": "日本の製粉会社一覧",
+    "body": "日本の主要製粉会社について、企業情報、製粉工場、製粉能力、採用・転職情報を公開資料から比較できます。",
+    "links": [
+      [
+        "/companies",
+        "世界の製粉会社"
+      ],
+      [
+        "/compare",
+        "Japanランキング"
+      ],
+      [
+        "/mills",
+        "日本の製粉工場"
+      ],
+      [
+        "/career",
+        "製粉会社の求人"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/companies/us",
+    "route": "companies/us",
+    "title": "北米の製粉会社一覧",
+    "description": "米国を中心とする北米の製粉・穀物関連会社を、企業情報、製粉能力、工場、採用、投資情報などから比較できます。",
+    "h1": "北米の製粉会社一覧",
+    "body": "米国を中心とする北米の製粉・穀物関連会社を公開情報から比較できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/career",
+        "Career"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/companies/europe",
+    "route": "companies/europe",
+    "title": "ヨーロッパの製粉会社一覧",
+    "description": "ヨーロッパの製粉会社を、企業情報、製粉工場、製粉能力、採用情報、上場・非上場の公開情報から比較できます。",
+    "h1": "ヨーロッパの製粉会社一覧",
+    "body": "ヨーロッパの製粉会社、工場、製粉能力、採用情報を公開情報から比較できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/career",
+        "Career"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/companies/australia",
+    "route": "companies/australia",
+    "title": "オーストラリアの製粉会社一覧",
+    "description": "オーストラリアの製粉・穀物関連会社を、企業情報、工場、設備、採用、公開ニュースなどから調べられます。",
+    "h1": "オーストラリアの製粉会社一覧",
+    "body": "オーストラリアの製粉・穀物関連会社を工場、設備、採用情報から確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/companies/canada",
+    "route": "companies/canada",
+    "title": "カナダの製粉会社一覧",
+    "description": "カナダの製粉会社を、企業情報、製粉工場、製粉能力、設備投資、採用などの公開情報から比較できます。",
+    "h1": "カナダの製粉会社一覧",
+    "body": "カナダの製粉会社、工場、製粉能力、設備投資、採用を確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/companies/china",
+    "route": "companies/china",
+    "title": "中国の製粉業界・企業情報",
+    "description": "中国の製粉業界を、小麦需給、品質、政策、製粉設備、企業・市場関連の公開情報から確認できる地域ページです。",
+    "h1": "中国の製粉業界・企業情報",
+    "body": "中国の小麦需給、品質、政策、製粉設備、企業関連の公開情報を確認できます。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/compare",
+    "route": "compare",
+    "title": "製粉会社・小麦粉メーカーランキング｜大手・製粉能力比較",
+    "description": "日本・北米・欧州などの製粉会社・小麦粉メーカーを製粉能力t/dayでランキング比較。公開資料を基に、大手メーカーの工場規模や売上高も確認できます。",
+    "h1": "製粉会社・小麦粉メーカーランキング",
+    "body": "公開資料に基づく製粉能力をGlobal、Japan、North America、Europeの地域別に比較できます。",
+    "links": [
+      [
+        "/companies",
+        "企業一覧"
+      ],
+      [
+        "/mills",
+        "工場・能力データ"
+      ],
+      [
+        "/career",
+        "採用情報"
+      ]
+    ],
+    "nav": "Compare",
+    "prerender": true
+  },
+  {
+    "path": "/career",
+    "route": "career",
+    "title": "製粉会社・小麦粉メーカーの採用・転職情報",
+    "description": "日本・海外の製粉会社や小麦粉メーカーの採用・転職情報を掲載。製造、生産技術、設備、品質、研究開発などの公開求人と公式採用ページを確認できます。",
+    "h1": "製粉会社・小麦粉メーカーの採用・転職情報",
+    "body": "製造、生産技術、設備、品質、研究開発などの公開求人と求人履歴を会社・地域・職種から検索できます。",
+    "links": [
+      [
+        "/companies",
+        "企業一覧"
+      ],
+      [
+        "/companies/japan",
+        "日本の製粉会社"
+      ],
+      [
+        "/mills",
+        "工場一覧"
+      ],
+      [
+        "/machines",
+        "機械メーカー"
+      ]
+    ],
+    "nav": "Career",
+    "prerender": true
+  },
+  {
+    "path": "/mills",
+    "route": "mills",
+    "title": "製粉工場一覧｜日本・世界の小麦粉工場・製粉能力",
+    "description": "日本・北米・欧州などの製粉工場を一覧で掲載。小麦粉工場の所在地、工場数、製粉能力t/day、Google Maps、公開情報源を確認できます。",
+    "h1": "世界・日本の製粉工場一覧",
+    "body": "製粉工場を会社名、地域、工場所在地、公開されている製粉能力から検索し、Google Mapsと公開情報源を確認できます。",
+    "links": [
+      [
+        "/companies",
+        "製粉会社一覧"
+      ],
+      [
+        "/compare",
+        "製粉能力ランキング"
+      ],
+      [
+        "/career",
+        "採用情報"
+      ],
+      [
+        "/machines",
+        "製粉機械メーカー"
+      ]
+    ],
+    "nav": "Mills",
+    "prerender": true
+  },
+  {
+    "path": "/machines",
+    "route": "machines",
+    "title": "製粉機械メーカー一覧｜製粉機・製粉設備メーカー比較",
+    "description": "Bühler、Omas、Ocrim、Satake、Alapalaなどの製粉機械メーカーを一覧で掲載。製粉機・製粉設備の特徴、得意領域、関連技術、公式情報を比較できます。",
+    "h1": "製粉機械メーカー一覧",
+    "body": "主要な製粉機械メーカーの特徴、得意領域、公式情報、関連ニュースを比較できます。",
+    "links": [
+      [
+        "/tech",
+        "製粉技術・設備"
+      ],
+      [
+        "/mills",
+        "製粉工場"
+      ],
+      [
+        "/companies",
+        "製粉会社"
+      ]
+    ],
+    "nav": "Milling Machines",
+    "prerender": true
+  },
+  {
+    "path": "/tech",
+    "route": "tech",
+    "title": "製粉技術・製粉設備｜小麦の製粉工程・機械を比較",
+    "description": "小麦の製粉技術・製粉設備を一覧で掲載。精選、粉砕、篩分けなどの工程、設備メーカー、処理能力、省エネ情報、公式仕様を確認できます。",
+    "h1": "製粉技術・製粉設備データベース",
+    "body": "精選、粉砕、篩分けなどの製粉工程と設備を、メーカー、処理能力、省エネ情報、公式仕様から検索できます。",
+    "links": [
+      [
+        "/machines",
+        "製粉機械メーカー"
+      ],
+      [
+        "/mills",
+        "製粉工場"
+      ],
+      [
+        "/companies",
+        "製粉会社"
+      ]
+    ],
+    "nav": "Technology",
+    "prerender": true
+  },
+  {
+    "path": "/archive",
+    "route": "archive",
+    "title": "製粉業界ニュース・記事アーカイブ",
+    "description": "製粉会社、設備投資、小麦・品質、企業業績、商品開発など、公開情報を基に整理した製粉業界の記事・ニュースを検索できます。",
+    "h1": "製粉業界ニュース・記事アーカイブ",
+    "body": "製粉業界の公開ニュースと記事を地域、カテゴリー、キーワードから検索できます。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "nav": "Archive",
+    "prerender": true
+  },
+  {
+    "path": "/method",
+    "route": "method",
+    "title": "情報源と評価方法",
+    "description": "Milling Intelligenceで使用する公開情報源、製粉能力の扱い、企業評価、更新・訂正方針などデータの読み方を説明します。",
+    "h1": "情報源と評価方法",
+    "body": "公開情報源、製粉能力、企業評価、更新・訂正方針の扱いを説明します。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "nav": "Methodology",
+    "prerender": true
+  },
+  {
+    "path": "/disclaimer",
+    "route": "disclaimer",
+    "title": "投資情報の免責事項",
+    "description": "Milling Intelligenceに掲載する投資環境の編集分析、公開情報の利用範囲、投資判断に関する免責事項を掲載しています。",
+    "h1": "投資情報の免責事項",
+    "body": "公開情報と編集分析の利用範囲、投資判断に関する免責事項です。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/method",
+        "情報源と評価方法"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/daily",
+    "route": "daily",
+    "title": "製粉業界の日次更新・公開情報",
+    "description": "製粉会社や業界関連の登録済み公開情報源を定期確認し、更新・変更を日次で確認できるMilling Intelligenceの更新記録です。",
+    "h1": "製粉業界の日次更新",
+    "body": "登録済み公開情報源の更新・変更を日次で確認できます。",
+    "links": [
+      [
+        "/",
+        "Overview"
+      ],
+      [
+        "/archive",
+        "Archive"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/industry",
+    "route": "industry",
+    "title": "製粉業界ガイド",
+    "description": "製粉業界を企業、工場、製粉能力、設備投資、小麦品質などの観点から理解するための公開情報ベースの業界ガイドです。",
+    "h1": "製粉業界ガイド",
+    "body": "製粉業界を企業、工場、製粉能力、設備投資、小麦品質から理解するためのガイドです。",
+    "links": [
+      [
+        "/companies",
+        "Companies"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/products",
+    "route": "products",
+    "title": "製粉・食品の商品開発情報",
+    "description": "小麦粉、二次加工、食品の商品開発に関する公開情報を、製粉業界・設備・品質との関係から確認できる情報ページです。",
+    "h1": "製粉・食品の商品開発情報",
+    "body": "小麦粉、二次加工、食品の商品開発に関する公開情報を確認できます。",
+    "links": [
+      [
+        "/archive",
+        "Archive"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ]
+    ],
+    "prerender": true
+  },
+  {
+    "path": "/contact",
+    "route": "contact",
+    "title": "設備・機器の資料請求・導入相談窓口",
+    "description": "製粉工場設備（ロール機、プランシフター、光選別機など）や検査機器の資料請求・仕様比較・導入相談窓口です。",
+    "h1": "設備・機器の資料請求・導入相談窓口",
+    "body": "製粉工場設備・検査機器のカタログ・仕様請求や導入相談を受け付けています。",
+    "links": [
+      [
+        "/machines",
+        "Milling Machines"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ]
+    ],
+    "nav": "Inquiry",
+    "prerender": true
+  }
 ]
-

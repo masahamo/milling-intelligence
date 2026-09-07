@@ -11,6 +11,11 @@ const input=Object.fromEntries(manifest.map(route=>[
 
 export default defineConfig({
     plugins: [react()],
+    resolve: {
+        alias: {
+            '@appdeploy/client': path.resolve('src/apiClient.ts'),
+        },
+    },
     base: './',
     build: {
         outDir: process.env.APPDEPLOY_VITE_OUT_DIR || 'dist',

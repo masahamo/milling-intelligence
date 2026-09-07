@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const host='https://milling-intelligence-n4b7pt.v2.appdeploy.ai';
+const host='https://milling-intelligence.vercel.app';
 const brand='Milling Intelligence';
 const root=process.cwd();
 const publicDir=path.join(root,'public');

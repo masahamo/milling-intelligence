@@ -43,5 +43,10 @@
     "route": "method",
     "label": "Methodology",
     "path": "/method"
+  },
+  {
+    "route": "contact",
+    "label": "Inquiry",
+    "path": "/contact"
   }
 ]

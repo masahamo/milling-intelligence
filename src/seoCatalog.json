@@ -461,6 +461,31 @@
     "canonical": true
   },
   {
+    "path": "/contact",
+    "route": "contact",
+    "title": "設備・機器の資料請求・導入相談窓口 | Milling Intelligence",
+    "description": "製粉工場設備（ロール機、プランシフター、光選別機など）や検査機器の資料請求・仕様比較・導入相談窓口です。",
+    "h1": "設備・機器の資料請求・導入相談窓口",
+    "body": "製粉工場設備・検査機器のカタログ・仕様請求や導入相談を受け付けています。",
+    "links": [
+      [
+        "/machines",
+        "Milling Machines"
+      ],
+      [
+        "/tech",
+        "Technology"
+      ],
+      [
+        "/mills",
+        "Mills"
+      ]
+    ],
+    "nav": "Inquiry",
+    "prerender": true,
+    "canonical": true
+  },
+  {
     "path": "/company/2002",
     "title": "日清製粉グループ本社｜製粉事業・工場・製粉能力・採用情報 | Milling Intelligence",
     "description": "日清製粉グループ本社の会社概要、製粉事業、工場、確認済み製粉能力、採用・転職情報、関連ニュース、公式情報源を既存の公開データから確認できます。",
