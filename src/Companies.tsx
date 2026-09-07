@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Search, Building2, TrendingUp, ExternalLink, MapPin, Briefcase} from 'lucide-react';
 import CurrentPrice from './CurrentPrice';
 import StockChart from './StockChart';
@@ -75,31 +75,37 @@ function Ranking({ids}: {ids: string[]}) {
   const icon = investmentIcon;
   return (
     <article className="story companies-ranking">
-      <span className="section-kicker">LISTED INVESTMENT CLIMATE · FILTERED</span>
-      <h3>検索条件に連動する上場会社の投資環境</h3>
+      <span className="section-kicker">LISTED INVESTMENT CLIMATE · RANKING</span>
+      <h3>上場会社の投資環境・評価ランキング</h3>
       {ranked.length ? (
         <div className="score-list">
-          {ranked.map(s => (
+          {ranked.map((s, idx) => (
             <a href={appHref('company/' + s.ticker)} className="score-list-row" key={s.ticker}>
-              <b className={'signal-arrow ' + investmentSignalClass(s.signal)}>{icon(s.signal)}</b>
-              <span>
-                <strong>{s.name}</strong>
-                <small>{s.region} · {s.relation}</small>
-              </span>
-              <span>
-                <strong className={'investment-signal-text ' + investmentSignalClass(s.signal)}>
-                  {s.signal}
-                </strong>
-                <CurrentPrice ticker={s.ticker} />
-                <small>信頼度 {s.confidence}</small>
-              </span>
+              <span className="score-list-rank">#{idx + 1}</span>
+              <div className="score-list-name-col">
+                <div className="score-list-name-row">
+                  <strong>{s.name}</strong>
+                  <span className="score-list-ticker">({s.ticker})</span>
+                </div>
+                <small className="score-list-relation">{s.region} · {s.relation}</small>
+              </div>
+              <div className="score-list-right-col">
+                <span className={'investment-signal-badge ' + investmentSignalClass(s.signal)}>
+                  <strong>{s.signal}</strong>
+                  <span className="signal-arrow-adjacent">{icon(s.signal)}</span>
+                </span>
+                <div className="score-list-price-wrapper">
+                  <CurrentPrice ticker={s.ticker} />
+                </div>
+                <small className="score-list-confidence">信頼度 {s.confidence}</small>
+              </div>
             </a>
           ))}
         </div>
       ) : (
         <p className="meta">この検索条件では上場評価対象がありません。</p>
       )}
-      <p className="meta">{ranked.length}社 · 追い風 / 横ばい / 逆風の3段階。点数は表示しません。</p>
+      <p className="meta">{ranked.length}社 · 追い風 / 横ばい / 逆風の3段階。点数は表示しません。株価は最新の市場・開示情報に基づく。</p>
     </article>
   );
 }
@@ -242,10 +248,43 @@ export default function Companies({
   daily: Daily | null;
 }) {
   const [q, setQ] = useState('');
-  const [status, setStatus] = useState('All');
   const [tag, setTag] = useState('All');
   const [selectedId, setSelectedId] = useState('');
-  const [mode, setMode] = useState<'search' | 'investment'>('search');
+  const [mode, setMode] = useState<'search' | 'investment'>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab');
+      if (tab === 'investment' || tab === 'search') return tab;
+      const saved = sessionStorage.getItem('mi_companies_mode');
+      if (saved === 'investment' || saved === 'search') return saved;
+    } catch {}
+    return 'search';
+  });
+  const [status, setStatus] = useState(() => (mode === 'investment' ? 'Listed' : 'All'));
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab');
+      if (tab === 'investment' || tab === 'search') {
+        setMode(tab);
+        setStatus(tab === 'investment' ? 'Listed' : 'All');
+      }
+    } catch {}
+  }, []);
+
+  function handleModeChange(nextMode: 'search' | 'investment') {
+    setMode(nextMode);
+    try {
+      sessionStorage.setItem('mi_companies_mode', nextMode);
+    } catch {}
+    if (nextMode === 'investment') {
+      setStatus('Listed');
+    } else {
+      setStatus('All');
+    }
+    setSelectedId('');
+  }
 
   const visible = rows.filter(
     r =>
@@ -260,11 +299,14 @@ export default function Companies({
 
   function reset() {
     setQ('');
-    setStatus('All');
+    if (mode === 'search') {
+      setStatus('All');
+    } else {
+      setStatus('Listed');
+    }
     onRegionChange('All');
     setTag('All');
     setSelectedId('');
-    setMode('search');
   }
 
   function selectNews(id: string) {
@@ -297,22 +339,14 @@ export default function Companies({
           <button
             type="button"
             className={'segment-btn ' + (mode === 'search' ? 'active' : '')}
-            onClick={() => {
-              setMode('search');
-              setStatus('All');
-              setSelectedId('');
-            }}
+            onClick={() => handleModeChange('search')}
           >
             🏢 企業一覧・検索
           </button>
           <button
             type="button"
             className={'segment-btn ' + (mode === 'investment' ? 'active' : '')}
-            onClick={() => {
-              setMode('investment');
-              setStatus('Listed');
-              setSelectedId('');
-            }}
+            onClick={() => handleModeChange('investment')}
           >
             📈 投資環境・評価
           </button>
@@ -346,7 +380,9 @@ export default function Companies({
         {/* 2. 地域ピルチップ（横スクロール対応） */}
         <div className="career-pills-scroll" role="tablist" aria-label="国・地域で絞り込み">
           {REGION_OPTIONS.map(([val, label]) => {
-            const count = rows.filter(r => val === 'All' || r.region.includes(val)).length;
+            const count = rows.filter(
+              r => (mode === 'investment' ? r.listed : true) && (val === 'All' || r.region.includes(val))
+            ).length;
             return (
               <button
                 key={val}
@@ -408,9 +444,17 @@ export default function Companies({
       {/* 結果バー */}
       <div className="career-result-header">
         <p className="result-count">
-          <b>{visible.length}</b> 社を表示中（全 {rows.length} 社）
+          {mode === 'investment' ? (
+            <>
+              <b>{scoreIds.length}</b> 社の上場投資環境を表示中（評価対象 全 {rows.filter(r => r.listed).length} 社）
+            </>
+          ) : (
+            <>
+              <b>{visible.length}</b> 社を表示中（全 {rows.length} 社）
+            </>
+          )}
         </p>
-        {(q || status !== 'All' || region !== 'All' || tag !== 'All') && (
+        {(q || (mode === 'search' && status !== 'All') || region !== 'All' || tag !== 'All') && (
           <button type="button" className="clear-filter-btn" onClick={reset}>
             条件をクリア
           </button>
