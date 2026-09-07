@@ -660,6 +660,16 @@ export default function Career({selectedId}: {selectedId?: string}) {
         </>
       )}
 
+      <div className="equipment-cta-banner" style={{margin: '28px 0 16px'}}>
+        <div>
+          <h3>採用情報・求人掲載の更新リクエスト・お問い合わせ</h3>
+          <p>製粉各社の最新の採用情報や募集要項の掲載・修正リクエストを受け付けています。</p>
+        </div>
+        <a className="equipment-cta-button" href={appHref('contact')}>
+          採用情報リクエスト・お問い合わせ窓口へ →
+        </a>
+      </div>
+
       <p className="career-disclaimer">
         ※本サイトの情報は公開データに基づくキュレーションです。最新の求人募集状況は必ず各社の公式ページでご確認ください。
       </p>

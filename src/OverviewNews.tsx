@@ -265,15 +265,18 @@ export default function OverviewNews({
 
   return (
     <section className="overview-content" aria-label="製粉業界ニュース">
-      {/* 過去ログ記事一覧への導線 */}
-      <div className="news-top-actions">
-        <a className="news-archive-link" href={appHref('archive')}>
-          <Newspaper size={14} /> 記事一覧（過去ログ） →
-        </a>
-      </div>
-
       {/* 検索バー ＆ 国・地域・カテゴリーピルチップ */}
       <div className="news-filter-hub">
+        <div className="news-hub-header">
+          <div className="news-hub-title">
+            <Newspaper size={15} />
+            <span>リアルタイム業界ニュース</span>
+          </div>
+          <a className="news-archive-link" href={appHref('archive')}>
+            過去ログ・記事一覧 →
+          </a>
+        </div>
+
         {/* キーワード検索入力 */}
         <div className="news-search-bar">
           <Search size={18} className="search-icon" aria-hidden="true" />

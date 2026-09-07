@@ -108,36 +108,106 @@ function regions(row: Row) {
   return row.region.split(' / ').map(x => x.trim());
 }
 
+function isRelevantForCompany(
+  a: {companyIds?: string[]; country: string; title: string},
+  row: Row,
+  rs: string[]
+): boolean {
+  // 1. その会社自身に直接紐付くニュース（companyIdsに自社IDがある、またはタイトルに自社名が含まれる）
+  const isDirect =
+    (Array.isArray(a.companyIds) && a.companyIds.includes(row.id)) ||
+    (!!row.name && a.title.includes(row.name));
+  if (isDirect) {
+    return true;
+  }
+
+  // 2. 自社ニュースではない場合：
+  // 他社の会社IDが1つでも入っていれば「他社専用のニュース」なので絶対に除外
+  const hasOtherCompanyId =
+    Array.isArray(a.companyIds) &&
+    a.companyIds.length > 0 &&
+    !a.companyIds.includes(row.id);
+  if (hasOtherCompanyId) {
+    return false;
+  }
+
+  // 3. 国・地域が一致しているか確認
+  if (!rs.includes(a.country)) {
+    return false;
+  }
+
+  // 4. 国・地域が一致し、自社・他社IDが付いていない一般ニュース（原料・政策・需給・市場動向）
+  // ただしタイトルに他の主要競合会社名が含まれている場合は他社ニュースと判定して除外
+  const otherCompanyNames = [
+    '日清製粉',
+    'ニップン',
+    '昭和産業',
+    '日東富士製粉',
+    '鳥越製粉',
+    '千葉製粉',
+    '奥本製粉',
+    '熊本製粉',
+    '前田産業',
+    '笠原産業',
+    '小山製粉',
+    '柄木田製粉',
+    'ADM',
+    'Archer-Daniels-Midland',
+    'Bunge',
+    'Cargill',
+    'Ardent Mills',
+    'P&H',
+    'Allied Pinnacle',
+    'GoodMills',
+  ].filter(name => !row.name.includes(name) && !name.includes(row.name));
+
+  if (otherCompanyNames.some(name => a.title.includes(name))) {
+    return false;
+  }
+
+  return true;
+}
+
 function relatedNews(row: Row, articles: Article[], daily: Daily | null) {
   const rs = regions(row);
   const staticNews: News[] = articles
-    .filter(a => a.companyIds.includes(row.id) || rs.includes(a.country))
-    .map(a => ({
-      key: 'article-' + a.id,
-      date: a.publishedAt || a.checkedAt,
-      title: a.title,
-      fact: a.fact,
-      category: a.category,
-      country: a.country,
-      url: appHref('article/' + a.id),
-      source: '編集記事・公開出典',
-      direct: a.companyIds.includes(row.id),
-      internal: true,
-    }));
+    .filter(a => isRelevantForCompany(a, row, rs))
+    .map(a => {
+      const direct =
+        (Array.isArray(a.companyIds) && a.companyIds.includes(row.id)) ||
+        (!!row.name && a.title.includes(row.name));
+      return {
+        key: 'article-' + a.id,
+        date: a.publishedAt || a.checkedAt,
+        title: a.title,
+        fact: a.fact,
+        category: a.category,
+        country: a.country,
+        url: appHref('article/' + a.id),
+        source: '編集記事・公開出典',
+        direct,
+        internal: true,
+      };
+    });
   const liveNews: News[] = (daily?.states || [])
     .flatMap(s => s.recent)
-    .filter(a => a.companyIds.includes(row.id) || rs.includes(a.country))
-    .map(a => ({
-      key: 'daily-' + a.id,
-      date: a.publishedAt || a.checkedAt,
-      title: a.title,
-      fact: a.fact,
-      category: a.category,
-      country: a.country,
-      url: a.url,
-      source: a.sourceName,
-      direct: a.companyIds.includes(row.id),
-    }));
+    .filter(a => isRelevantForCompany(a, row, rs))
+    .map(a => {
+      const direct =
+        (Array.isArray(a.companyIds) && a.companyIds.includes(row.id)) ||
+        (!!row.name && a.title.includes(row.name));
+      return {
+        key: 'daily-' + a.id,
+        date: a.publishedAt || a.checkedAt,
+        title: a.title,
+        fact: a.fact,
+        category: a.category,
+        country: a.country,
+        url: a.url,
+        source: a.sourceName,
+        direct,
+      };
+    });
   const seen = new Set<string>();
   return [...staticNews, ...liveNews]
     .sort((a, b) => Number(b.direct) - Number(a.direct) || b.date.localeCompare(a.date))
@@ -462,10 +532,10 @@ export default function Companies({
         <section className="companies-news" id="company-news-feed">
           <div className="section-title">
             <div>
-              <span>COMPANY + COUNTRY NEWS</span>
+              <span>COMPANY & REGION NEWS</span>
               <h2>{selected.name} の関連ニュース</h2>
               <p>
-                決算や設備投資（CapEx）を優先し、{regions(selected).join(' / ')}の政策・需給ニュースも背景として表示します。
+                {selected.name}のニュース（決算・開示・設備投資など）と、{regions(selected).join(' / ')}の国・市場動向（原料・政策・需給）のみを表示しています。※同じ国の他社ニュースは除外されます。
               </p>
             </div>
             <button onClick={() => setSelectedId('')}>閉じる</button>
