@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://milling-intelligence-n4b7pt.v2.appdeploy.ai/sitemap.xml
