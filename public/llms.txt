@@ -12,7 +12,7 @@ Japanese-first public intelligence database for the flour milling industry.
 - https://milling-intelligence.vercel.app/companies/canada — カナダの製粉会社一覧
 - https://milling-intelligence.vercel.app/companies/china — 中国の製粉業界・企業情報
 - https://milling-intelligence.vercel.app/compare — 製粉会社・小麦粉メーカーランキング｜大手・製粉能力比較
-- https://milling-intelligence.vercel.app/career — 製粉会社・小麦粉メーカーの採用・転職情報
+- https://milling-intelligence.vercel.app/career — 製粉会社・小麦粉メーカーの採用情報
 - https://milling-intelligence.vercel.app/mills — 製粉工場一覧｜日本・世界の小麦粉工場・製粉能力
 - https://milling-intelligence.vercel.app/machines — 製粉機械メーカー一覧｜製粉機・製粉設備メーカー比較
 - https://milling-intelligence.vercel.app/tech — 製粉技術・製粉設備｜小麦の製粉工程・機械を比較

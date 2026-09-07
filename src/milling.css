@@ -207,3 +207,461 @@
     box-sizing: border-box;
   }
 }
+
+/* ==========================================================================
+   Shared Modern UI Components (Search, Pills, Segment Controls, Heroes)
+   ========================================================================== */
+
+.career-hero {
+  margin-bottom: 24px;
+}
+
+.career-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e6f4ea;
+  color: #153c2c;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.career-hero h1 {
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  line-height: 1.25;
+  margin: 0 0 10px 0;
+}
+
+.career-hero p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 760px;
+  margin: 0;
+}
+
+.career-filter-hub {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04);
+  margin: 20px 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.career-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.career-search-bar .search-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.career-search-bar input {
+  width: 100%;
+  padding: 13px 40px 13px 44px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.career-search-bar input:focus {
+  background: #ffffff;
+  border-color: #153c2c;
+  box-shadow: 0 0 0 3px rgba(21, 60, 44, 0.12);
+}
+
+.career-search-bar input::placeholder {
+  color: #94a3b8;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: #e2e8f0;
+  color: #475569;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.search-clear-btn:hover {
+  background: #cbd5e1;
+}
+
+.career-pills-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.career-pills-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.pill-chip {
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.pill-chip:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.pill-chip.active {
+  background: #153c2c;
+  color: #ffffff;
+  border-color: #153c2c;
+  box-shadow: 0 2px 8px rgba(21, 60, 44, 0.22);
+}
+
+.modern-segment-control {
+  display: inline-flex;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  width: fit-content;
+}
+
+.segment-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.segment-btn:hover {
+  color: #0f172a;
+}
+
+.segment-btn.active {
+  background: #ffffff;
+  color: #153c2c;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.career-quick-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 4px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.mini-select-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 3px 8px 3px 10px;
+}
+
+.mini-select-field span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.mini-select-field select {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: #0f172a;
+  font-weight: 600;
+  padding: 5px 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Career Assessment Overview - Modern Card Grid
+   ========================================================================== */
+.career-assessment-overview {
+  margin: 32px 0 20px 0;
+}
+
+.career-assessment-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0 20px 0;
+}
+
+.legend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.legend-badge.attractive {
+  background: #e6f4ea;
+  color: #153c2c;
+  border: 1px solid #cce5d7;
+}
+
+.legend-badge.conditional {
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fde047;
+}
+
+.legend-badge.review {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.career-assessment-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.career-assessment-row-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.career-assessment-row-card:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.assessment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.assessment-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.assessment-card-title-group h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 750;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+.assessment-company-link {
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.assessment-company-link:hover {
+  color: #153c2c;
+  text-decoration: underline;
+}
+
+.assessment-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.assessment-region-tag {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.assessment-confidence-tag {
+  font-size: 11px;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.career-assessment-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.career-assessment-badge.attractive {
+  background: #e6f4ea;
+  color: #153c2c;
+  border: 1px solid #bbf7d0;
+}
+
+.career-assessment-badge.conditional {
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fef08a;
+}
+
+.career-assessment-badge.review {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.assessment-summary-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+.assessment-axes-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.axis-pill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.axis-pill-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.career-axis-chip {
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.career-axis-chip.strong {
+  color: #15803d;
+}
+
+.career-axis-chip.check {
+  color: #b45309;
+}
+
+.career-axis-chip.unknown {
+  color: #64748b;
+}
+
+.assessment-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.assessment-detail-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #153c2c;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #f0f7f3;
+  transition: all 0.15s ease;
+}
+
+.assessment-detail-btn:hover {
+  background: #153c2c;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .career-assessment-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .assessment-axes-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .axis-pill-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}

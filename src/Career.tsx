@@ -378,7 +378,7 @@ export default function Career({selectedId}: {selectedId?: string}) {
         )}
         <p>
           {selected
-            ? `${selected.name}の採用入口や求人状況、関連工場、転職魅力度評価をまとめています。`
+            ? `${selected.name}の採用入口や求人状況、関連工場、採用魅力度評価をまとめています。`
             : '国内外の主要製粉会社について、公式採用ページや職種、求人の有無を一覧で検索・比較できます。'}
         </p>
       </div>
@@ -493,13 +493,13 @@ export default function Career({selectedId}: {selectedId?: string}) {
                 <span>現在求人ありのみ</span>
               </button>
 
-              {/* 転職魅力度 */}
+              {/* 採用魅力度 */}
               <div className="mini-select-field">
                 <span>魅力度:</span>
                 <select
                   value={attractiveness}
                   onChange={e => setAttractiveness(e.target.value)}
-                  aria-label="転職魅力度で絞り込み"
+                  aria-label="採用魅力度で絞り込み"
                 >
                   <option value="all">すべて</option>
                   <option value="attractive">🟢 魅力的</option>
@@ -628,7 +628,7 @@ export default function Career({selectedId}: {selectedId?: string}) {
               <div>
                 <span>CAREER GUIDES</span>
                 <h2>会社選びの参考情報</h2>
-                <p>転職魅力度評価の軸や求人履歴の記録方法について確認できます。</p>
+                <p>採用魅力度評価の軸や求人履歴の記録方法について確認できます。</p>
               </div>
             </div>
             <CareerAssessmentOverview companies={careerCompanies} />
@@ -636,7 +636,7 @@ export default function Career({selectedId}: {selectedId?: string}) {
             <CareerMethod />
           </section>
 
-          <section className="career-faq-section" aria-label="製粉業界の転職ガイド">
+          <section className="career-faq-section" aria-label="製粉業界の採用・キャリアガイド">
             <div className="story-grid">
               <article className="story">
                 <h2>製粉会社ではどんな仕事がある？</h2>
@@ -645,7 +645,7 @@ export default function Career({selectedId}: {selectedId?: string}) {
                 </p>
               </article>
               <article className="story">
-                <h2>製粉業界への転職・就職の視点</h2>
+                <h2>製粉業界の採用・就職・キャリア視点</h2>
                 <p>
                   工場勤務や転勤の有無、主力製品（業務用小麦粉・プレミックス・パスタ等）、設備の自動化水準、各社の海外展開状況などを確認することが重要です。
                 </p>
