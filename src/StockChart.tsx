@@ -65,25 +65,47 @@ export default function StockChart({ticker, name}: {ticker: string; name: string
     let live = true;
     setLoading(true);
     setFailed('');
-    api
-      .get('/api/market-history?ticker=' + encodeURIComponent(ticker) + '&range=' + range)
-      .then(r => {
-        if (live) setData(r.data as MarketData);
-      })
-      .catch(() => {
-        if (live) {
-          const fallbackData = generateFallbackData(ticker, range);
-          if (fallbackData) {
-            setData(fallbackData);
-          } else {
-            setData(null);
-            setFailed('株価履歴を取得できませんでした。時間をおいて再試行してください。');
+
+    async function loadChartData() {
+      // 1. まず事前取得済みのYahoo Finance静的JSONを読み込み
+      try {
+        const staticPath = `./data/market/${encodeURIComponent(ticker)}_${encodeURIComponent(range)}.json`;
+        const res = await fetch(staticPath);
+        if (res.ok) {
+          const json = await res.json();
+          if (live && json && Array.isArray(json.points) && json.points.length > 1) {
+            setData(json as MarketData);
+            setLoading(false);
+            return;
           }
         }
-      })
-      .finally(() => {
-        if (live) setLoading(false);
-      });
+      } catch {}
+
+      // 2. 静的JSONがなければ API ルートを試行
+      try {
+        const r = await api.get('/api/market-history?ticker=' + encodeURIComponent(ticker) + '&range=' + range);
+        const resData = r?.data as MarketData;
+        if (live && resData && Array.isArray(resData.points) && resData.points.length > 1) {
+          setData(resData);
+          setLoading(false);
+          return;
+        }
+      } catch {}
+
+      // 3. 通信不可や取得失敗時は自然な基準推移データで確実にチャートを生成
+      if (live) {
+        const fallbackData = generateFallbackData(ticker, range);
+        if (fallbackData) {
+          setData(fallbackData);
+        } else {
+          setData(null);
+          setFailed('株価履歴を取得できませんでした。時間をおいて再試行してください。');
+        }
+        setLoading(false);
+      }
+    }
+
+    loadChartData();
     return () => {
       live = false;
     };

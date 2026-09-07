@@ -73,39 +73,88 @@ function Ranking({ids}: {ids: string[]}) {
     .filter((s): s is NonNullable<ReturnType<typeof getListedScore>> => !!s)
     .sort((a, b) => b.sortScore - a.sortScore);
   const icon = investmentIcon;
+
+  const [selectedTicker, setSelectedTicker] = useState<string>(() => (ranked[0] ? ranked[0].ticker : ''));
+  const activeTicker = ranked.some(r => r.ticker === selectedTicker)
+    ? selectedTicker
+    : ranked[0]?.ticker || '';
+  const activeCompany = ranked.find(r => r.ticker === activeTicker);
+
   return (
     <article className="story companies-ranking">
       <span className="section-kicker">LISTED INVESTMENT CLIMATE · RANKING</span>
       <h3>上場会社の投資環境・評価ランキング</h3>
+      <p className="ranking-sub-lead">
+        行をクリックすると、下の<strong>株価推移グラフ（PRICE HISTORY）</strong>が切り替わります。
+      </p>
       {ranked.length ? (
-        <div className="score-list">
-          {ranked.map((s, idx) => (
-            <a href={appHref('company/' + s.ticker)} className="score-list-row" key={s.ticker}>
-              <span className="score-list-rank">#{idx + 1}</span>
-              <div className="score-list-name-col">
-                <div className="score-list-name-row">
-                  <strong>{s.name}</strong>
-                  <span className="score-list-ticker">({s.ticker})</span>
+        <>
+          <div className="score-list">
+            {ranked.map((s, idx) => {
+              const isSelected = s.ticker === activeTicker;
+              return (
+                <div
+                  className={`score-list-row ${isSelected ? 'selected' : ''}`}
+                  key={s.ticker}
+                  onClick={() => setSelectedTicker(s.ticker)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setSelectedTicker(s.ticker);
+                    }
+                  }}
+                  aria-pressed={isSelected}
+                  aria-label={`${s.name}を選択して株価推移を表示`}
+                >
+                  <div className="score-list-left-col">
+                    <span className="score-list-rank">#{idx + 1}</span>
+                    <div className="score-list-name-col">
+                      <div className="score-list-name-row">
+                        <strong>{s.name}</strong>
+                        <span className="score-list-ticker">({s.ticker})</span>
+                        {isSelected && <span className="score-list-selected-tag">グラフ表示中</span>}
+                      </div>
+                      <small className="score-list-relation">{s.region} · {s.relation}</small>
+                    </div>
+                  </div>
+
+                  <div className="score-list-right-col">
+                    <div className="score-list-signal-cell">
+                      <span className={'investment-signal-badge ' + investmentSignalClass(s.signal)}>
+                        <strong>{s.signal}</strong>
+                        <span className="signal-arrow-adjacent">{icon(s.signal)}</span>
+                      </span>
+                    </div>
+                    <div className="score-list-price-cell">
+                      <CurrentPrice ticker={s.ticker} />
+                    </div>
+                    <div className="score-list-meta-cell">
+                      <small className="score-list-confidence">信頼度 {s.confidence}</small>
+                      <a
+                        href={appHref('company/' + s.ticker)}
+                        className="score-list-detail-link"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        詳細 →
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <small className="score-list-relation">{s.region} · {s.relation}</small>
-              </div>
-              <div className="score-list-right-col">
-                <span className={'investment-signal-badge ' + investmentSignalClass(s.signal)}>
-                  <strong>{s.signal}</strong>
-                  <span className="signal-arrow-adjacent">{icon(s.signal)}</span>
-                </span>
-                <div className="score-list-price-wrapper">
-                  <CurrentPrice ticker={s.ticker} />
-                </div>
-                <small className="score-list-confidence">信頼度 {s.confidence}</small>
-              </div>
-            </a>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+
+          {activeCompany && (
+            <div className="ranking-chart-container">
+              <StockChart ticker={activeCompany.ticker} name={activeCompany.name} />
+            </div>
+          )}
+        </>
       ) : (
         <p className="meta">この検索条件では上場評価対象がありません。</p>
       )}
-      <p className="meta">{ranked.length}社 · 追い風 / 横ばい / 逆風の3段階。点数は表示しません。株価は最新の市場・開示情報に基づく。</p>
+      <p className="meta">{ranked.length}社 · 追い風 / 横ばい / 逆風の3段階。株価・推移グラフはYahoo Finance連携および最新の市場開示情報に基づく。</p>
     </article>
   );
 }

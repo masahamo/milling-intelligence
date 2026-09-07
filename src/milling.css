@@ -673,3 +673,400 @@
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   上場会社の投資環境・評価ランキング & Yahoo株価推移 (StockChart) 改善スタイル
+   - 追い風（緑）、ヨコヨコ（黄橙）、逆風（赤）の視認性強化
+   - 右寄せカラムの完全な縦整列
+   - スマホ画面（<=680px）での文字縦割れ・圧縮の完全防止（2段レイアウト）
+   - クリック選択時ハイライト & 株価推移グラフコンテナ
+   ========================================================================== */
+
+/* 評価シグナルバッジ・テキストの配色と高視認性 */
+.investment-signal-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.investment-signal-badge strong {
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.signal-arrow-adjacent {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* 追い風：高コントラストな鮮明グリーン */
+.investment-signal-badge.signal-positive,
+.investment-signal.signal-positive {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border: 1.5px solid #10b981 !important;
+}
+
+.investment-signal-text.signal-positive,
+.signal-arrow.signal-positive,
+.company-kpi-value.signal-positive {
+  color: #047857 !important;
+}
+
+/* 横ばい（ヨコヨコ）：識別しやすい温かみのあるアンバー・ゴールド */
+.investment-signal-badge.signal-flat,
+.investment-signal.signal-flat {
+  background: #fffbeb !important;
+  color: #92400e !important;
+  border: 1.5px solid #f59e0b !important;
+}
+
+.investment-signal-text.signal-flat,
+.signal-arrow.signal-flat,
+.company-kpi-value.signal-flat {
+  color: #b45309 !important;
+}
+
+/* 逆風：はっきりと警告が伝わるクリムゾン・レッド */
+.investment-signal-badge.signal-negative,
+.investment-signal.signal-negative {
+  background: #fef2f2 !important;
+  color: #991b1b !important;
+  border: 1.5px solid #ef4444 !important;
+}
+
+.investment-signal-text.signal-negative,
+.signal-arrow.signal-negative,
+.company-kpi-value.signal-negative {
+  color: #b91c1c !important;
+}
+
+/* ランキングリード文 */
+.ranking-sub-lead {
+  margin: 4px 0 14px;
+  font-size: 13px;
+  color: #526359;
+  line-height: 1.6;
+}
+
+.ranking-sub-lead strong {
+  color: #173b2a;
+}
+
+/* ランキングリストコンテナ */
+.score-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin: 14px 0 !important;
+  width: 100% !important;
+}
+
+/* ランキング行（.story a ではなく div.score-list-row をベースに完全制御） */
+.story .score-list-row,
+.score-list-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 12px 18px !important;
+  background: #ffffff !important;
+  border: 1px solid #dfe6e0 !important;
+  border-radius: 14px !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  transition: all 0.18s ease-in-out !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.story .score-list-row:hover,
+.score-list-row:hover {
+  background: #f7faf8 !important;
+  border-color: #4a8664 !important;
+  box-shadow: 0 4px 16px rgba(21, 60, 44, 0.08) !important;
+  transform: translateY(-1px);
+}
+
+/* 選択中の行（ハイライト） */
+.story .score-list-row.selected,
+.score-list-row.selected {
+  background: #f1f8f3 !important;
+  border-color: #1b5e20 !important;
+  box-shadow: 0 0 0 2px rgba(27, 94, 32, 0.22), 0 4px 14px rgba(21, 60, 44, 0.08) !important;
+}
+
+/* 左側：順位バッジ ＋ 社名・ティッカー・地域情報 */
+.score-list-left-col {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.score-list-rank {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  color: #244b38 !important;
+  background: #eaf1ec !important;
+  border-radius: 8px !important;
+  height: 32px !important;
+  min-width: 38px !important;
+  flex-shrink: 0 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.score-list-row:nth-child(1) .score-list-rank {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #fde68a !important;
+}
+
+.score-list-row:nth-child(2) .score-list-rank {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.score-list-row:nth-child(3) .score-list-rank {
+  background: #ffedd5 !important;
+  color: #9a3412 !important;
+  border: 1px solid #fed7aa !important;
+}
+
+.score-list-name-col {
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.score-list-name-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.score-list-name-row strong {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #173b2a !important;
+  line-height: 1.35 !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.score-list-ticker {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  color: #6a7770 !important;
+}
+
+.score-list-selected-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 1px 7px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  background: #153c2c !important;
+  color: #ffffff !important;
+  letter-spacing: 0.03em !important;
+}
+
+.score-list-relation {
+  display: block !important;
+  font-size: 12px !important;
+  color: #607067 !important;
+  margin-top: 3px !important;
+  line-height: 1.4 !important;
+  word-break: break-word !important;
+}
+
+/* 右側：評価バッジ・株価・信頼度・詳細リンクをすべて右寄せで整列 */
+.score-list-right-col {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+/* 評価セル：固定幅でピシッと揃える */
+.score-list-signal-cell {
+  width: 108px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  flex-shrink: 0 !important;
+}
+
+/* 株価セル：固定幅 & 右寄せで数値位置を統一 */
+.score-list-price-cell {
+  width: 130px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  text-align: right !important;
+  flex-shrink: 0 !important;
+}
+
+.score-list-price-cell .current-price {
+  font-size: 13px !important;
+  background: #f0f4f1 !important;
+  padding: 3px 9px !important;
+  border-radius: 7px !important;
+  border: 1px solid #dce5dd !important;
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+
+.score-list-price-cell .current-price-label {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #55665d !important;
+}
+
+.score-list-price-cell .current-price strong {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #173b2a !important;
+}
+
+/* 信頼度 & 詳細リンクセル */
+.score-list-meta-cell {
+  width: 112px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+.score-list-confidence {
+  font-size: 11px !important;
+  color: #728078 !important;
+  white-space: nowrap !important;
+}
+
+.score-list-detail-link {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  color: #1f6848 !important;
+  text-decoration: none !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+  background: #edf3ee !important;
+  white-space: nowrap !important;
+  transition: all 0.15s ease !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+}
+
+.score-list-detail-link:hover {
+  background: #153c2c !important;
+  color: #ffffff !important;
+}
+
+/* 直下の株価推移グラフコンテナ */
+.ranking-chart-container {
+  margin-top: 24px !important;
+  padding-top: 20px !important;
+  border-top: 2px solid #e5ebe6 !important;
+}
+
+.ranking-chart-container .stock-chart {
+  box-shadow: none !important;
+  border: 1px solid #dce5dd !important;
+  background: #fcfdfc !important;
+}
+
+/* ==========================================================================
+   モバイル画面（幅680px以下）の最適化
+   - 1文字ずつの縦割れを根本解決する2段レイアウト
+   - 上段：順位 + 社名 + 評価バッジ
+   - 下段：地域 + 株価 + 詳細リンク
+   ========================================================================== */
+@media (max-width: 680px) {
+  .story .score-list-row,
+  .score-list-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    padding: 12px 14px !important;
+  }
+
+  .score-list-left-col {
+    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .score-list-name-col {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .score-list-name-row strong {
+    font-size: 15px !important;
+    line-height: 1.3 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .score-list-relation {
+    font-size: 11px !important;
+    margin-top: 2px !important;
+  }
+
+  .score-list-right-col {
+    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-top: 8px !important;
+    border-top: 1px dashed #e1e7e2 !important;
+    gap: 6px !important;
+  }
+
+  .score-list-signal-cell {
+    width: auto !important;
+    justify-content: flex-start !important;
+  }
+
+  .score-list-price-cell {
+    width: auto !important;
+    justify-content: center !important;
+  }
+
+  .score-list-meta-cell {
+    width: auto !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+  }
+
+  .score-list-confidence {
+    display: none !important;
+  }
+
+  .score-list-detail-link {
+    font-size: 11px !important;
+    padding: 3px 6px !important;
+  }
+}
+
