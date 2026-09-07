@@ -26,22 +26,22 @@
   },
   {
     "route": "machines",
-    "label": "Milling Machines",
+    "label": "製粉機械メーカー",
     "path": "/machines"
   },
   {
     "route": "tech",
-    "label": "Technology",
+    "label": "製粉技術、製粉機械",
     "path": "/tech"
   },
   {
     "route": "archive",
-    "label": "Archive",
+    "label": "記事",
     "path": "/archive"
   },
   {
     "route": "method",
-    "label": "Methodology",
+    "label": "評価基準",
     "path": "/method"
   },
   {

@@ -181,7 +181,7 @@ export default function OverviewNews({
             <h2>製粉業界ニュース</h2>
           </div>
           <a className="news-archive-link" href={appHref('archive')}>
-            <Newspaper size={14} /> 記事アーカイブ →
+            <Newspaper size={14} /> 記事一覧 →
           </a>
         </div>
         <p className="news-section-desc">

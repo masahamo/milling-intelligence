@@ -4,7 +4,7 @@
     "route": "home",
     "title": "製粉業界ニュース・企業・工場・設備データベース | Milling Intelligence",
     "description": "製粉業界の最新ニュース（設備投資・商品・原料・IR）、製粉工場、製粉能力、設備仕様、採用情報を横断して調べられる業界特化型インテリジェンスです。",
-    "h1": "製粉業界ニュース＆インテリジェンス",
+    "h1": "製粉業界ニュース",
     "body": "製粉業界の最新ニュース（設備投資・商品開発・原料動向）、製粉工場、製粉能力、求人情報を同じデータベースで確認できます。",
     "links": [
       [
@@ -25,11 +25,11 @@
       ],
       [
         "/machines",
-        "製粉機械"
+        "製粉機械メーカー"
       ],
       [
         "/tech",
-        "製粉技術"
+        "製粉技術、製粉機械"
       ]
     ],
     "nav": "ニュース",
@@ -305,7 +305,7 @@
         "製粉会社"
       ]
     ],
-    "nav": "Milling Machines",
+    "nav": "製粉機械メーカー",
     "prerender": true,
     "canonical": true
   },
@@ -330,7 +330,7 @@
         "製粉会社"
       ]
     ],
-    "nav": "Technology",
+    "nav": "製粉技術、製粉機械",
     "prerender": true,
     "canonical": true
   },
@@ -344,14 +344,14 @@
     "links": [
       [
         "/",
-        "Overview"
+        "ニュース"
       ],
       [
         "/companies",
-        "Companies"
+        "企業を探す"
       ]
     ],
-    "nav": "Archive",
+    "nav": "記事",
     "prerender": true,
     "canonical": true
   },
@@ -365,14 +365,14 @@
     "links": [
       [
         "/",
-        "Overview"
+        "ニュース"
       ],
       [
         "/companies",
-        "Companies"
+        "企業を探す"
       ]
     ],
-    "nav": "Methodology",
+    "nav": "評価基準",
     "prerender": true,
     "canonical": true
   },
