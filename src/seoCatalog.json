@@ -2,37 +2,37 @@
   {
     "path": "/",
     "route": "home",
-    "title": "製粉業界の企業・工場・設備・求人データ | Milling Intelligence",
-    "description": "製粉業界の企業、製粉工場、製粉能力、設備、求人、公開ニュースを横断して調べられる日本語の業界インテリジェンスデータベースです。",
-    "h1": "製粉業界を、3分で理解する。",
-    "body": "製粉会社、工場、製粉能力、設備投資、求人、公開ニュースを同じデータベースで確認できます。",
+    "title": "製粉業界ニュース・企業・工場・設備データベース | Milling Intelligence",
+    "description": "製粉業界の最新ニュース（設備投資・商品・原料・IR）、製粉工場、製粉能力、設備仕様、採用情報を横断して調べられる業界特化型インテリジェンスです。",
+    "h1": "製粉業界ニュース＆インテリジェンス",
+    "body": "製粉業界の最新ニュース（設備投資・商品開発・原料動向）、製粉工場、製粉能力、求人情報を同じデータベースで確認できます。",
     "links": [
       [
         "/companies",
-        "Companies"
+        "企業を探す"
       ],
       [
         "/career",
-        "Career"
+        "採用情報"
       ],
       [
         "/compare",
-        "Compare"
+        "会社を比較"
       ],
       [
         "/mills",
-        "Mills"
+        "工場を探す"
       ],
       [
         "/machines",
-        "Milling Machines"
+        "製粉機械"
       ],
       [
         "/tech",
-        "Technology"
+        "製粉技術"
       ]
     ],
-    "nav": "Overview",
+    "nav": "ニュース",
     "prerender": true,
     "canonical": true
   },

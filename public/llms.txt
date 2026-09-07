@@ -3,7 +3,7 @@
 Japanese-first public intelligence database for the flour milling industry.
 
 ## Canonical entry points
-- https://milling-intelligence.vercel.app/ — 製粉業界の企業・工場・設備・求人データ
+- https://milling-intelligence.vercel.app/ — 製粉業界ニュース・企業・工場・設備データベース
 - https://milling-intelligence.vercel.app/companies — 世界の製粉会社一覧・企業比較
 - https://milling-intelligence.vercel.app/companies/japan — 日本の製粉会社一覧・小麦粉メーカー比較
 - https://milling-intelligence.vercel.app/companies/us — 北米の製粉会社一覧

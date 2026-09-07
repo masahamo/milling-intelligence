@@ -1,1 +1,341 @@
-import {useState} from 'react'; import CurrentPrice from './CurrentPrice'; import {weeklyItems,weeklyCompanyItems} from './WeeklyNews'; import {listedScores,getListedScore,investmentIcon,investmentSignalClass} from './CompanyScores'; import type {Article} from './model'; import type {Daily} from './Daily'; import './overview.css'; import {appHref} from './navigation'; type News={key:string;date:string|null;category:string;title:string;body:string;why?:string;url:string;source:string;internal?:boolean;ai?:boolean;stale?:boolean}; const categories=['すべて','設備投資','原料・品質','二次加工・商品','企業業績・IR']; function category(s:string){return ['企業・決算','企業・業績','企業業績','企業業績・IR','Company / IR','Company/IR','企業・IR','決算・IR'].includes(s)?'企業業績・IR':s} const ratings=Object.keys(listedScores).map(k=>getListedScore(k)!).sort((a,b)=>b.sortScore-a.sortScore); const name:Record<string,string>={'2002':'日清製粉G','2001':'ニップン','2004':'昭和産業','2003':'日東富士製粉','2009':'鳥越製粉','ADM':'ADM','BG':'Bunge','CAG':'Conagra','GNC':'GrainCorp','GIS':'General Mills','MDLZ':'Mondelēz','KYLO':'Loulis','GMI':'Groupe Minoteries','KYSA':'Sarantopoulos'}; const icon=investmentIcon; export default function OverviewNews({articles,daily}:{articles:Article[];daily:Daily|null}){const[selected,setSelected]=useState('すべて');const[limit,setLimit]=useState(5);const raw:News[]=[...weeklyItems.map(i=>({key:i.url,date:'2026-'+i.date.replace('/','-'),category:i.pillar,title:i.title,body:i.body,why:i.why,url:i.url,source:i.source})),...weeklyCompanyItems.map(i=>({key:i.url,date:'2026-'+i.date.replace('/','-'),category:'企業業績・IR',title:i.title,body:i.body,url:i.url,source:i.source})),...articles.map(a=>({key:a.id,date:a.publishedAt,category:category(a.category),title:a.title,body:a.fact,why:a.impact,url:appHref('article/'+a.id),source:'編集記事・公開出典',internal:true})),...(daily?.states||[]).flatMap(s=>s.recent.filter(a=>/^https:\/\//.test(a.url)).map(a=>({key:'daily-'+a.id,date:a.publishedAt,category:category(a.category),title:a.title,body:a.fact,why:a.importance,url:a.url,source:a.sourceName,ai:true,stale:s.stale||(s.status!=='ok'&&s.status!=='skipped')})))];const urls=new Set<string>();const titles=new Set<string>();const all=raw.filter(n=>{const u=n.url.replace(/\/$/,'');const t=n.title.trim();if(urls.has(u)||titles.has(t))return false;urls.add(u);titles.add(t);return true}).sort((a,b)=>(b.date||'').localeCompare(a.date||''));const shown=all.filter(n=>selected==='すべて'||n.category===selected);return <div className='overview-content'><div className='overview-columns'><section className='overview-news' aria-label='ニュース一覧'><div className='overview-heading'><h2>ニュース</h2><a href={appHref('archive')}>記事アーカイブ →</a></div><div className='overview-filters' role='group' aria-label='ニュースの分類'>{categories.map(c=><button key={c} aria-pressed={selected===c} onClick={()=>{setSelected(c);setLimit(5)}}>{c}</button>)}</div><p className='overview-count' role='status'>{selected} · {shown.length}件 / 公表日順</p><div className='overview-list'>{shown.slice(0,limit).map(n=><article className='overview-row' key={n.key}><div className='overview-row-meta'><time>{n.date?n.date.slice(0,10).replace(/-/g,'/'):'公表日未確認'}</time><span>{n.category}</span>{n.ai&&<span>AI要約{n.stale?'・更新待ち':''}</span>}</div><h3><a href={n.url} target={n.internal?undefined:'_blank'} rel={n.internal?undefined:'noreferrer'}>{n.title}{n.internal?'':' ↗'}</a></h3><details><summary>要点と出典</summary><p>{n.body}</p>{n.why&&<p><b>編集・分析上の視点：</b>{n.why}</p>}<a href={n.url} target={n.internal?undefined:'_blank'} rel={n.internal?undefined:'noreferrer'}>{n.source} →</a></details></article>)}</div>{!shown.length&&<p className='overview-empty'>この分類の記事はまだありません。<button onClick={()=>setSelected('すべて')}>すべてに戻る</button></p>}{shown.length>limit&&<button className='overview-more' onClick={()=>setLimit(limit+5)}>さらに5件を見る（残り{shown.length-limit}件）</button>}</section><aside className='overview-ratings' aria-label='上場企業の投資環境'><div className='overview-heading'><h2>投資環境</h2><a href={appHref('companies')}>詳しく →</a></div><p className='overview-count'>上場{ratings.length}社 · 追い風 / 横ばい / 逆風</p><div className='overview-score-list'>{ratings.map(s=><a className='overview-score' href={appHref('company/'+s.ticker)} key={s.ticker}><span>{name[s.ticker]||s.name}<CurrentPrice ticker={s.ticker}/><small>信頼度 {s.confidence} · {s.asOf}</small></span><span className={'overview-score-value '+investmentSignalClass(s.signal)}><b>{icon(s.signal)}</b><small>{s.signal}</small></span></a>)}</div><p className='overview-count'>7軸の○△×を総合した編集判断。売買推奨ではありません。</p></aside></div></div>}
+import { useState, useMemo } from 'react';
+import { Search, X, ExternalLink, Newspaper, Sparkles } from 'lucide-react';
+import { weeklyItems, weeklyCompanyItems } from './WeeklyNews';
+import type { Article } from './model';
+import type { Daily } from './Daily';
+import './overview.css';
+import { appHref } from './navigation';
+
+/**
+ * ニュースアイテムの型定義
+ */
+type News = {
+  key: string;
+  date: string | null;
+  category: string;
+  title: string;
+  body: string;
+  why?: string;
+  url: string;
+  source: string;
+  internal?: boolean;
+  ai?: boolean;
+  stale?: boolean;
+};
+
+/**
+ * 表示カテゴリー一覧
+ * ユーザー指定の「設備投資」「商品」を直感的に選択可能
+ */
+const categories = ['すべて', '設備投資', '商品', '原料・品質', '企業・決算'] as const;
+
+/**
+ * カテゴリー名の正規化（過去データや表記ゆれを統一）
+ */
+function normalizeCategory(cat: string): string {
+  if (cat === '二次加工・商品' || cat === '商品' || cat === '商品開発') return '商品';
+  if (cat === '設備投資') return '設備投資';
+  if (cat === '原料・品質') return '原料・品質';
+  if (['企業・決算', '企業・業績', '企業業績', '企業業績・IR', 'Company / IR', 'Company/IR', '企業・IR', '決算・IR'].includes(cat)) {
+    return '企業・決算';
+  }
+  return cat;
+}
+
+/**
+ * カテゴリー別バッジクラスの取得（色分け用）
+ */
+function getCategoryClass(cat: string): string {
+  switch (cat) {
+    case '設備投資':
+      return 'capex';
+    case '商品':
+      return 'product';
+    case '原料・品質':
+      return 'grain';
+    case '企業・決算':
+      return 'corporate';
+    default:
+      return 'other';
+  }
+}
+
+/**
+ * カテゴリー別アイコンの取得
+ */
+const categoryIcons: Record<string, string> = {
+  '設備投資': '🏭',
+  '商品': '🍞',
+  '原料・品質': '🌾',
+  '企業・決算': '📊',
+};
+
+export default function OverviewNews({
+  articles,
+  daily,
+}: {
+  articles: Article[];
+  daily: Daily | null;
+}) {
+  const [selected, setSelected] = useState<string>('すべて');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [limit, setLimit] = useState<number>(6);
+
+  // 全ニュースの集約・正規化・重複排除
+  const allNews = useMemo(() => {
+    const raw: News[] = [
+      ...weeklyItems.map((i) => ({
+        key: i.url,
+        date: '2026-' + i.date.replace('/', '-'),
+        category: normalizeCategory(i.pillar),
+        title: i.title,
+        body: i.body,
+        why: i.why,
+        url: i.url,
+        source: i.source,
+      })),
+      ...weeklyCompanyItems.map((i) => ({
+        key: i.url,
+        date: '2026-' + i.date.replace('/', '-'),
+        category: '企業・決算',
+        title: i.title,
+        body: i.body,
+        url: i.url,
+        source: i.source,
+      })),
+      ...articles.map((a) => ({
+        key: a.id,
+        date: a.publishedAt,
+        category: normalizeCategory(a.category),
+        title: a.title,
+        body: a.fact,
+        why: a.impact,
+        url: appHref('article/' + a.id),
+        source: '編集記事・公開出典',
+        internal: true,
+      })),
+      ...(daily?.states || []).flatMap((s) =>
+        s.recent
+          .filter((a) => /^https:\/\//.test(a.url))
+          .map((a) => ({
+            key: 'daily-' + a.id,
+            date: a.publishedAt,
+            category: normalizeCategory(a.category),
+            title: a.title,
+            body: a.fact,
+            why: a.importance,
+            url: a.url,
+            source: a.sourceName,
+            ai: true,
+            stale: s.stale || (s.status !== 'ok' && s.status !== 'skipped'),
+          }))
+      ),
+    ];
+
+    const urls = new Set<string>();
+    const titles = new Set<string>();
+
+    return raw
+      .filter((n) => {
+        const u = n.url.replace(/\/$/, '');
+        const t = n.title.trim();
+        if (urls.has(u) || titles.has(t)) return false;
+        urls.add(u);
+        titles.add(t);
+        return true;
+      })
+      .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  }, [articles, daily]);
+
+  // カテゴリーごとの記事件数集計
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { すべて: allNews.length };
+    categories.forEach((cat) => {
+      if (cat !== 'すべて') {
+        counts[cat] = allNews.filter((n) => n.category === cat).length;
+      }
+    });
+    return counts;
+  }, [allNews]);
+
+  // 検索・カテゴリー絞り込み
+  const filteredNews = useMemo(() => {
+    return allNews.filter((n) => {
+      const matchesCategory = selected === 'すべて' || n.category === selected;
+      if (!matchesCategory) return false;
+
+      if (!searchQuery.trim()) return true;
+      const q = searchQuery.toLowerCase().trim();
+      const targets = [n.title, n.body, n.why || '', n.source, n.category].join(' ').toLowerCase();
+      return q.split(/\s+/).every((word) => targets.includes(word));
+    });
+  }, [allNews, selected, searchQuery]);
+
+  return (
+    <section className="overview-content" aria-label="製粉業界ニュース">
+      {/* ニュース見出し ＆ アーカイブリンク */}
+      <div className="news-section-header">
+        <div className="news-section-header-top">
+          <div>
+            <span className="news-kicker">CURATED INDUSTRY NEWS</span>
+            <h2>製粉業界ニュース</h2>
+          </div>
+          <a className="news-archive-link" href={appHref('archive')}>
+            <Newspaper size={14} /> 記事アーカイブ →
+          </a>
+        </div>
+        <p className="news-section-desc">
+          設備投資・商品開発・原料動向・企業業績を独自キュレーション。一次情報の事実と実務への示唆を整理しています。
+        </p>
+      </div>
+
+      {/* 検索バー ＆ カテゴリーピルチップ */}
+      <div className="news-filter-hub">
+        {/* キーワード検索入力 */}
+        <div className="news-search-bar">
+          <Search size={18} className="search-icon" aria-hidden="true" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setLimit(6);
+            }}
+            placeholder="企業名・設備名・キーワードで検索（例：ニップン、増設、ホットケーキ、Bühler）"
+            aria-label="ニュースをキーワードで検索"
+          />
+          {searchQuery && (
+            <button
+              className="news-clear-btn"
+              type="button"
+              onClick={() => setSearchQuery('')}
+              aria-label="検索キーワードをクリア"
+            >
+              <X size={13} />
+            </button>
+          )}
+        </div>
+
+        {/* カテゴリーピルチップ（横スクロール） */}
+        <div className="news-pills-scroll" role="group" aria-label="ニュースカテゴリー切り替え">
+          {categories.map((c) => {
+            const isSelected = selected === c;
+            const count = categoryCounts[c] || 0;
+            return (
+              <button
+                key={c}
+                type="button"
+                className="news-pill-chip"
+                aria-pressed={isSelected}
+                onClick={() => {
+                  setSelected(c);
+                  setLimit(6);
+                }}
+              >
+                <span>{categoryIcons[c] || ''} {c}</span>
+                <span className="news-pill-count">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 検索・絞り込み件数表示 */}
+      <div className="news-status-bar" role="status">
+        <span>
+          <b>{selected}</b>
+          {searchQuery && <span> · 「{searchQuery}」の検索結果</span>}
+          <span> ： {filteredNews.length}件</span>
+        </span>
+        <span>公表日順</span>
+      </div>
+
+      {/* ニュースカード一覧 */}
+      {filteredNews.length > 0 ? (
+        <div className="news-cards-grid">
+          {filteredNews.slice(0, limit).map((n) => (
+            <article className="news-card" key={n.key}>
+              <div className="news-card-header">
+                <span className={`news-category-badge ${getCategoryClass(n.category)}`}>
+                  {categoryIcons[n.category] || '📄'} {n.category}
+                </span>
+                <div className="news-card-meta">
+                  <time dateTime={n.date || undefined}>
+                    {n.date ? n.date.slice(0, 10).replace(/-/g, '/') : '公表日未確認'}
+                  </time>
+                  {n.ai && (
+                    <span className="news-card-ai-badge">
+                      AI要約{n.stale ? '・更新待ち' : ''}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <h3 className="news-card-title">
+                <a
+                  href={n.url}
+                  target={n.internal ? undefined : '_blank'}
+                  rel={n.internal ? undefined : 'noreferrer'}
+                >
+                  {n.title}
+                  {!n.internal && <ExternalLink size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: '-1px' }} />}
+                </a>
+              </h3>
+
+              <p className="news-card-body">{n.body}</p>
+
+              {/* 製粉業界への示唆（キュレーションの核心価値） */}
+              {n.why && (
+                <div className="news-why-callout">
+                  <div className="news-why-header">
+                    <Sparkles size={13} />
+                    <span>製粉業界への示唆・実務ポイント</span>
+                  </div>
+                  <p className="news-why-text">{n.why}</p>
+                </div>
+              )}
+
+              <div className="news-card-footer">
+                <a
+                  className="news-card-source"
+                  href={n.url}
+                  target={n.internal ? undefined : '_blank'}
+                  rel={n.internal ? undefined : 'noreferrer'}
+                >
+                  {n.source} {n.internal ? '→' : '↗'}
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        /* 検索結果が0件の場合 */
+        <div className="news-empty-state">
+          <p>該当する記事が見つかりませんでした。</p>
+          <button
+            type="button"
+            className="news-empty-reset-btn"
+            onClick={() => {
+              setSelected('すべて');
+              setSearchQuery('');
+              setLimit(6);
+            }}
+          >
+            条件をリセットして全件表示
+          </button>
+        </div>
+      )}
+
+      {/* さらに読み込むボタン */}
+      {filteredNews.length > limit && (
+        <button
+          type="button"
+          className="news-load-more"
+          onClick={() => setLimit((prev) => prev + 6)}
+        >
+          さらに表示する（残り {filteredNews.length - limit} 件）
+        </button>
+      )}
+    </section>
+  );
+}
