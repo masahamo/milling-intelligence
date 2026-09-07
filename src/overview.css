@@ -16,6 +16,14 @@
   margin: 8px 0;
 }
 
+.overview-home .hero .hero-desc {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 4px 0 10px;
+  max-width: 720px;
+}
+
 .overview-home .hero h1 em {
   font-style: normal;
   color: #153c2c;
@@ -133,62 +141,34 @@
   padding: 4px 0 24px;
 }
 
-.news-section-header {
-  margin-bottom: 16px;
-}
-
-.news-section-header-top {
+.news-top-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 6px;
-}
-
-.news-kicker {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #153c2c;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.news-section-header h2 {
-  font-size: 24px;
-  font-weight: 850;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-  margin: 0;
+  justify-content: flex-end;
+  margin-bottom: 12px;
 }
 
 .news-archive-link {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 750;
   color: #153c2c;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: #f1f5f9;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #eef5f0;
+  border: 1px solid #d2e4d7;
   transition: all 0.2s ease;
 }
 
 .news-archive-link:hover {
-  background: #e2e8f0;
-}
-
-.news-section-desc {
-  font-size: 14px;
-  color: #475569;
-  margin: 0 0 16px;
-  line-height: 1.6;
+  background: #ddeadf;
+  color: #0d281d;
 }
 
 /* ==========================================================================
-   News Filter Hub (Search Bar + Category Pills)
+   News Filter Hub (Search Bar + Region Pills + Category Pills)
    ========================================================================== */
 .news-filter-hub {
   background: #ffffff;
@@ -200,6 +180,29 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.news-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.news-filter-label {
+  font-size: 12px;
+  font-weight: 850;
+  color: #475569;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 68px;
+}
+
+@media (max-width: 640px) {
+  .news-filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
 }
 
 /* Search Bar */
@@ -371,6 +374,26 @@
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+.news-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.news-region-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .news-category-badge {

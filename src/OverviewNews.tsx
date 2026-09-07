@@ -13,6 +13,7 @@ type News = {
   key: string;
   date: string | null;
   category: string;
+  region: string;
   title: string;
   body: string;
   why?: string;
@@ -25,18 +26,61 @@ type News = {
 
 /**
  * 表示カテゴリー一覧
- * ユーザー指定の「設備投資」「商品」を直感的に選択可能
  */
 const categories = ['すべて', '設備投資', '商品', '原料・品質', '企業・決算'] as const;
 
 /**
- * カテゴリー名の正規化（過去データや表記ゆれを統一）
+ * 国・地域一覧
+ */
+const regions = [
+  { id: 'すべて', label: 'すべて', icon: '🌐' },
+  { id: '日本', label: '日本', icon: '🇯🇵' },
+  { id: '北米', label: '北米', icon: '🇺🇸' },
+  { id: '欧州', label: '欧州', icon: '🇪🇺' },
+  { id: '豪州', label: '豪州', icon: '🇦🇺' },
+  { id: '中国', label: '中国', icon: '🇨🇳' },
+  { id: 'グローバル', label: '国際', icon: '🌍' },
+] as const;
+
+/**
+ * 国・地域のアイコン取得
+ */
+function getRegionIcon(region: string): string {
+  switch (region) {
+    case '日本':
+      return '🇯🇵';
+    case '北米':
+      return '🇺🇸';
+    case '欧州':
+      return '🇪🇺';
+    case '豪州':
+      return '🇦🇺';
+    case '中国':
+      return '🇨🇳';
+    default:
+      return '🌍';
+  }
+}
+
+/**
+ * カテゴリー名の正規化（表記ゆれの統一）
  */
 function normalizeCategory(cat: string): string {
   if (cat === '二次加工・商品' || cat === '商品' || cat === '商品開発') return '商品';
   if (cat === '設備投資') return '設備投資';
   if (cat === '原料・品質') return '原料・品質';
-  if (['企業・決算', '企業・業績', '企業業績', '企業業績・IR', 'Company / IR', 'Company/IR', '企業・IR', '決算・IR'].includes(cat)) {
+  if (
+    [
+      '企業・決算',
+      '企業・業績',
+      '企業業績',
+      '企業業績・IR',
+      'Company / IR',
+      'Company/IR',
+      '企業・IR',
+      '決算・IR',
+    ].includes(cat)
+  ) {
     return '企業・決算';
   }
   return cat;
@@ -70,6 +114,35 @@ const categoryIcons: Record<string, string> = {
   '企業・決算': '📊',
 };
 
+/**
+ * 週次ニュースの国・地域推測
+ */
+function inferWeeklyRegion(tag: string, title: string): string {
+  if (tag.includes('カナダ') || tag.includes('米国') || tag === '物流設備' || tag.includes('Omas')) {
+    return '北米';
+  }
+  if (tag.includes('豪州')) return '豪州';
+  if (tag.includes('中国')) return '中国';
+  if (tag.includes('家庭用') || title.includes('昭和産業')) return '日本';
+  if (tag.includes('黒海') || tag.includes('省エネ')) return '欧州';
+  return 'グローバル';
+}
+
+/**
+ * データベースの国名を標準地域名へ変換
+ */
+function mapCountryToRegion(country: string | null | undefined): string {
+  if (!country) return 'グローバル';
+  if (country === 'Japan' || country.includes('日本')) return '日本';
+  if (country === 'U.S.' || country === 'US' || country === 'Canada' || country.includes('北米')) {
+    return '北米';
+  }
+  if (country === 'Europe' || country.includes('欧州')) return '欧州';
+  if (country === 'Australia' || country.includes('豪州')) return '豪州';
+  if (country === 'China' || country.includes('中国')) return '中国';
+  return 'グローバル';
+}
+
 export default function OverviewNews({
   articles,
   daily,
@@ -77,7 +150,8 @@ export default function OverviewNews({
   articles: Article[];
   daily: Daily | null;
 }) {
-  const [selected, setSelected] = useState<string>('すべて');
+  const [selectedCategory, setSelectedCategory] = useState<string>('すべて');
+  const [selectedRegion, setSelectedRegion] = useState<string>('すべて');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [limit, setLimit] = useState<number>(6);
 
@@ -88,6 +162,7 @@ export default function OverviewNews({
         key: i.url,
         date: '2026-' + i.date.replace('/', '-'),
         category: normalizeCategory(i.pillar),
+        region: inferWeeklyRegion(i.tag, i.title),
         title: i.title,
         body: i.body,
         why: i.why,
@@ -98,6 +173,7 @@ export default function OverviewNews({
         key: i.url,
         date: '2026-' + i.date.replace('/', '-'),
         category: '企業・決算',
+        region: 'グローバル',
         title: i.title,
         body: i.body,
         url: i.url,
@@ -107,6 +183,7 @@ export default function OverviewNews({
         key: a.id,
         date: a.publishedAt,
         category: normalizeCategory(a.category),
+        region: mapCountryToRegion(a.country),
         title: a.title,
         body: a.fact,
         why: a.impact,
@@ -121,6 +198,7 @@ export default function OverviewNews({
             key: 'daily-' + a.id,
             date: a.publishedAt,
             category: normalizeCategory(a.category),
+            region: mapCountryToRegion(a.country || s.country),
             title: a.title,
             body: a.fact,
             why: a.importance,
@@ -147,6 +225,17 @@ export default function OverviewNews({
       .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   }, [articles, daily]);
 
+  // 国・地域ごとの記事件数集計
+  const regionCounts = useMemo(() => {
+    const counts: Record<string, number> = { すべて: allNews.length };
+    regions.forEach((r) => {
+      if (r.id !== 'すべて') {
+        counts[r.id] = allNews.filter((n) => n.region === r.id).length;
+      }
+    });
+    return counts;
+  }, [allNews]);
+
   // カテゴリーごとの記事件数集計
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { すべて: allNews.length };
@@ -158,38 +247,32 @@ export default function OverviewNews({
     return counts;
   }, [allNews]);
 
-  // 検索・カテゴリー絞り込み
+  // 検索・国地域・カテゴリー絞り込み
   const filteredNews = useMemo(() => {
     return allNews.filter((n) => {
-      const matchesCategory = selected === 'すべて' || n.category === selected;
+      const matchesCategory = selectedCategory === 'すべて' || n.category === selectedCategory;
       if (!matchesCategory) return false;
+
+      const matchesRegion = selectedRegion === 'すべて' || n.region === selectedRegion;
+      if (!matchesRegion) return false;
 
       if (!searchQuery.trim()) return true;
       const q = searchQuery.toLowerCase().trim();
-      const targets = [n.title, n.body, n.why || '', n.source, n.category].join(' ').toLowerCase();
+      const targets = [n.title, n.body, n.why || '', n.source, n.category, n.region].join(' ').toLowerCase();
       return q.split(/\s+/).every((word) => targets.includes(word));
     });
-  }, [allNews, selected, searchQuery]);
+  }, [allNews, selectedCategory, selectedRegion, searchQuery]);
 
   return (
     <section className="overview-content" aria-label="製粉業界ニュース">
-      {/* ニュース見出し ＆ アーカイブリンク */}
-      <div className="news-section-header">
-        <div className="news-section-header-top">
-          <div>
-            <span className="news-kicker">CURATED INDUSTRY NEWS</span>
-            <h2>製粉業界ニュース</h2>
-          </div>
-          <a className="news-archive-link" href={appHref('archive')}>
-            <Newspaper size={14} /> 記事一覧 →
-          </a>
-        </div>
-        <p className="news-section-desc">
-          設備投資・商品開発・原料動向・企業業績を独自キュレーション。一次情報の事実と実務への示唆を整理しています。
-        </p>
+      {/* 過去ログ記事一覧への導線 */}
+      <div className="news-top-actions">
+        <a className="news-archive-link" href={appHref('archive')}>
+          <Newspaper size={14} /> 記事一覧（過去ログ） →
+        </a>
       </div>
 
-      {/* 検索バー ＆ カテゴリーピルチップ */}
+      {/* 検索バー ＆ 国・地域・カテゴリーピルチップ */}
       <div className="news-filter-hub">
         {/* キーワード検索入力 */}
         <div className="news-search-bar">
@@ -216,35 +299,70 @@ export default function OverviewNews({
           )}
         </div>
 
-        {/* カテゴリーピルチップ（横スクロール） */}
-        <div className="news-pills-scroll" role="group" aria-label="ニュースカテゴリー切り替え">
-          {categories.map((c) => {
-            const isSelected = selected === c;
-            const count = categoryCounts[c] || 0;
-            return (
-              <button
-                key={c}
-                type="button"
-                className="news-pill-chip"
-                aria-pressed={isSelected}
-                onClick={() => {
-                  setSelected(c);
-                  setLimit(6);
-                }}
-              >
-                <span>{categoryIcons[c] || ''} {c}</span>
-                <span className="news-pill-count">{count}</span>
-              </button>
-            );
-          })}
+        {/* 国・地域 選択ピルチップ */}
+        <div className="news-filter-row">
+          <span className="news-filter-label">国・地域:</span>
+          <div className="news-pills-scroll" role="group" aria-label="国・地域切り替え">
+            {regions.map((r) => {
+              const isSelected = selectedRegion === r.id;
+              const count = regionCounts[r.id] || 0;
+              return (
+                <button
+                  key={r.id}
+                  type="button"
+                  className="news-pill-chip"
+                  aria-pressed={isSelected}
+                  onClick={() => {
+                    setSelectedRegion(r.id);
+                    setLimit(6);
+                  }}
+                >
+                  <span>
+                    {r.icon} {r.label}
+                  </span>
+                  <span className="news-pill-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* カテゴリー 選択ピルチップ */}
+        <div className="news-filter-row">
+          <span className="news-filter-label">カテゴリー:</span>
+          <div className="news-pills-scroll" role="group" aria-label="ニュースカテゴリー切り替え">
+            {categories.map((c) => {
+              const isSelected = selectedCategory === c;
+              const count = categoryCounts[c] || 0;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  className="news-pill-chip"
+                  aria-pressed={isSelected}
+                  onClick={() => {
+                    setSelectedCategory(c);
+                    setLimit(6);
+                  }}
+                >
+                  <span>
+                    {categoryIcons[c] || ''} {c}
+                  </span>
+                  <span className="news-pill-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* 検索・絞り込み件数表示 */}
       <div className="news-status-bar" role="status">
         <span>
-          <b>{selected}</b>
-          {searchQuery && <span> · 「{searchQuery}」の検索結果</span>}
+          <b>{selectedRegion === 'すべて' ? '全地域' : selectedRegion}</b>
+          <span> · </span>
+          <b>{selectedCategory === 'すべて' ? '全カテゴリー' : selectedCategory}</b>
+          {searchQuery && <span> · 「{searchQuery}」</span>}
           <span> ： {filteredNews.length}件</span>
         </span>
         <span>公表日順</span>
@@ -256,9 +374,14 @@ export default function OverviewNews({
           {filteredNews.slice(0, limit).map((n) => (
             <article className="news-card" key={n.key}>
               <div className="news-card-header">
-                <span className={`news-category-badge ${getCategoryClass(n.category)}`}>
-                  {categoryIcons[n.category] || '📄'} {n.category}
-                </span>
+                <div className="news-badge-group">
+                  <span className="news-region-badge">
+                    {getRegionIcon(n.region)} {n.region}
+                  </span>
+                  <span className={`news-category-badge ${getCategoryClass(n.category)}`}>
+                    {categoryIcons[n.category] || '📄'} {n.category}
+                  </span>
+                </div>
                 <div className="news-card-meta">
                   <time dateTime={n.date || undefined}>
                     {n.date ? n.date.slice(0, 10).replace(/-/g, '/') : '公表日未確認'}
@@ -278,7 +401,12 @@ export default function OverviewNews({
                   rel={n.internal ? undefined : 'noreferrer'}
                 >
                   {n.title}
-                  {!n.internal && <ExternalLink size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: '-1px' }} />}
+                  {!n.internal && (
+                    <ExternalLink
+                      size={14}
+                      style={{ display: 'inline', marginLeft: 4, verticalAlign: '-1px' }}
+                    />
+                  )}
                 </a>
               </h3>
 
@@ -316,7 +444,8 @@ export default function OverviewNews({
             type="button"
             className="news-empty-reset-btn"
             onClick={() => {
-              setSelected('すべて');
+              setSelectedCategory('すべて');
+              setSelectedRegion('すべて');
               setSearchQuery('');
               setLimit(6);
             }}
