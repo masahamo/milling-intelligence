@@ -4074,6 +4074,66 @@
     "prerender": true
   },
   {
+    "path": "/article/turkey-flour-export-2026",
+    "title": "世界最大の小麦粉輸出国トルコ、2026/27穀物生産・製粉設備動向を公表 | Milling Intelligence",
+    "description": "World Grain 2026年9月号がトルコ穀物見通しを特集。国内小麦生産の堅調さと中東・アフリカ向け小麦粉輸出設備の近代化・自動化投資の継続を報告。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "世界最大の小麦粉輸出国トルコ、2026/27穀物生産・製粉設備動向を公表",
+    "body": "World Grain 2026年9月号がトルコ穀物見通しを特集。国内小麦生産の堅調さと中東・アフリカ向け小麦粉輸出設備の近代化・自動化投資の継続を報告。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/turkey-flour-export-2026",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/ardent-benefit-stacking",
+    "title": "北米最大手Ardent Mills、高タンパク・高食物繊維の複合機能粉開発を加速 | Milling Intelligence",
+    "description": "北米製粉最大手のArdent Millsは、消費者・食品メーカーの健康志向の高まりを受け、食物繊維とプロテインを同時に補強するベネフィット・スタッキング（Benefit Stacking）戦略を推進。汎用小麦粉から高付加価値ブレンドへのシフトを図る。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "北米最大手Ardent Mills、高タンパク・高食物繊維の複合機能粉開発を加速",
+    "body": "北米製粉最大手のArdent Millsは、消費者・食品メーカーの健康志向の高まりを受け、食物繊維とプロテインを同時に補強するベネフィット・スタッキング（Benefit Stacking）戦略を推進。汎用小麦粉から高付加価値ブレンドへのシフトを図る。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/ardent-benefit-stacking",
+    "canonical": true,
+    "prerender": true
+  },
+  {
+    "path": "/article/milling-assoc-2026",
+    "title": "製粉協会・横山新会長（日清製粉）が就任、安定供給と新需要創出を強調 | Milling Intelligence",
+    "description": "2026年9月1日付で製粉協会の第76代会長に日清製粉社長の横山敏明氏が就任。人口動態の変化やコメ価格高騰など環境激変のなか、安全な小麦粉の安定供給と2次加工メーカーとの連携による新価値提案を推進すると表明。 公開情報の事実と製粉業界への影響を整理しています。",
+    "h1": "製粉協会・横山新会長（日清製粉）が就任、安定供給と新需要創出を強調",
+    "body": "2026年9月1日付で製粉協会の第76代会長に日清製粉社長の横山敏明氏が就任。人口動態の変化やコメ価格高騰など環境激変のなか、安全な小麦粉の安定供給と2次加工メーカーとの連携による新価値提案を推進すると表明。",
+    "links": [
+      [
+        "/archive",
+        "記事アーカイブ"
+      ],
+      [
+        "/companies",
+        "Companies"
+      ]
+    ],
+    "route": "article/milling-assoc-2026",
+    "canonical": true,
+    "prerender": true
+  },
+  {
     "path": "/article/mtcg",
     "title": "MTCGの省エネ評価は、空気循環の条件から | Milling Intelligence",
     "description": "Bühler公式仕様は小麦10〜28 t/h。オプションの空気循環を加えた場合、従来型の石抜き機比で最大30%の省エネを掲げる。 公開情報の事実と製粉業界への影響を整理しています。",
