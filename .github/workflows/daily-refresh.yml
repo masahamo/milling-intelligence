@@ -1,0 +1,64 @@
+name: Daily Milling Refresh (06:00 JST)
+
+on:
+  schedule:
+    # UTC 21:00 = 日本時間 翌朝 06:00
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Auto-fetch Milling News & IR
+        run: node scripts/auto-news-fetch.mjs
+
+      - name: Fetch Market History
+        run: node scripts/fetch-market-history.mjs
+
+      - name: Update Edition & Date
+        run: node scripts/update-edition.mjs
+
+      - name: Generate SEO
+        run: node scripts/generate-seo.mjs
+
+      - name: Build Application
+        run: CI=true pnpm run build
+
+      - name: Finalize SEO Paths
+        run: node scripts/finalize-seo.mjs
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/ src/ dist/ .vercel/
+          git commit -m "chore(daily): auto-update milling news and data for $(date +'%Y-%m-%d')" || echo "No changes to commit"
+          git push origin main
+
+      - name: Deploy to Vercel Production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: node scripts/deploy-vercel.mjs
