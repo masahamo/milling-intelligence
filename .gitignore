@@ -1,6 +1,4 @@
 node_modules
-dist
 .qa/news.test.mjs
 .DS_Store
-.vercel
 .env*
