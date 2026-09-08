@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 // 毎朝の自動ニュース取得 & 91日周期 四半期IR巡回スクリプト
-// アンテナ拡張版：製粉・小麦・機械・大手各社の動向をより高精度かつ広範囲に収集
-console.log("Starting Daily Milling Intelligence auto-fetch at", new Date().toISOString());
+// Milling Specialist仕様：海外の製粉プラント設備投資、機械メーカー、小麦粉R&D動向を重点収集
+console.log("Starting Daily Milling Intelligence auto-fetch (Specialist Edition) at", new Date().toISOString());
 
 const root = process.cwd();
 const weeklyFile = path.join(root, "src", "WeeklyNews.tsx");
@@ -13,41 +13,50 @@ if (!fs.existsSync(weeklyFile)) {
   process.exit(1);
 }
 
-// ニュースフィード（アンテナを適切に拡張）
+// ニュースフィード（海外設備投資 & 小麦粉開発を重点化）
 const FEEDS = [
+  // 1. 国内重要ニュース
   {
-    name: "製粉・小麦ニュース（国内）",
+    name: "国内製粉・小麦・政策ニュース",
     url: "https://news.google.com/rss/search?q=%E8%A3%BD%E7%B2%89+%E5%B0%8F%E9%BA%A6&hl=ja&gl=JP&ceid=JP:ja",
     defaultPillar: "原料・品質",
   },
   {
-    name: "製粉設備・工場新設・プラント（国内）",
+    name: "国内製粉設備・工場新設・プラント",
     url: "https://news.google.com/rss/search?q=%E8%A3%BD%E7%B2%89%E5%B7%A5%E5%A0%B4+OR+%E8%A3%BD%E7%B2%89%E6%A9%9F%E6%A2%B0+OR+(%E5%B0%8F%E9%BA%A6+%E8%A3%BD%E7%B2%89+%E8%A8%AD%E5%82%99)&hl=ja&gl=JP&ceid=JP:ja",
     defaultPillar: "設備投資",
   },
   {
-    name: "輸入小麦・売渡価格・相場動向",
-    url: "https://news.google.com/rss/search?q=%E8%BC%B8%E5%85%A5%E5%B0%8F%E9%BA%A6+OR+%E5%B0%8F%E9%BA%A6%E5%A3%B2%E6%B8%A1%E4%BE%A1%E6%A0%BC+OR+%E5%B0%8F%E9%BA%A6%E7%9B%B8%E5%A0%B4&hl=ja&gl=JP&ceid=JP:ja",
-    defaultPillar: "原料・品質",
-  },
-  {
-    name: "大手製粉会社・新商品・新技術",
-    url: "https://news.google.com/rss/search?q=(%E6%97%A5%E6%B8%85%E8%A3%BD%E7%B2%89+OR+%E3%83%8B%E3%83%83%E3%83%97%E3%83%B3+OR+%E6%98%AD%E5%92%8C%E7%94%A3%E6%A5%AD+OR+%E6%97%A5%E6%9D%B1%E8%A3%BD%E7%B2%89)+AND+(%E5%B0%8F%E9%BA%A6%E7%B2%89+OR+%E3%83%97%E3%83%AC%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9+OR+%E8%A8%AD%E5%82%99+OR+%E6%96%B0%E5%95%86%E5%93%81)&hl=ja&gl=JP&ceid=JP:ja",
+    name: "国内大手製粉・新商品・プレミックス",
+    url: "https://news.google.com/rss/search?q=(%E6%97%A5%E6%B8%85%E8%A3%BD%E7%B2%89+OR+%E3%83%8B%E3%83%83%E3%83%97%E3%83%B3+OR+%E6%98%AD%E5%92%8C%E7%94%A3%E6%A5%AD)+AND+(%E5%B0%8F%E9%BA%A6%E7%B2%89+OR+%E3%83%97%E3%83%AC%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9+OR+%E6%96%B0%E5%95%86%E5%93%81)&hl=ja&gl=JP&ceid=JP:ja",
     defaultPillar: "二次加工・商品",
   },
+  // 2. 海外製粉プラント・設備投資（重点）
   {
-    name: "Global Flour Milling & Capacity",
-    url: "https://news.google.com/rss/search?q=%22flour+milling%22+OR+%22flour+mill%22+OR+%22milling+capacity%22&hl=en-US&gl=US&ceid=US:en",
+    name: "Global Milling Equipment & Machinery (Bühler, Ocrim, Omas, etc.)",
+    url: "https://news.google.com/rss/search?q=(%22flour+mill%22+OR+%22flour+milling%22)+AND+(Buhler+OR+Ocrim+OR+Omas+OR+Alapala+OR+Satake+OR+%22roller+mill%22+OR+plansifter)&hl=en-US&gl=US&ceid=US:en",
     defaultPillar: "設備投資",
   },
   {
-    name: "Global Wheat & Flour Production",
-    url: "https://news.google.com/rss/search?q=(%22wheat+flour%22+OR+%22flour+production%22)+AND+(mill+OR+milling+OR+export)&hl=en-US&gl=US&ceid=US:en",
+    name: "Global Flour Mill Plant Expansion & Investment",
+    url: "https://news.google.com/rss/search?q=(%22flour+mill%22+OR+%22wheat+processing%22)+AND+(investment+OR+expansion+OR+commissioning+OR+%22new+plant%22+OR+CapEx)&hl=en-US&gl=US&ceid=US:en",
+    defaultPillar: "設備投資",
+  },
+  // 3. 海外小麦粉R&D・機能性粉開発（重点）
+  {
+    name: "Global Flour R&D, Protein, Quality & Blending",
+    url: "https://news.google.com/rss/search?q=(%22wheat+flour%22+OR+%22flour+quality%22)+AND+(protein+OR+gluten+OR+enzyme+OR+%22flour+blending%22+OR+fortification+OR+rheology+OR+premix)&hl=en-US&gl=US&ceid=US:en",
+    defaultPillar: "二次加工・商品",
+  },
+  // 4. 世界の小麦需給・原料品質
+  {
+    name: "Global Wheat Production & Export Trends",
+    url: "https://news.google.com/rss/search?q=(%22wheat+harvest%22+OR+%22wheat+export%22)+AND+(yield+OR+protein+OR+quality+OR+USDA)&hl=en-US&gl=US&ceid=US:en",
     defaultPillar: "原料・品質",
   }
 ];
 
-// ノイズ除外キーワード（個人のレシピ、飲食店オープン、そば等の無関係な情報を遮断）
+// ノイズ除外キーワード
 const EXCLUDE_WORDS = [
   "そば処", "手打ちそば", "十割そば", "蕎麦", "ラーメン屋オープン", "ベーカリー開店",
   "パン屋オープン", "スイーツフェス", "手作りクッキー", "家庭用", "クックパッド",
@@ -85,13 +94,23 @@ function checkScheduledIR() {
 }
 
 function classifyPillar(title) {
-  if (/設備|工場|新設|増設|増産|ライン|ロボット|省エネ|プラント|投資|機械|machine|mill|plant|expansion|capacity|elevator|silo/i.test(title)) {
+  if (/設備|工場|新設|増設|増産|ライン|ロボット|省エネ|プラント|投資|機械|machine|mill|plant|expansion|capacity|elevator|silo|buhler|ocrim|omas|alapala|satake|plansifter|roll/i.test(title)) {
     return "設備投資";
   }
-  if (/新商品|発売|リニューアル|ミックス|パン|うどん|麺|パスタ|商品|プレミックス|米粉|bakery|noodle|product/i.test(title)) {
+  if (/新商品|発売|リニューアル|ミックス|パン|うどん|麺|パスタ|商品|プレミックス|米粉|タンパク|食物繊維|開発|bakery|noodle|product|blend|protein|gluten|fiber|enzyme|fortif/i.test(title)) {
     return "二次加工・商品";
   }
   return "原料・品質";
+}
+
+function generateSpecialistInsight(pillar, title) {
+  if (pillar === "設備投資") {
+    return "設備技術者目線：日産能力（t/24h）や動力原単位（kWh/t）、自動化による省人化効果、既存建屋との適合性を注視。";
+  }
+  if (pillar === "二次加工・商品") {
+    return "粉開発目線：灰分・タンパク質規格の設計、酵素・改良剤配合、製パン・製麺レオロジーへの影響を検証。";
+  }
+  return "原料調達目線：小麦クラス別のブレンド比率、調質水分・時間、歩留まり（Extraction rate）への影響を注視。";
 }
 
 function cleanTitle(raw) {
@@ -127,24 +146,26 @@ async function fetchGoogleNews(feed) {
         const fullTitle = cleanTitle(titleMatch[1]);
         const link = linkMatch[1].trim();
         const pubDate = dateMatch ? new Date(dateMatch[1]) : new Date();
-        const sourceName = sourceMatch ? cleanTitle(sourceMatch[1]) : "ニュース報道";
+        const sourceName = sourceMatch ? cleanTitle(sourceMatch[1]) : "専門ニュース";
 
-        // 5日以内のニュースを対象（週末も確実にカバー）
+        // 直近5日以内を対象
         const now = new Date();
         const diffDays = (now.getTime() - pubDate.getTime()) / (1000 * 3600 * 24);
         if (diffDays > 5.0) continue;
 
-        // ノイズワードを含むものはスキップ
+        // ノイズ除外
         if (EXCLUDE_WORDS.some(w => fullTitle.includes(w))) continue;
 
         const title = fullTitle.replace(/\s*-\s*[^-]+$/, "").trim();
+        const pillar = classifyPillar(title);
 
         items.push({
           title,
           link,
           pubDate,
           source: sourceName,
-          pillar: classifyPillar(title)
+          pillar,
+          why: generateSpecialistInsight(pillar, title)
         });
       }
     }
@@ -156,7 +177,7 @@ async function fetchGoogleNews(feed) {
 }
 
 async function main() {
-  // 1. IRローテーションの診断
+  // 1. IRローテーション診断
   checkScheduledIR();
 
   // 2. ニュース収集
@@ -166,7 +187,7 @@ async function main() {
     allArticles.push(...items);
   }
 
-  console.log(`Fetched ${allArticles.length} recent candidate articles from ${FEEDS.length} expanded feeds.`);
+  console.log(`Fetched ${allArticles.length} candidate articles from ${FEEDS.length} specialist feeds.`);
 
   let weeklyContent = fs.readFileSync(weeklyFile, "utf8");
   let addedCount = 0;
@@ -181,22 +202,21 @@ async function main() {
     const d = String(item.pubDate.getDate()).padStart(2, "0");
     const dateFormatted = `${m}/${d}`;
 
-    const newObjStr = `{date:'${dateFormatted}',pillar:'${item.pillar}',tag:'最新ニュース',title:'${item.title.replace(/'/g, "\\x27")}',body:'${item.title.replace(/'/g, "\\x27")}。最新の公開情報に基づき収録。',why:'製粉業界のサプライチェーン・設備投資・製品開発への影響を注視。',url:'${item.link}',source:'${item.source.replace(/'/g, "\\x27")}'},`;
+    const newObjStr = `{date:'${dateFormatted}',pillar:'${item.pillar}',tag:'専門速報',title:'${item.title.replace(/'/g, "\\x27")}',body:'${item.title.replace(/'/g, "\\x27")}。海外・国内の最新一次資料に基づき収録。',why:'${item.why.replace(/'/g, "\\x27")}',url:'${item.link}',source:'${item.source.replace(/'/g, "\\x27")}'},`;
 
     const marker = "export const weeklyItems:Item[]=[";
     if (weeklyContent.includes(marker)) {
       weeklyContent = weeklyContent.replace(marker, marker + newObjStr);
       addedCount++;
-      console.log(`+ Added: [${item.title}]`);
+      console.log(`+ Added [Specialist]: [${item.title}]`);
     }
 
-    // 1回の追加上限を少し緩和（最大5件まで）
     if (addedCount >= 5) break;
   }
 
   if (addedCount > 0) {
     fs.writeFileSync(weeklyFile, weeklyContent);
-    console.log(`Successfully updated WeeklyNews.tsx with ${addedCount} new articles.`);
+    console.log(`Successfully updated WeeklyNews.tsx with ${addedCount} new specialist articles.`);
   } else {
     console.log("No new qualifying articles in the last 5 days. Retaining existing news catalog.");
   }
