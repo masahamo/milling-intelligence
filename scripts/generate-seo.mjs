@@ -16,7 +16,7 @@ const exportIds=(file,name)=>idsFromText(readExportArray(path.join(root,'src',fi
 const uniq=values=>[...new Set(values.filter(Boolean))];
 const careerIds=uniq([...exportIds('careerData.ts','careerCompanies'),...exportIds('JapanMillingExpansion.ts','japanCareerCompanies'),...exportIds('JapanMillingExpansion2.ts','japan2CareerCompanies')]);
 const millIds=uniq([...exportIds('Mills.tsx','groups'),...exportIds('JapanMillingExpansion.ts','japanMillGroups'),...exportIds('JapanMillingExpansion2.ts','japan2MillGroups')]);
-const sourceText=['CompanyScores.tsx','careerData.ts','Mills.tsx','JapanMillingExpansion.ts','JapanMillingExpansion2.ts'].map(file=>fs.readFileSync(path.join(root,'src',file),'utf8')).join('\n');
+const sourceText=['CompanyScores.tsx','careerData.ts','Mills.tsx','JapanMillingExpansion.ts','JapanMillingExpansion2.ts','MillingMachines.tsx'].map(file=>fs.readFileSync(path.join(root,'src',file),'utf8')).join('\n');
 const nameById=new Map(data.companies.map(x=>[x.id,x.name]));
 for(const match of sourceText.matchAll(/(?:\bid\b|\bticker\b)\s*:\s*['"]([^'"]+)['"][\s\S]{0,240}?\bname\b\s*:\s*['"]([^'"]+)['"]/g))if(!nameById.has(match[1]))nameById.set(match[1],match[2]);
 const companyIds=uniq([...data.companies.map(x=>x.id),...idsFromText(fs.readFileSync(path.join(root,'src','CompanyScores.tsx'),'utf8'),'ticker'),...careerIds,...millIds]);

@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/$1.html", "check": true },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}

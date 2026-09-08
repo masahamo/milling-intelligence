@@ -727,6 +727,8 @@
 
 .career-job-links {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
   font-size: 12px;
@@ -740,6 +742,89 @@
 
 .career-job-links a:hover {
   text-decoration: underline;
+}
+
+/* Job Company Bridge Link */
+.career-job-company-lead {
+  margin: 6px 0 8px 0;
+}
+
+.job-company-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534 !important;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.job-company-link:hover {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #14532d !important;
+}
+
+.job-detail-company-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #166534 !important;
+  font-weight: 700;
+}
+
+/* Company Bridge Banner (on Employer Detail) */
+.career-company-bridge-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+  border: 1.5px solid #86efac;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 16px 0 20px 0;
+  box-shadow: 0 2px 8px rgba(22, 101, 52, 0.05);
+}
+
+.bridge-text-wrap {
+  flex: 1 1 320px;
+}
+
+.bridge-kicker {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #15803d;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.bridge-text-wrap h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.bridge-text-wrap p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.bridge-btn-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /* Method Panel */

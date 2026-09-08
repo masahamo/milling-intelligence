@@ -99,6 +99,9 @@ function jobMatches(j: CareerJob, jobType: string, evidence: string, showClosed:
 function JobCard({job}: {job: CareerJob}) {
   const stale =
     Date.now() - new Date(job.checked + 'T00:00:00Z').getTime() > 30 * 86400000;
+  const company = careerCompanies.find(c => c.id === job.company);
+  const companyName = company?.name || job.company;
+
   return (
     <article className="career-job-item">
       <div className="career-job-header">
@@ -126,6 +129,16 @@ function JobCard({job}: {job: CareerJob}) {
         <MapPin size={13} />
         {job.location || '勤務地：未確認'}
       </p>
+      <div className="career-job-company-lead">
+        <a
+          href={appHref('company/' + job.company)}
+          className="job-company-link"
+          title={`${companyName} の会社概要・工場データを見る`}
+        >
+          <Building2 size={13} />
+          <span>{companyName} の会社説明・事業概要を見る →</span>
+        </a>
+      </div>
       <p className="meta">
         掲載日 {job.published || '未確認'} / 確認 {job.checked}
       </p>
@@ -146,6 +159,14 @@ function JobCard({job}: {job: CareerJob}) {
       </dl>
       {job.note && <p className="career-note-text">{job.note}</p>}
       <div className="career-job-links">
+        <a
+          href={appHref('company/' + job.company)}
+          className="job-detail-company-link"
+          title={`${companyName} の会社概要・工場データを見る`}
+        >
+          <Building2 size={12} />
+          <span>会社概要・工場</span>
+        </a>
         <a href={job.url} target="_blank" rel="noreferrer">
           {job.state === 'closed' ? '募集終了の公式表示' : '求人・募集要項の出典'} ↗
         </a>
@@ -223,20 +244,20 @@ function EmployerCard({
           {company.level === 'external' ? '求人情報を見る' : '公式採用サイト'}
           <ExternalLink size={13} />
         </a>
+        <a
+          href={appHref('company/' + company.id)}
+          className="btn-career-secondary"
+          title={`${company.name} の会社説明・事業概要・工場データを見る`}
+        >
+          <Building2 size={13} />
+          <span>会社説明・事業詳細 →</span>
+        </a>
         {!detail && (
           <a
             href={appHref('career/' + company.id)}
-            className="btn-career-secondary"
-          >
-            詳細
-          </a>
-        )}
-        {listed && (
-          <a
-            href={appHref('company/' + company.id)}
             className="btn-career-ghost"
           >
-            企業
+            採用詳細
           </a>
         )}
         {company.mill && (
@@ -244,7 +265,7 @@ function EmployerCard({
             href={appHref('mills/' + company.mill)}
             className="btn-career-ghost"
           >
-            工場
+            工場スペック
           </a>
         )}
       </div>
@@ -412,7 +433,38 @@ export default function Career({selectedId}: {selectedId?: string}) {
             <a href={appHref('career')}>← 採用情報一覧に戻る</a>
             <span>›</span>
             <a href={appHref('companies')}>企業一覧</a>
+            <span>›</span>
+            <a href={appHref('company/' + selected.id)}>{selected.name} の会社説明</a>
           </nav>
+
+          <div className="career-company-bridge-banner">
+            <div className="bridge-text-wrap">
+              <span className="bridge-kicker">COMPANY & PLANT PROFILE</span>
+              <h3>{selected.name} の会社説明・事業・工場データ</h3>
+              <p>
+                この企業の事業内容、製粉工場スペック（日産能力・拠点数）、業界ランキング、最新ニュース・適時開示を会社説明ページで詳しく確認できます。
+              </p>
+            </div>
+            <div className="bridge-btn-group">
+              <a
+                href={appHref('company/' + selected.id)}
+                className="btn-career-primary"
+                title={`${selected.name} の会社説明・事業詳細を見る`}
+              >
+                <Building2 size={14} />
+                <span>会社説明・事業詳細を見る →</span>
+              </a>
+              {selected.mill && (
+                <a
+                  href={appHref('mills/' + selected.mill)}
+                  className="btn-career-secondary"
+                  title={`${selected.name} の製粉工場スペックを見る`}
+                >
+                  <span>🏭 製粉工場スペックを見る →</span>
+                </a>
+              )}
+            </div>
+          </div>
 
           <EmployerCard company={selected} detail showClosed={showClosed} />
           <CareerAssessmentCard id={selected.id} name={selected.name} />
