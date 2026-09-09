@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {Search, Building2, TrendingUp, ExternalLink, MapPin, Briefcase} from 'lucide-react';
+import {Search, Building2, MapPin} from 'lucide-react';
 import CurrentPrice from './CurrentPrice';
 import StockChart from './StockChart';
 import Quarterly from './Quarterly';

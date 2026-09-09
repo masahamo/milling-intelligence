@@ -44,6 +44,7 @@ const absolute=p=>host+(p==='/'?'/':p);
 fs.writeFileSync(path.join(publicDir,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+catalog.map(x=>`<url><loc>${absolute(x.path)}</loc></url>`).join('')+'</urlset>\n');
 fs.writeFileSync(path.join(publicDir,'robots.txt'),`User-agent: *\nAllow: /\n\nSitemap: ${host}/sitemap.xml\n`);
 fs.writeFileSync(path.join(publicDir,'llms.txt'),`# Milling Intelligence\n\nJapanese-first public intelligence database for the flour milling industry.\n\n## Canonical entry points\n${registry.map(x=>'- '+absolute(x.path)+' — '+x.title).join('\n')}\n`);
-fs.writeFileSync(path.join(root,'prerender-manifest.json'),JSON.stringify(catalog.map(x=>x.path),null,2)+'\n');
-console.log(`Generated ${catalog.length} canonical routes from src/routeRegistry.json.`);
+const companyRouteCount = catalog.filter(x => x.path.startsWith('/company/')).length;
+const duplicatePaths = catalog.length - new Set(catalog.map(x => x.path)).size;
+console.log(`[SEO Generator] Successfully generated ${catalog.length} canonical routes (Company detail routes: ${companyRouteCount}, Duplicates: ${duplicatePaths}).`);
 

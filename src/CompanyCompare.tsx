@@ -331,7 +331,7 @@ const millIdMap: Record<string, string> = {
 
 const fallbackCaps = new Map(caps.map((c) => [c.id, c]));
 
-const capacityRows: Cap[] = allCompanies.flatMap((c) => {
+const capacityRows: Cap[] = allCompanies.flatMap((c): Cap[] => {
   const m = getMillsCompareCapacity(millIdMap[c.id] || c.id);
   if (m) {
     return [
@@ -345,13 +345,13 @@ const capacityRows: Cap[] = allCompanies.flatMap((c) => {
         basis: m.basis + (m.partial ? ' · ' + m.coverage : ''),
         source: m.source,
         sourceName: m.sourceName,
-        status: 'Current' as const,
+        status: 'Current',
         partial: m.partial
       }
     ];
   }
   const f = fallbackCaps.get(c.id);
-  return f ? [{ ...f, status: 'Reference' as const }] : [];
+  return f ? [{ ...f, status: 'Reference' }] : [];
 });
 
 const millsPreferredCount = capacityRows.filter((r) => r.status === 'Current').length;
@@ -798,7 +798,7 @@ export default function CompanyCompare() {
           <div
             style={{
               display: 'flex',
-              justify: 'space-between',
+              justifyContent: 'space-between',
               alignItems: 'baseline',
               flexWrap: 'wrap',
               gap: 10,
@@ -915,7 +915,7 @@ export default function CompanyCompare() {
           <div
             style={{
               display: 'flex',
-              justify: 'space-between',
+              justifyContent: 'space-between',
               alignItems: 'baseline',
               flexWrap: 'wrap',
               gap: 10,

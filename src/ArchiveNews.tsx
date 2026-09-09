@@ -1,5 +1,5 @@
 import {useState, useMemo} from 'react';
-import {Search, X, Newspaper, Calendar, ExternalLink} from 'lucide-react';
+import {Search, X, Newspaper, Calendar} from 'lucide-react';
 import type {Article} from './model';
 import {appHref} from './navigation';
 

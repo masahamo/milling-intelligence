@@ -19,7 +19,6 @@ import {
   CareerAssessmentOverview,
   getCareerAssessment,
 } from './CareerAssessments';
-import {getListedScore} from './CompanyScores';
 import type {CareerCompany, CareerJob} from './careerData';
 import {appHref} from './navigation';
 import './career.css';
@@ -198,7 +197,6 @@ function EmployerCard({
     ? all.filter(j => showClosed || j.state !== 'closed')
     : all.filter(j => jobMatches(j, jobType, evidence, showClosed));
   const active = all.filter(activeJob);
-  const listed = !!getListedScore(company.id);
 
   return (
     <article className="career-card">

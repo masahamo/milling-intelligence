@@ -17,7 +17,7 @@ export default function CompanyDetail({id,data,daily,dailyError,refreshDaily}:{i
   const name=company?.name||score?.name||mill?.name||career?.name||maker?.name;
   if(!name)return <section className='section'><h1>会社が見つかりません</h1><a href={appHref('companies')}>会社一覧へ戻る</a></section>;
   const articles=data.articles.filter(a=>a.companyIds.includes(id)||(company?.region&&a.country===company.region));
-  const sources=[...(company?.sourceIds.map(sourceId=>data.sources.find(s=>s.id===sourceId)).filter(Boolean)||[]),...(mill?.sources||[]),...(score?.sources||[])];
+  const sources: Array<{ name: string; url: string; [key: string]: any }> = [...(company?.sourceIds.map(sourceId=>data.sources.find(s=>s.id===sourceId)).filter((s): s is NonNullable<typeof s> => Boolean(s))||[]),...(mill?.sources||[]),...(score?.sources||[])];
   if(maker){
     sources.push({name:maker.name+' 公式サイト',url:maker.official,tier:1,status:'verified',checkedAt:'2026-09-07',publicWeb:true});
     if(maker.news)sources.push({name:maker.name+' 公式ニュース',url:maker.news,tier:1,status:'verified',checkedAt:'2026-09-07',publicWeb:true});

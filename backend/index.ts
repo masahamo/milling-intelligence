@@ -1,8 +1,34 @@
-import { router, json, error, db, ai } from '@appdeploy/sdk';
 import { createHash } from 'node:crypto';
 import { watchers } from './watchers';
 import { isScheduled, sourceDiagnostics } from './cadence';
 import { runHiring, hiringHistory } from './hiring';
+
+// Legacy AppDeploy SDK fallback for non-AppDeploy environments (Vercel)
+let router: any, json: any, error: any, db: any, ai: any;
+db = {
+  async list() { return { items: [] }; },
+  async add() { return []; },
+  async update() { return []; }
+};
+router = (routes: any) => routes;
+json = (data: any) => data;
+error = (msg: string, status?: number) => ({ error: msg, status });
+ai = {
+  async scrape() { return { status: 500, text: '' }; },
+  async generate() { return { text: JSON.stringify({ items: [] }) }; }
+};
+
+try {
+  const sdk = await import('@appdeploy/sdk');
+  router = sdk.router;
+  json = sdk.json;
+  error = sdk.error;
+  db = sdk.db;
+  ai = sdk.ai;
+} catch {
+  // @appdeploy/sdk is optional/legacy AppDeploy SDK
+}
+
 export const hiringRefresh = async () => runHiring(new Date().toISOString());
 
 type Row = {
@@ -137,7 +163,7 @@ async function collect(w: typeof watchers[number], runDay: string) {
   await save(dayTable, past, { ...row, seen: undefined, fingerprint: undefined, recent: undefined });
 }
 
-const publicHost = 'milling-intelligence-n4b7pt.v2.appdeploy.ai';
+const publicHost = 'milling-intelligence.vercel.app';
 const publicBase = 'https://' + publicHost;
 const indexNowKey = 'millingintelligence-20260906';
 async function notifyIndexNow(urlList: string[]) {
@@ -198,10 +224,10 @@ async function fxSnapshot() {
 }
 
 export const handler = router({
-  'GET /api/hiring-history': [async ({query}) => { try { return json(await hiringHistory(query)); } catch(e) { const message=e instanceof Error?e.message:''; if (/^(Invalid|Unknown company)/.test(message)) return error(message,400); console.error('Hiring history read failed: '+message); return error('Hiring history unavailable',503); } }],
+  'GET /api/hiring-history': [async ({query}: {query: Record<string, string>}) => { try { return json(await hiringHistory(query)); } catch(e) { const message=e instanceof Error?e.message:''; if (/^(Invalid|Unknown company)/.test(message)) return error(message,400); console.error('Hiring history read failed: '+message); return error('Hiring history unavailable',503); } }],
   'GET /api/fx': [async () => { try { return json(await fxSnapshot()); } catch { return error('FX unavailable',503); } }],
-  'GET /api/market-history': [async ({query}) => { try { return json(await marketHistory(query.ticker||'',query.range||'12M')); } catch { return error('Market history unavailable',503); } }],
-  'GET /api/daily': [async ({query}) => {
+  'GET /api/market-history': [async ({query}: {query: Record<string, string>}) => { try { return json(await marketHistory(query.ticker||'',query.range||'12M')); } catch { return error('Market history unavailable',503); } }],
+  'GET /api/daily': [async ({query}: {query: Record<string, string>}) => {
     if (query.date && (!/^\d{4}-\d{2}-\d{2}$/.test(query.date) || !Number.isFinite(Date.parse(query.date)) || query.date > date())) return error('Invalid date',400);
     const day = query.date || null;
     const states = await Promise.all(watchers.map(async w => {

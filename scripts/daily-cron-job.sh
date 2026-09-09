@@ -1,9 +1,16 @@
 #!/bin/bash
+# ==============================================================================
+# Milling Intelligence — Emergency Manual Daily Refresh Script
+# IMPORTANT:
+# The primary automated production update route is GitHub Actions (.github/workflows/daily-refresh.yml).
+# This script is strictly a MANUAL EMERGENCY FALLBACK for local execution if GitHub Actions is unreachable.
+# ==============================================================================
+
 export PATH="/Users/katayamamasami/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:$PATH"
 PROJECT_DIR="/Users/katayamamasami/Documents/Codex/2026-09-06/git-milling-intelligence-web-codex-git/work/news-first"
 LOG_FILE="/tmp/milling_daily_cron.log"
 
-echo "=== [$(date '+%Y-%m-%d %H:%M:%S')] Starting Milling Intelligence Daily Refresh ===" >> "$LOG_FILE"
+echo "=== [$(date '+%Y-%m-%d %H:%M:%S')] Starting Milling Intelligence Emergency Daily Refresh ===" >> "$LOG_FILE"
 cd "$PROJECT_DIR" || exit 1
 
 # 1. ニュース取得

@@ -5,7 +5,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "node scripts/fetch-market-history.mjs && node scripts/generate-seo.mjs && vite build && node scripts/finalize-seo.mjs",
+        "build": "vite build",
+        "test": "tsx --test tests/*.test.ts",
         "lint": "eslint src --ext .ts,.tsx",
         "typecheck": "tsc --noEmit",
         "preview": "vite preview"
