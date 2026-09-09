@@ -805,7 +805,9 @@ export default function CompanyCompare() {
               marginBottom: 12
             }}
           >
-            <h2 style={{ margin: 0 }}>{capacityHeadings[capRegion]}</h2>
+            <h2 style={{ margin: 0, maxWidth: '100%', overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
+              {capacityHeadings[capRegion]}
+            </h2>
             <span className="meta">単位：t/day（日産能力）</span>
           </div>
 
@@ -920,7 +922,9 @@ export default function CompanyCompare() {
               marginBottom: 12
             }}
           >
-            <h2 style={{ margin: 0 }}>製粉会社・関連企業の売上高ランキング</h2>
+            <h2 style={{ margin: 0, maxWidth: '100%', overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
+              製粉会社・関連企業の売上高ランキング
+            </h2>
             <span className="meta">単位：米ドル（USD換算）</span>
           </div>
 
