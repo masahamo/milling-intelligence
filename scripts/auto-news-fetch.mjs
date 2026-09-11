@@ -67,7 +67,7 @@ const LAYER_B_FEEDS = [
 const EXCLUDE_WORDS = [
   "そば処", "手打ちそば", "十割そば", "蕎麦", "ラーメン屋オープン", "ベーカリー開店",
   "パン屋オープン", "スイーツフェス", "手作りクッキー", "家庭用", "クックパッド",
-  "レシピ", "お菓子作り教室"
+  "レシピ", "お菓子作り教室", "Halwa", "halwa", "Dessert", "dessert", "How To Make", "how to make", "Gluten-Free"
 ];
 
 function cleanTitle(raw) {
