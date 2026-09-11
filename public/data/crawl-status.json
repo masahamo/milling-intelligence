@@ -1,14 +1,14 @@
 {
-  "lastCrawlAt": "2026-09-11 20:00 JST",
+  "lastCrawlAt": "2026/9/11 21:23:47 JST",
   "lastCrawlSuccess": true,
-  "todayNewDailyCount": 0,
-  "todayNewCapexCount": 1,
-  "dailyCandidatesCount": 8,
-  "dailyAddedCount": 0,
-  "capexCandidatesCount": 12,
-  "capexAddedCount": 1,
-  "sourcesSucceededCount": 7,
-  "sourcesFailedCount": 0,
+  "todayNewDailyCount": 2,
+  "todayNewCapexCount": 0,
+  "dailyCandidatesCount": 10,
+  "dailyAddedCount": 2,
+  "capexCandidatesCount": 25,
+  "capexAddedCount": 0,
+  "sourcesSucceededCount": 12,
+  "sourcesFailedCount": 2,
   "warning": false,
   "warningMessage": null
 }

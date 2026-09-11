@@ -464,29 +464,5 @@
     ],
     "nav": "Inquiry",
     "prerender": true
-  },
-  {
-    "path": "/capex-watch",
-    "route": "capex-watch",
-    "title": "Global Milling CapEx Watch｜世界の製粉工場新設・増設・設備投資",
-    "description": "世界の製粉工場の新設、増設、能力増強、大型設備投資、BühlerやOcrim等の製粉機械メーカー案件を、重要度スコアと公開情報から横断監視できるデータベースです。",
-    "h1": "Global Milling CapEx Watch（重要設備投資案件）",
-    "body": "製粉工場の新設、増設、能力増強、設備メーカー案件をImportance Score順および公表日順で確認できます。",
-    "links": [
-      [
-        "/mills",
-        "工場を探す"
-      ],
-      [
-        "/machines",
-        "製粉機械メーカー"
-      ],
-      [
-        "/compare",
-        "会社を比較"
-      ]
-    ],
-    "nav": "CapEx Watch",
-    "prerender": true
   }
 ]
