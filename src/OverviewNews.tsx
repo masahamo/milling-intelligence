@@ -1,8 +1,9 @@
-import { useState, useMemo } from 'react';
-import { Search, X, ExternalLink, Newspaper, Sparkles } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { Search, X, ExternalLink, Newspaper, Sparkles, Activity, AlertTriangle, CheckCircle2, Factory } from 'lucide-react';
 import { weeklyItems, weeklyCompanyItems } from './WeeklyNews';
-import type { Article } from './model';
+import type { Article, CrawlStatus } from './model';
 import type { Daily } from './Daily';
+import { initialCrawlStatus } from './capexWatchData';
 import './overview.css';
 import { appHref } from './navigation';
 
@@ -154,6 +155,16 @@ export default function OverviewNews({
   const [selectedRegion, setSelectedRegion] = useState<string>('すべて');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [limit, setLimit] = useState<number>(6);
+  const [crawlStatus, setCrawlStatus] = useState<CrawlStatus>(initialCrawlStatus);
+
+  useEffect(() => {
+    fetch('/data/crawl-status.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d) setCrawlStatus(d);
+      })
+      .catch(() => {});
+  }, []);
 
   // 全ニュースの集約・正規化・重複排除
   const allNews = useMemo(() => {
@@ -265,6 +276,164 @@ export default function OverviewNews({
 
   return (
     <section className="overview-content" aria-label="製粉業界ニュース">
+      {/* 巡回ステータス・モニター & 2層ニュース収集構造 */}
+      <div
+        className="crawl-status-monitor"
+        style={{
+          background: '#f8fafc',
+          border: '1px solid #e2e8f0',
+          borderRadius: '8px',
+          padding: '14px 18px',
+          marginBottom: '20px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '10px',
+            marginBottom: '8px',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Activity size={16} color="#0284c7" />
+            <strong style={{ fontSize: '0.95rem', color: '#0f172a' }}>
+              ニュース収集巡回ステータス（毎朝06:00 JST自動実行）
+            </strong>
+          </div>
+          <div style={{ fontSize: '0.85rem', color: '#64748b' }}>
+            最終巡回: <strong>{crawlStatus.lastCrawlAt || '未確認'}</strong>
+          </div>
+        </div>
+
+        {/* 24時間経過警告バッジまたは正常件数 */}
+        {crawlStatus.warning ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              background: '#fef2f2',
+              border: '1px solid #fecaca',
+              color: '#991b1b',
+              padding: '6px 12px',
+              borderRadius: '6px',
+              fontSize: '0.85rem',
+              marginBottom: '10px',
+            }}
+          >
+            <AlertTriangle size={15} />
+            <span>⚠️ 巡回遅延注意 (24時間以上更新なし) — 最新データの取得状況をご確認ください</span>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              color: '#166534',
+              fontSize: '0.85rem',
+              marginBottom: '8px',
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <CheckCircle2 size={15} color="#22c55e" />
+              本日速報ニュース: <strong>{crawlStatus.todayNewDailyCount}件</strong>
+            </span>
+            <span>·</span>
+            <span>
+              重要設備投資 (CapEx Watch): <strong>{crawlStatus.todayNewCapexCount}件</strong>
+            </span>
+          </div>
+        )}
+
+        {/* 0件時の正常完了メッセージ */}
+        {crawlStatus.todayNewDailyCount === 0 && (
+          <p
+            style={{
+              margin: '4px 0 10px',
+              fontSize: '0.85rem',
+              color: '#475569',
+              background: '#f1f5f9',
+              padding: '6px 10px',
+              borderRadius: '4px',
+            }}
+          >
+            ℹ️ 本日公開の新着ニュースはありません。ニュース巡回は正常に完了しています。
+          </p>
+        )}
+
+        {/* 2層構造（Layer A & Layer B CapEx Watch）案内 */}
+        <div
+          style={{
+            display: 'flex',
+            gap: '12px',
+            flexWrap: 'wrap',
+            borderTop: '1px solid #e2e8f0',
+            paddingTop: '10px',
+            marginTop: '6px',
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              minWidth: '240px',
+              background: '#ffffff',
+              padding: '10px 14px',
+              borderRadius: '6px',
+              border: '1px solid #cbd5e1',
+            }}
+          >
+            <div style={{ fontWeight: 'bold', fontSize: '0.85rem', color: '#1e293b' }}>
+              【Layer A】速報ニュース
+            </div>
+            <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '2px' }}>
+              対象期間：直近5日以内 · 毎朝の主要速報・市場動向
+            </div>
+          </div>
+          <div
+            style={{
+              flex: 1,
+              minWidth: '240px',
+              background: '#eff6ff',
+              padding: '10px 14px',
+              borderRadius: '6px',
+              border: '1px solid #bfdbfe',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <div
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '0.85rem',
+                  color: '#1e40af',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                }}
+              >
+                <Factory size={14} /> 【Layer B】重要設備投資 CapEx Watch
+              </div>
+              <div style={{ fontSize: '0.8rem', color: '#3b82f6', marginTop: '2px' }}>
+                対象期間：過去90日間 · 新工場・増設・大手メーカー案件
+              </div>
+            </div>
+            <a
+              href={appHref('capex-watch')}
+              className="pill"
+              style={{ fontSize: '0.8rem', whiteSpace: 'nowrap', textDecoration: 'none' }}
+            >
+              CapEx Watch を開く →
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* 検索バー ＆ 国・地域・カテゴリーピルチップ */}
       <div className="news-filter-hub">
         <div className="news-hub-header">

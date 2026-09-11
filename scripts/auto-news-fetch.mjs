@@ -1,117 +1,74 @@
 import fs from "node:fs";
 import path from "node:path";
 
-// 毎朝の自動ニュース取得 & 91日周期 四半期IR巡回スクリプト
-// Milling Specialist仕様：海外の製粉プラント設備投資、機械メーカー、小麦粉R&D動向を重点収集
-console.log("Starting Daily Milling Intelligence auto-fetch (Specialist Edition) at", new Date().toISOString());
+// Milling Intelligence — Enhanced Daily News & Strategic CapEx Watch Script
+console.log("Starting Daily Milling Intelligence auto-fetch (2-Layer Engine) at", new Date().toISOString());
 
 const root = process.cwd();
 const weeklyFile = path.join(root, "src", "WeeklyNews.tsx");
+const capexDataFile = path.join(root, "src", "capexWatchData.ts");
+const capexJsonFile = path.join(root, "public", "data", "capex-watch.json");
+const crawlStatusFile = path.join(root, "public", "data", "crawl-status.json");
+const configFile = path.join(root, "scripts", "news-config.json");
 
-if (!fs.existsSync(weeklyFile)) {
-  console.error("WeeklyNews.tsx not found.");
+if (!fs.existsSync(configFile)) {
+  console.error("news-config.json not found.");
   process.exit(1);
 }
 
-// ニュースフィード（海外設備投資 & 小麦粉開発を重点化）
-const FEEDS = [
-  // 1. 国内重要ニュース
+const config = JSON.parse(fs.readFileSync(configFile, "utf8"));
+const WATCHED_EQUIPMENT_COMPANIES = config.watchedEquipmentCompanies || [];
+const WATCHED_MILLING_COMPANIES = config.watchedMillingCompanies || [];
+
+// Layer A Feeds (Daily News: 5-day window)
+const LAYER_A_FEEDS = [
   {
     name: "国内製粉・小麦・政策ニュース",
     url: "https://news.google.com/rss/search?q=%E8%A3%BD%E7%B2%89+%E5%B0%8F%E9%BA%A6&hl=ja&gl=JP&ceid=JP:ja",
-    defaultPillar: "原料・品質",
+    defaultPillar: "原料・品質"
   },
   {
     name: "国内製粉設備・工場新設・プラント",
     url: "https://news.google.com/rss/search?q=%E8%A3%BD%E7%B2%89%E5%B7%A5%E5%A0%B4+OR+%E8%A3%BD%E7%B2%89%E6%A9%9F%E6%A2%B0+OR+(%E5%B0%8F%E9%BA%A6+%E8%A3%BD%E7%B2%89+%E8%A8%AD%E5%82%99)&hl=ja&gl=JP&ceid=JP:ja",
-    defaultPillar: "設備投資",
+    defaultPillar: "設備投資"
   },
   {
     name: "国内大手製粉・新商品・プレミックス",
     url: "https://news.google.com/rss/search?q=(%E6%97%A5%E6%B8%85%E8%A3%BD%E7%B2%89+OR+%E3%83%8B%E3%83%83%E3%83%97%E3%83%B3+OR+%E6%98%AD%E5%92%8C%E7%94%A3%E6%A5%AD)+AND+(%E5%B0%8F%E9%BA%A6%E7%B2%89+OR+%E3%83%97%E3%83%AC%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9+OR+%E6%96%B0%E5%95%86%E5%93%81)&hl=ja&gl=JP&ceid=JP:ja",
-    defaultPillar: "二次加工・商品",
+    defaultPillar: "二次加工・商品"
   },
-  // 2. 海外製粉プラント・設備投資（重点）
-  {
-    name: "Global Milling Equipment & Machinery (Bühler, Ocrim, Omas, etc.)",
-    url: "https://news.google.com/rss/search?q=(%22flour+mill%22+OR+%22flour+milling%22)+AND+(Buhler+OR+Ocrim+OR+Omas+OR+Alapala+OR+Satake+OR+%22roller+mill%22+OR+plansifter)&hl=en-US&gl=US&ceid=US:en",
-    defaultPillar: "設備投資",
-  },
-  {
-    name: "Global Flour Mill Plant Expansion & Investment",
-    url: "https://news.google.com/rss/search?q=(%22flour+mill%22+OR+%22wheat+processing%22)+AND+(investment+OR+expansion+OR+commissioning+OR+%22new+plant%22+OR+CapEx)&hl=en-US&gl=US&ceid=US:en",
-    defaultPillar: "設備投資",
-  },
-  // 3. 海外小麦粉R&D・機能性粉開発（重点）
   {
     name: "Global Flour R&D, Protein, Quality & Blending",
     url: "https://news.google.com/rss/search?q=(%22wheat+flour%22+OR+%22flour+quality%22)+AND+(protein+OR+gluten+OR+enzyme+OR+%22flour+blending%22+OR+fortification+OR+rheology+OR+premix)&hl=en-US&gl=US&ceid=US:en",
-    defaultPillar: "二次加工・商品",
+    defaultPillar: "二次加工・商品"
   },
-  // 4. 世界の小麦需給・原料品質
   {
     name: "Global Wheat Production & Export Trends",
     url: "https://news.google.com/rss/search?q=(%22wheat+harvest%22+OR+%22wheat+export%22)+AND+(yield+OR+protein+OR+quality+OR+USDA)&hl=en-US&gl=US&ceid=US:en",
-    defaultPillar: "原料・品質",
+    defaultPillar: "原料・品質"
   }
 ];
 
-// ノイズ除外キーワード
+// Layer B Feeds (Strategic CapEx Watch: 90-day window)
+const LAYER_B_FEEDS = [
+  {
+    name: "Global Milling Equipment & Machinery (Bühler, Ocrim, Omas, Alapala, etc.)",
+    url: "https://news.google.com/rss/search?q=(%22flour+mill%22+OR+%22flour+milling%22)+AND+(Buhler+OR+Ocrim+OR+Omas+OR+Alapala+OR+Satake+OR+%22roller+mill%22+OR+plansifter)&hl=en-US&gl=US&ceid=US:en",
+    defaultPillar: "設備投資"
+  },
+  {
+    name: "Global Flour Mill Plant Expansion & Investment",
+    url: "https://news.google.com/rss/search?q=(%22flour+mill%22+OR+%22wheat+processing%22)+AND+(investment+OR+expansion+OR+commissioning+OR+%22new+plant%22+OR+CapEx+OR+%22commercial+operation%22)&hl=en-US&gl=US&ceid=US:en",
+    defaultPillar: "設備投資"
+  },
+  ...(config.directSources || [])
+];
+
 const EXCLUDE_WORDS = [
   "そば処", "手打ちそば", "十割そば", "蕎麦", "ラーメン屋オープン", "ベーカリー開店",
   "パン屋オープン", "スイーツフェス", "手作りクッキー", "家庭用", "クックパッド",
   "レシピ", "お菓子作り教室"
 ];
-
-// 四半期IRローテーション対象（91日周期・13日おきに巡回）
-const ROTATION_START = "2026-09-08";
-const ROTATION_DAYS = 91;
-const IR_WATCHERS = [
-  { id: "nittofuji", rotationDay: 0, name: "日東富士製粉", url: "https://www.nittofuji.co.jp/ir/" },
-  { id: "adm", rotationDay: 13, name: "ADM IR", url: "https://investors.adm.com/" },
-  { id: "bunge", rotationDay: 26, name: "Bunge IR", url: "https://investors.bunge.com/" },
-  { id: "loulis", rotationDay: 39, name: "Loulis Food IR", url: "https://www.loulis.com/en/investor-relations/" },
-  { id: "gmsa", rotationDay: 52, name: "Groupe Minoteries", url: "https://gmsa-rg.ch/" },
-  { id: "sarantopoulos", rotationDay: 65, name: "C. Sarantopoulos", url: "https://athens.euronext.com/" },
-  { id: "torigoe", rotationDay: 78, name: "鳥越製粉 IR", url: "https://www.the-torigoe.co.jp/ir/" },
-];
-
-function checkScheduledIR() {
-  const now = new Date();
-  const todayStr = now.toISOString().slice(0, 10);
-  const dayNumber = Math.floor(now.getTime() / 86400000);
-  const startNumber = Math.floor(Date.parse(ROTATION_START + "T00:00:00Z") / 86400000);
-  const elapsed = (dayNumber - startNumber) % ROTATION_DAYS;
-  const currentSlot = elapsed >= 0 ? elapsed : elapsed + ROTATION_DAYS;
-
-  const target = IR_WATCHERS.find(w => w.rotationDay === currentSlot);
-  if (target) {
-    console.log(`[IR Rotation] 本日（${todayStr}）の四半期IR巡回対象: ${target.name} (${target.url})`);
-  } else {
-    console.log(`[IR Rotation] 本日（${todayStr}）は定例IR巡回の待機日です（次回予定あり）。`);
-  }
-  return target;
-}
-
-function classifyPillar(title) {
-  if (/設備|工場|新設|増設|増産|ライン|ロボット|省エネ|プラント|投資|機械|machine|mill|plant|expansion|capacity|elevator|silo|buhler|ocrim|omas|alapala|satake|plansifter|roll/i.test(title)) {
-    return "設備投資";
-  }
-  if (/新商品|発売|リニューアル|ミックス|パン|うどん|麺|パスタ|商品|プレミックス|米粉|タンパク|食物繊維|開発|bakery|noodle|product|blend|protein|gluten|fiber|enzyme|fortif/i.test(title)) {
-    return "二次加工・商品";
-  }
-  return "原料・品質";
-}
-
-function generateSpecialistInsight(pillar, title) {
-  if (pillar === "設備投資") {
-    return "設備技術者目線：日産能力（t/24h）や動力原単位（kWh/t）、自動化による省人化効果、既存建屋との適合性を注視。";
-  }
-  if (pillar === "二次加工・商品") {
-    return "粉開発目線：灰分・タンパク質規格の設計、酵素・改良剤配合、製パン・製麺レオロジーへの影響を検証。";
-  }
-  return "原料調達目線：小麦クラス別のブレンド比率、調質水分・時間、歩留まり（Extraction rate）への影響を注視。";
-}
 
 function cleanTitle(raw) {
   return raw
@@ -123,13 +80,162 @@ function cleanTitle(raw) {
     .trim();
 }
 
-async function fetchGoogleNews(feed) {
+function calculateImportanceScore(item) {
+  let score = 0;
+  const text = (item.title + " " + (item.body || "")).toLowerCase();
+
+  // +30: 新工場
+  if (/new mill|new flour mill|greenfield|新工場|新設/.test(text)) {
+    score += 30;
+  }
+  // +25: 能力増強
+  if (/capacity expansion|capacity increase|expansion|new production line|plant expansion|能力増強|増設|増産|新ライン/.test(text)) {
+    score += 25;
+  }
+  // +20: 設備メーカー名あり
+  const hasSupplier = WATCHED_EQUIPMENT_COMPANIES.some(eq => text.includes(eq.toLowerCase()));
+  if (hasSupplier) {
+    score += 20;
+  }
+  // +20: 具体的な能力値あり (e.g. 600 t/day, 600 tpd)
+  if (/\b\d+(?:,\d+)?\s*(?:t\/day|t\/24h|tpd|mt\/day|tonnes per day|tons per day|日産能力|\s*t\/日)\b/i.test(text)) {
+    score += 20;
+  }
+  // +15: 具体的投資額あり
+  if (/\b(?:SAR|\$|€|¥|£)\s*\d+|135m|123m|\d+\s*(?:m|million|億)\b/i.test(text)) {
+    score += 15;
+  }
+  // +10: commercial operation / commissioning
+  if (/commercial operation|commissioning|稼働開始|商業運転/.test(text)) {
+    score += 10;
+  }
+  // +10: 大手製粉会社
+  const hasMillingCompany = WATCHED_MILLING_COMPANIES.some(mc => text.includes(mc.toLowerCase()));
+  if (hasMillingCompany) {
+    score += 10;
+  }
+
+  return Math.min(100, score);
+}
+
+function extractCapExMetadata(title, body, url, pubDate) {
+  const fullText = `${title} ${body || ""}`;
+
+  // Company
+  let company = null;
+  for (const mc of WATCHED_MILLING_COMPANIES) {
+    const re = new RegExp(`\\b${mc.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")}\\b`, "i");
+    if (re.test(fullText)) {
+      company = mc;
+      break;
+    }
+  }
+
+  // Equipment Supplier
+  let equipmentSupplier = null;
+  for (const eq of WATCHED_EQUIPMENT_COMPANIES) {
+    const re = new RegExp(`\\b${eq.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")}\\b`, "i");
+    if (re.test(fullText)) {
+      equipmentSupplier = eq;
+      break;
+    }
+  }
+
+  // Capacity Added
+  let capacityAdded = null;
+  const capMatch = fullText.match(/\b(\d+(?:,\d+)?\s*(?:t\/day|t\/24h|tpd|mt\/day|tonnes per day|tons per day))\b/i);
+  if (capMatch) {
+    capacityAdded = capMatch[1];
+  }
+
+  // Total Capacity
+  let totalCapacity = null;
+  const totalCapMatch = fullText.match(/(?:total capacity|総能力|拠点総能力|全製粉能力)[^\d]*(\d+(?:,\d+)?\s*(?:t\/day|t\/24h|tpd|mt\/day))/i);
+  if (totalCapMatch) {
+    totalCapacity = totalCapMatch[1];
+  }
+
+  // Investment Amount & Currency
+  let investmentAmount = null;
+  let currency = null;
+  const invMatch = fullText.match(/(SAR|\$|€|¥|£)\s*(\d+(?:\.\d+)?)\s*(million|billion|m|億)?/i);
+  if (invMatch) {
+    investmentAmount = parseFloat(invMatch[2]);
+    const unit = invMatch[3] ? (invMatch[3].toLowerCase() === 'm' || invMatch[3].toLowerCase() === 'million' ? 'million' : invMatch[3]) : '';
+    currency = `${invMatch[1]}${unit ? ' ' + unit : ''}`.trim();
+  }
+
+  // Mill Name & Location
+  let millName = null;
+  let location = null;
+  const millNameMatch = fullText.match(/([A-Z][a-zA-z0-9\s]+(?:Branch|Mill|Plant|Factory)(?:\s+[A-Z0-9]+)?)/);
+  if (millNameMatch) {
+    millName = millNameMatch[1].trim();
+  }
+
+  // Country
+  let country = "Global";
+  if (/Saudi Arabia|Qassim|Riyadh/i.test(fullText)) country = "Saudi Arabia";
+  else if (/Nigeria|Lagos/i.test(fullText)) country = "Nigeria";
+  else if (/United States|U\.S\.|Pennsylvania/i.test(fullText)) country = "U.S.";
+  else if (/Canada/i.test(fullText)) country = "Canada";
+  else if (/Australia/i.test(fullText)) country = "Australia";
+  else if (/Turkey/i.test(fullText)) country = "Turkey";
+  else if (/Japan|日本/i.test(fullText)) country = "Japan";
+
+  // Dates
+  let commercialOperationDate = null;
+  const dateMatch = fullText.match(/(20\d{2}[-/.]\d{2})/);
+  if (dateMatch) {
+    commercialOperationDate = dateMatch[1];
+  }
+
+  // Project Type
+  let projectType = "Expansion";
+  if (/new mill|new plant|greenfield|新工場|新設/i.test(fullText)) projectType = "Expansion / New Mill";
+  else if (/modernization|upgrade|近代化|更新/i.test(fullText)) projectType = "Modernization";
+
+  const tags = ["重要設備投資"];
+  if (/new mill|新工場/i.test(fullText)) tags.push("新工場");
+  if (/expansion|増設|増産/i.test(fullText)) tags.push("増設");
+  if (equipmentSupplier) tags.push("設備メーカー案件");
+
+  const importanceScore = calculateImportanceScore({ title, body });
+
+  return {
+    id: `capex-${Date.now()}-${Math.floor(Math.random()*1000)}`,
+    title,
+    company,
+    millName,
+    location,
+    country,
+    equipmentSupplier,
+    capacityAdded,
+    totalCapacity,
+    investmentAmount,
+    currency,
+    projectType,
+    commissioningDate: commercialOperationDate,
+    commercialOperationDate,
+    importanceScore,
+    priority: importanceScore >= 70 ? "High Priority" : importanceScore >= 50 ? "Medium Priority" : "Standard",
+    tags,
+    source: "CapEx Watcher",
+    sourceUrl: url,
+    publishedAt: pubDate ? pubDate.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10),
+    discoveredAt: new Date().toISOString(),
+    body: body || title,
+    why: `${equipmentSupplier ? equipmentSupplier + "製設備導入。" : ""} ${capacityAdded ? "追加能力: " + capacityAdded + "。" : ""} 設備増強・CapExベンチマーク。`
+  };
+}
+
+async function fetchFeed(feed, maxAgeDays) {
   try {
     const res = await fetch(feed.url, {
-      headers: { "User-Agent": "Mozilla/5.0 (compatible; MillingIntelligenceBot/1.0)" },
-      signal: AbortSignal.timeout(10000)
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; MillingIntelligenceBot/2.0)" },
+      signal: AbortSignal.timeout(12000)
     });
-    if (!res.ok) return [];
+    if (!res.ok) return { items: [], success: false };
     const xml = await res.text();
 
     const items = [];
@@ -141,85 +247,175 @@ async function fetchGoogleNews(feed) {
       const linkMatch = block.match(/<link>([\s\S]*?)<\/link>/i);
       const dateMatch = block.match(/<pubDate>([\s\S]*?)<\/pubDate>/i);
       const sourceMatch = block.match(/<source[^>]*>([\s\S]*?)<\/source>/i);
+      const descMatch = block.match(/<description>([\s\S]*?)<\/description>/i);
 
       if (titleMatch && linkMatch) {
         const fullTitle = cleanTitle(titleMatch[1]);
         const link = linkMatch[1].trim();
         const pubDate = dateMatch ? new Date(dateMatch[1]) : new Date();
-        const sourceName = sourceMatch ? cleanTitle(sourceMatch[1]) : "専門ニュース";
+        const sourceName = sourceMatch ? cleanTitle(sourceMatch[1]) : feed.name;
+        const description = descMatch ? cleanTitle(descMatch[1]) : "";
 
-        // 直近5日以内を対象
         const now = new Date();
         const diffDays = (now.getTime() - pubDate.getTime()) / (1000 * 3600 * 24);
-        if (diffDays > 5.0) continue;
+        if (diffDays > maxAgeDays) continue;
 
-        // ノイズ除外
         if (EXCLUDE_WORDS.some(w => fullTitle.includes(w))) continue;
 
         const title = fullTitle.replace(/\s*-\s*[^-]+$/, "").trim();
-        const pillar = classifyPillar(title);
 
         items.push({
           title,
           link,
           pubDate,
           source: sourceName,
-          pillar,
-          why: generateSpecialistInsight(pillar, title)
+          body: description
         });
       }
     }
-    return items;
+    return { items, success: true };
   } catch (err) {
-    console.warn(`Could not fetch ${feed.name}:`, err.message);
-    return [];
+    console.warn(`[Crawl Warning] Could not fetch ${feed.name}:`, err.message);
+    return { items: [], success: false };
   }
 }
 
 async function main() {
-  // 1. IRローテーション診断
-  checkScheduledIR();
+  const isBackfill = process.argv.includes("--backfill");
+  console.log(`Executing crawl mode: ${isBackfill ? "Backfill (90-day CapEx Scan)" : "Standard 2-Layer Daily Crawl"}`);
 
-  // 2. ニュース収集
-  const allArticles = [];
-  for (const f of FEEDS) {
-    const items = await fetchGoogleNews(f);
-    allArticles.push(...items);
+  let sourcesSucceeded = 0;
+  let sourcesFailed = 0;
+
+  // 1. Layer A (Daily News - 5 days)
+  let dailyCandidates = 0;
+  let dailyAdded = 0;
+
+  const layerAArticles = [];
+  for (const f of LAYER_A_FEEDS) {
+    const res = await fetchFeed(f, 5.0);
+    if (res.success) sourcesSucceeded++; else sourcesFailed++;
+    dailyCandidates += res.items.length;
+    layerAArticles.push(...res.items);
   }
 
-  console.log(`Fetched ${allArticles.length} candidate articles from ${FEEDS.length} specialist feeds.`);
-
+  // Update WeeklyNews.tsx if new daily items found
   let weeklyContent = fs.readFileSync(weeklyFile, "utf8");
-  let addedCount = 0;
-
-  for (const item of allArticles) {
+  for (const item of layerAArticles) {
     const cleanCheck = item.title.slice(0, 15);
-    if (weeklyContent.includes(cleanCheck) || weeklyContent.includes(item.link)) {
-      continue;
-    }
+    if (weeklyContent.includes(cleanCheck) || weeklyContent.includes(item.link)) continue;
 
     const m = String(item.pubDate.getMonth() + 1).padStart(2, "0");
     const d = String(item.pubDate.getDate()).padStart(2, "0");
     const dateFormatted = `${m}/${d}`;
 
-    const newObjStr = `{date:'${dateFormatted}',pillar:'${item.pillar}',tag:'専門速報',title:'${item.title.replace(/'/g, "\\x27")}',body:'${item.title.replace(/'/g, "\\x27")}。海外・国内の最新一次資料に基づき収録。',why:'${item.why.replace(/'/g, "\\x27")}',url:'${item.link}',source:'${item.source.replace(/'/g, "\\x27")}'},`;
+    const newObjStr = `{date:'${dateFormatted}',pillar:'原料・品質',tag:'速報',title:'${item.title.replace(/'/g, "\\x27")}',body:'${item.title.replace(/'/g, "\\x27")}。速報収集。',why:'速報ニュースとして巡回収集。',url:'${item.link}',source:'${item.source.replace(/'/g, "\\x27")}'},`;
 
     const marker = "export const weeklyItems:Item[]=[";
     if (weeklyContent.includes(marker)) {
       weeklyContent = weeklyContent.replace(marker, marker + newObjStr);
-      addedCount++;
-      console.log(`+ Added [Specialist]: [${item.title}]`);
+      dailyAdded++;
     }
-
-    if (addedCount >= 5) break;
+    if (dailyAdded >= 5) break;
   }
 
-  if (addedCount > 0) {
+  if (dailyAdded > 0) {
     fs.writeFileSync(weeklyFile, weeklyContent);
-    console.log(`Successfully updated WeeklyNews.tsx with ${addedCount} new specialist articles.`);
-  } else {
-    console.log("No new qualifying articles in the last 5 days. Retaining existing news catalog.");
+  }
+
+  // 2. Layer B (Strategic CapEx Watch - 90 days)
+  let capexCandidates = 0;
+  let capexAdded = 0;
+
+  const layerBArticles = [];
+  for (const f of LAYER_B_FEEDS) {
+    const res = await fetchFeed(f, 90.0);
+    if (res.success) sourcesSucceeded++; else sourcesFailed++;
+    capexCandidates += res.items.length;
+    layerBArticles.push(...res.items);
+  }
+
+  // Read existing CapEx items
+  let capexItems = [];
+  if (fs.existsSync(capexJsonFile)) {
+    try {
+      capexItems = JSON.parse(fs.readFileSync(capexJsonFile, "utf8"));
+    } catch {
+      capexItems = [];
+    }
+  }
+
+  for (const item of layerBArticles) {
+    const score = calculateImportanceScore(item);
+    if (score < 50) continue; // High/Medium priority threshold
+
+    const exists = capexItems.some(c => c.sourceUrl === item.link || (c.company && c.capacityAdded && item.title.includes(c.company)));
+    if (exists) continue;
+
+    const capexRecord = extractCapExMetadata(item.title, item.body, item.link, item.pubDate);
+    capexItems.unshift(capexRecord);
+    capexAdded++;
+    console.log(`+ Added [CapEx Watch]: [${capexRecord.title}] (Score: ${capexRecord.importanceScore})`);
+  }
+
+  if (capexAdded > 0) {
+    fs.writeFileSync(capexJsonFile, JSON.stringify(capexItems, null, 2) + "\n");
+
+    // Update capexWatchData.ts
+    const capexTsContent = `import type { CapExItem, CrawlStatus } from './model';\n\nexport const initialCrawlStatus: CrawlStatus = ${JSON.stringify({
+      lastCrawlAt: new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }) + " JST",
+      lastCrawlSuccess: sourcesSucceeded > 0,
+      todayNewDailyCount: dailyAdded,
+      todayNewCapexCount: capexAdded,
+      dailyCandidatesCount: dailyCandidates,
+      dailyAddedCount: dailyAdded,
+      capexCandidatesCount: capexCandidates,
+      capexAddedCount: capexAdded,
+      sourcesSucceededCount: sourcesSucceeded,
+      sourcesFailedCount: sourcesFailed,
+      warning: false,
+      warningMessage: null
+    }, null, 2)};\n\nexport const initialCapExItems: CapExItem[] = ${JSON.stringify(capexItems, null, 2)};\n`;
+
+    fs.writeFileSync(capexDataFile, capexTsContent);
+  }
+
+  // Save Crawl Status
+  const statusObj = {
+    lastCrawlAt: new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }) + " JST",
+    lastCrawlSuccess: sourcesSucceeded > 0,
+    todayNewDailyCount: dailyAdded,
+    todayNewCapexCount: capexAdded,
+    dailyCandidatesCount: dailyCandidates,
+    dailyAddedCount: dailyAdded,
+    capexCandidatesCount: capexCandidates,
+    capexAddedCount: capexAdded,
+    sourcesSucceededCount: sourcesSucceeded,
+    sourcesFailedCount: sourcesFailed,
+    warning: sourcesSucceeded === 0,
+    warningMessage: sourcesSucceeded === 0 ? "すべてのニュース収集ソースが一時的に応答していません。" : null
+  };
+  fs.writeFileSync(crawlStatusFile, JSON.stringify(statusObj, null, 2) + "\n");
+
+  // Output explicit required logs
+  console.log("\n[Daily News]");
+  console.log(`${dailyCandidates} candidates / ${dailyAdded} added`);
+
+  console.log("\n[CapEx Watch]");
+  console.log(`${capexCandidates} candidates / ${capexAdded} added`);
+
+  console.log("\n[Sources]");
+  console.log(`${sourcesSucceeded} succeeded / ${sourcesFailed} failed`);
+
+  console.log(`\nLast successful crawl: ${statusObj.lastCrawlAt}`);
+
+  if (sourcesSucceeded === 0) {
+    console.error("All crawl sources failed! Failing workflow run.");
+    process.exit(1);
   }
 }
 
-main().catch(console.error);
+main().catch(err => {
+  console.error("Fatal crawl error:", err);
+  process.exit(1);
+});

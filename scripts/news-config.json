@@ -1,0 +1,76 @@
+{
+  "watchedEquipmentCompanies": [
+    "Bühler",
+    "Buhler",
+    "Ocrim",
+    "Omas",
+    "Alapala",
+    "Satake",
+    "Henry Simon",
+    "Golfetto Sangati",
+    "Mill Service",
+    "AGI",
+    "Chief Agri",
+    "Sangati Berga"
+  ],
+  "watchedMillingCompanies": [
+    "ADM",
+    "Bunge",
+    "Ardent Mills",
+    "General Mills",
+    "Grain Craft",
+    "First Mills",
+    "Modern Mills",
+    "MC4",
+    "Nisshin Seifun",
+    "Nippn",
+    "Showa Sangyo",
+    "Nitto Fuji",
+    "Manildra",
+    "GoodMills",
+    "Whitworth Bros",
+    "Moulins Soufflet",
+    "日清製粉",
+    "ニップン",
+    "昭和産業",
+    "日東富士製粉",
+    "鳥越製粉"
+  ],
+  "directSources": [
+    {
+      "name": "World Grain",
+      "url": "https://www.world-grain.com/rss/topic/403-milling-grain-processing",
+      "type": "rss"
+    },
+    {
+      "name": "Milling and Grain",
+      "url": "https://millingandgrain.com/feed/",
+      "type": "rss"
+    },
+    {
+      "name": "Feed & Grain",
+      "url": "https://www.feedandgrain.com/rss",
+      "type": "rss"
+    },
+    {
+      "name": "Bühler Group Newsroom",
+      "url": "https://news.google.com/rss/search?q=%22Buhler%22+AND+(%22flour+mill%22+OR+%22milling%22)&hl=en-US&gl=US&ceid=US:en",
+      "type": "rss"
+    },
+    {
+      "name": "Ocrim Newsroom",
+      "url": "https://news.google.com/rss/search?q=%22Ocrim%22+AND+(%22flour+mill%22+OR+%22milling%22)&hl=en-US&gl=US&ceid=US:en",
+      "type": "rss"
+    },
+    {
+      "name": "Alapala Newsroom",
+      "url": "https://news.google.com/rss/search?q=%22Alapala%22+AND+(%22flour+mill%22+OR+%22milling%22)&hl=en-US&gl=US&ceid=US:en",
+      "type": "rss"
+    },
+    {
+      "name": "Satake Corporation",
+      "url": "https://news.google.com/rss/search?q=%22Satake%22+AND+(%22flour%22+OR+%22milling%22)&hl=en-US&gl=US&ceid=US:en",
+      "type": "rss"
+    }
+  ]
+}
