@@ -1,14 +1,14 @@
 {
-  "lastCrawlAt": "2026/10/10 9:29:17 JST",
+  "lastCrawlAt": "2026/10/11 9:05:24 JST",
   "lastCrawlSuccess": true,
-  "todayNewDailyCount": 2,
+  "todayNewDailyCount": 1,
   "todayNewCapexCount": 0,
-  "dailyCandidatesCount": 19,
-  "dailyAddedCount": 2,
-  "capexCandidatesCount": 45,
+  "dailyCandidatesCount": 18,
+  "dailyAddedCount": 1,
+  "capexCandidatesCount": 24,
   "capexAddedCount": 0,
-  "sourcesSucceededCount": 13,
-  "sourcesFailedCount": 1,
+  "sourcesSucceededCount": 12,
+  "sourcesFailedCount": 2,
   "warning": false,
   "warningMessage": null
 }
